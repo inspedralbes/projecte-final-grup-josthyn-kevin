@@ -1,0 +1,98 @@
+
+    {"Quiz" :
+        {"idQuiz":1,
+        "Preguntes":[
+        {   
+            "id" : 1,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        },
+        {   
+            "id" : 2,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        },
+        {   
+            "id" : 3,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        },
+        {   
+            "id" : 4,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        },
+        {   
+            "id" : 5,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        },
+        {   
+            "id" : 6,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        },
+        {   
+            "id" : 7,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        },
+        {   
+            "id" : 8,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        },
+        {   
+            "id" : 9,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        },
+        {   
+            "id" : 10,
+            "Enunciat": "¿Quien descubrio America?",
+            "r1": "Cristobal Colon",
+            "r2": "Fernando de Magallanes",
+            "r3": "Vasco de Gama",
+            "r4": "Bartolomé Díaz",
+            "r5": "Américo Vespucio"
+        }
+        ]
+    }
+}
+    
