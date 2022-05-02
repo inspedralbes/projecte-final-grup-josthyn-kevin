@@ -4,7 +4,7 @@
         "Preguntes":[
         {   
             "id" : 1,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
@@ -13,7 +13,7 @@
         },
         {   
             "id" : 2,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
@@ -22,7 +22,7 @@
         },
         {   
             "id" : 3,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
@@ -31,7 +31,7 @@
         },
         {   
             "id" : 4,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
@@ -40,7 +40,7 @@
         },
         {   
             "id" : 5,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
@@ -49,7 +49,7 @@
         },
         {   
             "id" : 6,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
@@ -58,7 +58,7 @@
         },
         {   
             "id" : 7,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
@@ -67,7 +67,7 @@
         },
         {   
             "id" : 8,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
@@ -76,7 +76,7 @@
         },
         {   
             "id" : 9,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
@@ -85,7 +85,7 @@
         },
         {   
             "id" : 10,
-            "Enunciat": "¿Quien descubrio America?",
+            "Enunciado": "¿Quien descubrio America?",
             "r1": "Cristobal Colon",
             "r2": "Fernando de Magallanes",
             "r3": "Vasco de Gama",
