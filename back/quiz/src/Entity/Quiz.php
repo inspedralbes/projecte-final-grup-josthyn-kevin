@@ -21,9 +21,13 @@ class Quiz
     #[ORM\OneToMany(mappedBy: 'idQuiz', targetEntity: Preguntas::class)]
     private $preguntas;
 
+    #[ORM\OneToMany(mappedBy: 'quiz', targetEntity: Partidas::class)]
+    private $partidas;
+
     public function __construct()
     {
         $this->preguntas = new ArrayCollection();
+        $this->partidas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Quiz
             // set the owning side to null (unless already changed)
             if ($pregunta->getIdQuiz() === $this) {
                 $pregunta->setIdQuiz(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Partidas>
+     */
+    public function getPartidas(): Collection
+    {
+        return $this->partidas;
+    }
+
+    public function addPartida(Partidas $partida): self
+    {
+        if (!$this->partidas->contains($partida)) {
+            $this->partidas[] = $partida;
+            $partida->setQuiz($this);
+        }
+
+        return $this;
+    }
+
+    public function removePartida(Partidas $partida): self
+    {
+        if ($this->partidas->removeElement($partida)) {
+            // set the owning side to null (unless already changed)
+            if ($partida->getQuiz() === $this) {
+                $partida->setQuiz(null);
             }
         }
 

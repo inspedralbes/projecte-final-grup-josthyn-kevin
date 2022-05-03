@@ -2,22 +2,28 @@
 
 namespace App\Controller;
 
+use App\Entity\Partidas;
+use App\Entity\Quiz;
 use App\Repository\PreguntasRepository;
 use App\Repository\QuizRepository;
+use App\Repository\PartidasRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class PreguntasController extends AbstractController
 {
     private PreguntasRepository $preguntasRepository;
     private QuizRepository $quizRepository;
+    private PartidasRepository $partidasRepository;
 
-    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository)
+    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository, PartidasRepository $partidasRepository)
     {
         $this->preguntasRepository = $preguntasRepository;
         $this->quizRepository = $quizRepository;
+        $this->partidasRepository = $partidasRepository;
     }
 
 
@@ -33,7 +39,7 @@ class PreguntasController extends AbstractController
     public function show($id)
     {
         $preguntas = $this->preguntasRepository->findBy(['idQuiz' => $id]);
-        $quiz2 = $this->quizRepository->findOneBy(['id' => $id]);
+        $quiz = $this->quizRepository->findOneBy(['id' => $id]);
         $data1=[];
         $i=0;
 
@@ -50,7 +56,8 @@ class PreguntasController extends AbstractController
                         $i++;
         }
         $data[] = [
-            'id_quiz' => $quiz2->getId(),
+            'id_quiz' => $quiz->getId(),
+            'titulo' => $quiz->getTitulo(),
             'preguntas' => $data1
 
         ];
@@ -58,6 +65,26 @@ class PreguntasController extends AbstractController
     }
 
 
+    #[Route('/anadir', name: 'api_añadir', methods: ['POST'])]
+    public function new(Request $request)
+    {
+        $quiz =$this->quizRepository->findOneBy(['id'=> $request->get('quiz')]);
+        $array=json_decode($_POST["Reposta"]);
+        $puntos=0;
+        foreach ($array as $item) {
+            $respuesta=$item;
+            if($respuesta=="r1"){
+                $puntos+=10;
+            }
+        }
+        $partida = new Partidas;
+        $partida->setPuntuacion($puntos);
+        $partida->setQuiz($quiz);
+
+        $this->partidasRepository->add($partida);
+
+        return new JsonResponse(['puntuacion' => $puntos], Response::HTTP_OK);
+    }
 
 
 }
