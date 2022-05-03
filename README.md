@@ -9,7 +9,9 @@ Un cop comenceu heu de canviar aquesta explicació amb la corresponent al vostre
 
 
 # Aquest fitxer ha de contenir com a mínim:
- * Nom dels integrants
+ * Josthyn Loma, Kevin Hoyos
+ * Trello: https://trello.com/b/icupZBNA/proyectofinal
+ * Figma: https://www.figma.com/file/ZWZ5DZ1m4M7I6ItUur7Ioa/Untitled?node-id=0%3A1
  * Nom del projecte
  * Petita descripció
  * URL de producció (quan la tingueu)
