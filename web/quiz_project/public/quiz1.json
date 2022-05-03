@@ -1,0 +1,42 @@
+{ "Respostes":   
+    {"idQuiz" : 1,
+        "Resposta" : [   
+        {
+            "id": 1, 
+            "resposta" : "r1"
+        },
+        {
+            "id": 2, 
+            "resposta" : "r2"
+        },
+        {
+            "id": 3,
+            "resposta" : "r3"
+        },
+        {
+            "id": 4,
+            "resposta" : "r1"
+        },
+        {
+            "id": 5,
+            "resposta" : "r5"
+        },
+        {
+            "id": 7,
+            "resposta" : "r1"
+        },
+        {
+            "id": 8,
+            "resposta" : "r2"
+        },
+        {
+            "id": 9,
+            "resposta" : "r2"
+        },
+        {
+            "id": 10,
+            "resposta" : "r5"
+        }
+        ]
+    }
+}
