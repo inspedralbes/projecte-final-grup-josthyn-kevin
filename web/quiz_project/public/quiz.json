@@ -1,6 +1,7 @@
 
     {"Quiz" :
         {"idQuiz":1,
+         "titulo" : "Historia de españa",   
         "Preguntes":[
         {   
             "id" : 1,
@@ -14,11 +15,11 @@
         {   
             "id" : 2,
             "Enunciat": "¿Quien descubrio America?",
-            "r1": "Cristobal Colon",
-            "r2": "Fernando de Magallanes",
-            "r3": "Vasco de Gama",
-            "r4": "Bartolomé Díaz",
-            "r5": "Américo Vespucio"
+            "r1": "Cristobal Soria",
+            "r2": "Fernando Alonso",
+            "r3": "Vasco de Bilbao",
+            "r4": "Bartolomé noara",
+            "r5": "Américo gun"
         },
         {   
             "id" : 3,

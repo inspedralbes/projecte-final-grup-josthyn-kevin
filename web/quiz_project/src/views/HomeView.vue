@@ -1,9 +1,18 @@
-<script setup>
-import TheWelcome from '@/components/MostrarPregunta.vue'
+<script >
+import { RouterLink, RouterView } from 'vue-router'
+import MostrarPregunta from '../components/MostrarPregunta.vue'
+import Heather from '../components/HeatherIn.vue'
+export default {
+  components: {
+    MostrarPregunta,
+    Heather
+  }
+}
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <heather/>
+    <mostrar-pregunta/>
   </main>
 </template>
