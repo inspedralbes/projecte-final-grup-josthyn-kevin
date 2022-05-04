@@ -20,6 +20,9 @@ class Partidas
     #[ORM\JoinColumn(nullable: false)]
     private $quiz;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $nombre;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class Partidas
     public function setQuiz(?quiz $quiz): self
     {
         $this->quiz = $quiz;
+
+        return $this;
+    }
+
+    public function getNombre(): ?string
+    {
+        return $this->nombre;
+    }
+
+    public function setNombre(string $nombre): self
+    {
+        $this->nombre = $nombre;
 
         return $this;
     }

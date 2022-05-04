@@ -77,9 +77,11 @@ class PreguntasController extends AbstractController
                 $puntos+=10;
             }
         }
+
         $partida = new Partidas;
         $partida->setPuntuacion($puntos);
         $partida->setQuiz($quiz);
+        $partida->setNombre($request->get('nombre'));
 
         $this->partidasRepository->add($partida);
 
