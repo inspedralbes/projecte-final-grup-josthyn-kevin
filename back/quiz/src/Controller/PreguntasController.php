@@ -40,6 +40,7 @@ class PreguntasController extends AbstractController
     {
         $preguntas = $this->preguntasRepository->findBy(['idQuiz' => $id]);
         $quiz = $this->quizRepository->findOneBy(['id' => $id]);
+        $partidas = $this->partidasRepository->encontrarMejoresJugadores($id);
         $data1=[];
         $i=0;
 
@@ -55,10 +56,11 @@ class PreguntasController extends AbstractController
                         ];
                         $i++;
         }
-        $data[] = [
+        $data= [
             'id_quiz' => $quiz->getId(),
             'titulo' => $quiz->getTitulo(),
-            'preguntas' => $data1
+            'preguntas' => $data1,
+            'jugadores' => $partidas
 
         ];
         return new JsonResponse($data, Response::HTTP_OK);
@@ -69,7 +71,7 @@ class PreguntasController extends AbstractController
     public function new(Request $request)
     {
         $quiz =$this->quizRepository->findOneBy(['id'=> $request->get('quiz')]);
-        $array=json_decode($_POST["Reposta"]);
+        $array=json_decode($_POST["resposta"]);
         $puntos=0;
         foreach ($array as $item) {
             $respuesta=$item;
@@ -77,7 +79,6 @@ class PreguntasController extends AbstractController
                 $puntos+=10;
             }
         }
-
         $partida = new Partidas;
         $partida->setPuntuacion($puntos);
         $partida->setQuiz($quiz);

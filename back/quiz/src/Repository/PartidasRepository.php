@@ -47,6 +47,15 @@ class PartidasRepository extends ServiceEntityRepository
         }
     }
 
+    public function encontrarMejoresJugadores($id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT partidas.nombre, partidas.puntuacion FROM partidas WHERE partidas.quiz_id=$id ORDER BY partidas.puntuacion DESC LIMIT 10;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }
+
     // /**
     //  * @return Partidas[] Returns an array of Partidas objects
     //  */
