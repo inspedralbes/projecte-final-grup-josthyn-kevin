@@ -1,0 +1,30 @@
+nav {
+    background-color: rgb(155, 82, 224);
+}
+
+form {
+    margin-left: -40%;
+    margin-right: 0%;
+}
+
+button {
+    margin-left: 3%;
+    color: white;
+}
+.grid-container{
+    padding-top: 5%;
+    display: grid;
+    grid-template-columns: 65% 25%;
+
+}
+
+article{
+    margin-right: 10%;
+    margin-left: 10%;
+    border: 3px solid black;
+}
+aside{
+  border: 3px solid black;
+  padding-left: 5%;
+
+}
