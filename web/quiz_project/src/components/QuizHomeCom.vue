@@ -8,7 +8,7 @@
       }
     },
    mounted () {
-      fetch('http://192.168.210.160:8000/preguntas/1')
+      fetch('http://proyectefinaljoskevback.alumnes.inspedralbes.cat/preguntas/1')
       .then(res => res.json())
       .then((data) => {
         this.myjson = data;
