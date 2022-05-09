@@ -1,4 +1,5 @@
 <script>
+import { RouterLink, RouterView } from 'vue-router'
      export default {
     data() {
       return {
@@ -26,13 +27,11 @@
     <main>
 
     <h4>Quiz</h4>
-
-    <a :href="'/pregunta/' + myjson.id_quiz">
+    <RouterLink :to="`/pregunta/${myjson.id_quiz}`">
         <div>
             <h5>{{this.myjson.titulo}}</h5>
         </div>
-    </a>
-
+    </RouterLink>    
     </main>
 
 </template>
