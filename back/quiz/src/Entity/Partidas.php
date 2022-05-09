@@ -2,26 +2,48 @@
 
 namespace App\Entity;
 
-use App\Repository\PartidasRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PartidasRepository::class)]
+/**
+ * Partidas
+ *
+ * @ORM\Table(name="partidas", indexes={@ORM\Index(name="IDX_12114278853CD175", columns={"quiz_id"})})
+ * @ORM\Entity
+ */
 class Partidas
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
     private $id;
 
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="puntuacion", type="integer", nullable=false)
+     */
     private $puntuacion;
 
-    #[ORM\ManyToOne(targetEntity: quiz::class, inversedBy: 'partidas')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $quiz;
-
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
+     */
     private $nombre;
+
+    /**
+     * @var \Quiz
+     *
+     * @ORM\ManyToOne(targetEntity="Quiz")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
+     * })
+     */
+    private $quiz;
 
     public function getId(): ?int
     {
@@ -40,18 +62,6 @@ class Partidas
         return $this;
     }
 
-    public function getQuiz(): ?quiz
-    {
-        return $this->quiz;
-    }
-
-    public function setQuiz(?quiz $quiz): self
-    {
-        $this->quiz = $quiz;
-
-        return $this;
-    }
-
     public function getNombre(): ?string
     {
         return $this->nombre;
@@ -63,4 +73,18 @@ class Partidas
 
         return $this;
     }
+
+    public function getQuiz(): ?Quiz
+    {
+        return $this->quiz;
+    }
+
+    public function setQuiz(?Quiz $quiz): self
+    {
+        $this->quiz = $quiz;
+
+        return $this;
+    }
+
+
 }
