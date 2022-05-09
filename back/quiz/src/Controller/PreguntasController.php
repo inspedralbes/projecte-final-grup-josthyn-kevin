@@ -7,6 +7,7 @@ use App\Entity\Quiz;
 use App\Repository\PreguntasRepository;
 use App\Repository\QuizRepository;
 use App\Repository\PartidasRepository;
+use App\Repository\RespuestasRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,12 +19,14 @@ class PreguntasController extends AbstractController
     private PreguntasRepository $preguntasRepository;
     private QuizRepository $quizRepository;
     private PartidasRepository $partidasRepository;
+    private RespuestasRepository $respuestasRepository;
 
-    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository, PartidasRepository $partidasRepository)
+    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository, PartidasRepository $partidasRepository,RespuestasRepository $respuestasRepository )
     {
         $this->preguntasRepository = $preguntasRepository;
         $this->quizRepository = $quizRepository;
         $this->partidasRepository = $partidasRepository;
+        $this->respuestasRepository = $respuestasRepository;
     }
 
 
@@ -40,19 +43,16 @@ class PreguntasController extends AbstractController
     {
         $preguntas = $this->preguntasRepository->findBy(['idQuiz' => $id]);
         $quiz = $this->quizRepository->findOneBy(['id' => $id]);
-        $partidas = $this->partidasRepository->encontrarMejoresJugadores($id);
+        $respuestas = $this->respuestasRepository->respuestas($id);
+        //$partidas = $this->partidasRepository->encontrarMejoresJugadores($id);
         $data1=[];
+        $data2=[];
         $i=0;
 
         foreach ($preguntas as $pregunta) {
             $data1[$i] = [
                         'id' => $pregunta->getId(),
                         'enunciado' => $pregunta->getEnunciado(),
-                        'r1' => $pregunta->getR1(),
-                        'r2' => $pregunta->getR2(),
-                        'r3' => $pregunta->getR3(),
-                        'r4' => $pregunta->getR4(),
-                        'r5' => $pregunta->getR5()
                         ];
                         $i++;
         }
@@ -60,7 +60,7 @@ class PreguntasController extends AbstractController
             'id_quiz' => $quiz->getId(),
             'titulo' => $quiz->getTitulo(),
             'preguntas' => $data1,
-            'jugadores' => $partidas
+            'respuestas' => $respuestas,
 
         ];
         return new JsonResponse($data, Response::HTTP_OK);
