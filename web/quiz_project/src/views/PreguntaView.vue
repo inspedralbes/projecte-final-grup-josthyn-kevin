@@ -11,7 +11,9 @@ export default {
 </script>
 
 <template>
+  
   <main>
+    <h1>{{$route.params.id}}</h1>
     <heather/>
     <mostrar-pregunta/>
   </main>
