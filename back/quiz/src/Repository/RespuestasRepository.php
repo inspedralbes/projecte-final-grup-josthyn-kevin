@@ -47,10 +47,10 @@ class RespuestasRepository extends ServiceEntityRepository
         }
     }
 
-    public function respuestas($id): array
+    public function respuestas($id, $idPregunta): array
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = "SELECT respuestas.id, respuestas.respuesta, respuestas.estado FROM respuestas JOIN preguntas ON respuestas.pregunta=preguntas.id JOIN quiz ON preguntas.id_quiz_id = quiz.id WHERE preguntas.id_quiz_id = $id;";
+        $sql = "SELECT respuestas.id, respuestas.respuesta, respuestas.estado FROM respuestas JOIN preguntas ON respuestas.pregunta=preguntas.id JOIN quiz ON preguntas.id_quiz_id = quiz.id WHERE preguntas.id_quiz_id = $id AND respuestas.pregunta=$idPregunta;";
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchAllAssociative();

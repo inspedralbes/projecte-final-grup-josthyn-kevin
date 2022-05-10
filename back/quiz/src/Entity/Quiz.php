@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Quiz
  *
- * @ORM\Table(name="quiz")
+ * @ORM\Table(name="quiz", indexes={@ORM\Index(name="usuario_id", columns={"usuario_id"})})
  * @ORM\Entity
  */
 class Quiz
@@ -28,6 +28,16 @@ class Quiz
      */
     private $titulo;
 
+    /**
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * })
+     */
+    private $usuario;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,6 +51,18 @@ class Quiz
     public function setTitulo(string $titulo): self
     {
         $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

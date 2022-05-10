@@ -47,6 +47,15 @@ class UsuarioRepository extends ServiceEntityRepository
         }
     }
 
+    /*public function encontrarUsuario($correo): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT usuario.* FROM usuario WHERE usuario.correo = $correo;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }*/
+
     // /**
     //  * @return Usuario[] Returns an array of Usuario objects
     //  */

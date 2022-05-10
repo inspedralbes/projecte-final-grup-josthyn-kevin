@@ -2,38 +2,50 @@
 
 namespace App\Entity;
 
-use App\Repository\UsuarioRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=UsuarioRepository::class)
+ * Usuario
+ *
+ * @ORM\Table(name="usuario")
+ * @ORM\Entity
  */
 class Usuario
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
      */
     private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="apellido", type="string", length=255, nullable=false)
      */
     private $apellido;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="correo", type="string", length=255, nullable=false)
      */
     private $correo;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="contrasena", type="string", length=255, nullable=false)
      */
     private $contrasena;
 
@@ -89,4 +101,6 @@ class Usuario
 
         return $this;
     }
+
+
 }

@@ -29,7 +29,7 @@ class UsuarioController extends AbstractController
         ]);
     }
 
-    #[Route('/anadir/usuario', name: 'api_añadir', methods: ['GET','POST'])]
+    #[Route('/anadir/usuario', name: 'api_añadir_usuario', methods: ['GET','POST'])]
     public function new(Request $request)
     {
         $registrado = $this->usuarioRepository->findOneBy(['correo' => $request->get('correo')]);
@@ -53,6 +53,43 @@ class UsuarioController extends AbstractController
             }
 
     }
+
+    #[Route('/login', name: 'api_añadir', methods: ['GET', 'POST'])]
+    public function login(Request $request)
+    {
+
+        $correo=$request->get('correo');
+        $contrasena=$request->get('contrasena');
+        $usuario = $this->usuarioRepository->findOneBy(['correo' => $correo]);
+
+        if (!empty($usuario)){
+
+            $contrasenaBBDD=$usuario->getContrasena();
+            if (password_verify($contrasena,$contrasenaBBDD)){
+
+                $data= [
+                    'correo' => $correo,
+                    'contrasena' => $contrasena,
+                    'nombre' => $usuario->getNombre(),
+                    'apellido' => $usuario->getApellido(),
+
+                ];
+
+                return new JsonResponse($data, Response::HTTP_OK);
+
+            }
+
+            return new JsonResponse(['status' => 'Contraseña incorrecta'], Response::HTTP_CREATED);
+
+        }else{
+
+            return new JsonResponse(['status' => 'Correo no registrado o incorrecto'], Response::HTTP_CREATED);
+
+        }
+
+    }
+
+
 
 
 

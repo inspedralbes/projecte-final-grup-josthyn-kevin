@@ -8,6 +8,7 @@ use App\Repository\PreguntasRepository;
 use App\Repository\QuizRepository;
 use App\Repository\PartidasRepository;
 use App\Repository\RespuestasRepository;
+use App\Repository\UsuarioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,13 +21,15 @@ class PreguntasController extends AbstractController
     private QuizRepository $quizRepository;
     private PartidasRepository $partidasRepository;
     private RespuestasRepository $respuestasRepository;
+    private UsuarioRepository $usuarioRepository;
 
-    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository, PartidasRepository $partidasRepository,RespuestasRepository $respuestasRepository )
+    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository, PartidasRepository $partidasRepository,RespuestasRepository $respuestasRepository, UsuarioRepository $usuarioRepository )
     {
         $this->preguntasRepository = $preguntasRepository;
         $this->quizRepository = $quizRepository;
         $this->partidasRepository = $partidasRepository;
         $this->respuestasRepository = $respuestasRepository;
+        $this->usuarioRepository = $usuarioRepository;
     }
 
 
@@ -38,21 +41,39 @@ class PreguntasController extends AbstractController
         ]);
     }
 
+    #[Route('/quiz', name: 'api_quiz', methods: ['GET'])]
+    public function showQuiz()
+    {
+        $quizs = $this->quizRepository->findAll();
+
+        $data = [];
+
+        foreach ($quizs as $quiz) {
+            $data[] = [
+                'id' => $quiz->getId(),
+                'titulo' => $quiz->getTitulo(),
+            ];
+
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+
+    }
+
     #[Route('/preguntas/{id}', name: 'api_one', methods: ['GET'])]
     public function show($id)
     {
         $preguntas = $this->preguntasRepository->findBy(['idQuiz' => $id]);
         $quiz = $this->quizRepository->findOneBy(['id' => $id]);
-        $respuestas = $this->respuestasRepository->respuestas($id);
         //$partidas = $this->partidasRepository->encontrarMejoresJugadores($id);
         $data1=[];
-        $data2=[];
         $i=0;
 
         foreach ($preguntas as $pregunta) {
+            $idPregunta=$pregunta->getId();
             $data1[$i] = [
-                        'id' => $pregunta->getId(),
+                        'id' => $idPregunta,
                         'enunciado' => $pregunta->getEnunciado(),
+                        'respuestas' => $this->respuestasRepository->respuestas($id, $idPregunta),
                         ];
                         $i++;
         }
@@ -60,14 +81,14 @@ class PreguntasController extends AbstractController
             'id_quiz' => $quiz->getId(),
             'titulo' => $quiz->getTitulo(),
             'preguntas' => $data1,
-            'respuestas' => $respuestas,
 
         ];
         return new JsonResponse($data, Response::HTTP_OK);
     }
 
 
-    #[Route('/anadir', name: 'api_añadir', methods: ['POST'])]
+
+    #[Route('/anadir/partida', name: 'api_añadir_partida', methods: ['POST'])]
     public function new(Request $request)
     {
         $quiz =$this->quizRepository->findOneBy(['id'=> $request->get('quiz')]);
@@ -75,7 +96,7 @@ class PreguntasController extends AbstractController
         $puntos=0;
         foreach ($array as $item) {
             $respuesta=$item;
-            if($respuesta=="r1"){
+            if($respuesta==1){
                 $puntos+=10;
             }
         }
@@ -88,6 +109,24 @@ class PreguntasController extends AbstractController
 
         return new JsonResponse(['puntuacion' => $puntos], Response::HTTP_OK);
     }
+
+    #[Route('/anadir/quiz', name: 'api_añadir_quiz', methods: ['POST'])]
+    public function newQuiz(Request $request)
+    {
+        $usuario =$this->usuarioRepository->findOneBy(['id'=> $request->get('usuario')]);
+
+        $quiz = new Quiz;
+        $quiz->setTitulo($request->get('titulo'));
+        $quiz->setUsuario($usuario);
+        $this->quizRepository->add($quiz);
+
+
+
+        return new JsonResponse(['status' => 'Quiz añadido'], Response::HTTP_CREATED);
+
+    }
+
+
 
 
 }
