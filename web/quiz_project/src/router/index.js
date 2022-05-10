@@ -3,6 +3,7 @@ import Pregunta from '../views/PreguntaView.vue'
 import Quizhome from '../views/Quizhome.vue'
 import LogIn from '../views/LogInView.vue'
 import Register from '../views/RegisterView.vue'
+import Admin from '../views/AdminView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin
     },
     {
       path: '/about',

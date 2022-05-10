@@ -3,18 +3,17 @@ import { RouterLink, RouterView } from 'vue-router'
      export default {
     data() {
       return {
-      myjson: [],
-      respuestas:[],
+      quiz: [],
       Nombre: "",
       }
     },
    mounted () {
-      fetch('http://proyectefinaljoskevback.alumnes.inspedralbes.cat/preguntas/1')
+      fetch(`http://192.168.210.161:8000/quiz`)
       .then(res => res.json())
       .then((data) => {
-        this.myjson = data;
-        console.log(this.myjson)
-        console.log(this.myjson.titulo)
+        this.quiz = data;
+        console.log(this.quiz)
+        console.log(this.quiz)
       });
     },
   }
@@ -27,18 +26,17 @@ import { RouterLink, RouterView } from 'vue-router'
     <main>
 
     <h4>Quiz</h4>
-    <RouterLink :to="`/pregunta/${myjson.id_quiz}`">
-        <div>
-            <h5>{{this.myjson.titulo}}</h5>
-        </div>
-    </RouterLink>    
+      <div v-for="(quizs,index) in this.quiz" :key="index">
+        <RouterLink :to="`/pregunta/${quizs.id}`">
+                <h5>{{quizs.titulo}}</h5>
+        </RouterLink>
+      </div>    
     </main>
-
 </template>
 
 <style scoped>
     div {
-        margin: 20%;
+        margin: 2%;
         border: 2px solid black
     }
 </style>

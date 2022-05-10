@@ -8,9 +8,9 @@ import { RouterLink, RouterView } from 'vue-router'
         <div id="hd">
             <form id="form">
                 <RouterLink to="/"><button style="color: white" class="btn btn-dark">Home</button></RouterLink>
-                <RouterLink to="/login"><button class="btn btn-warning" type="button">Admin</button></RouterLink>
-                <button class="btn btn-warning" type="button">Log in</button>
-                <button class="btn btn-warning" type="button">Registarse</button>
+                <RouterLink to="/admin"><button class="btn btn-warning" type="button">Admin</button></RouterLink>
+                <RouterLink to="/login"><button class="btn btn-warning" type="button">Log in</button></RouterLink>
+                <RouterLink to="/register"><button class="btn btn-warning" type="button">Registarse</button></RouterLink>
             </form>
         </div>
     </nav>
