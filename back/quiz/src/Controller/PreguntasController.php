@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Partidas;
 use App\Entity\Quiz;
+use App\Entity\Preguntas;
+use App\Entity\Respuestas;
 use App\Repository\PreguntasRepository;
 use App\Repository\QuizRepository;
 use App\Repository\PartidasRepository;
@@ -14,6 +16,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+
+$propertyAccessor = PropertyAccess::createPropertyAccessor();
 
 class PreguntasController extends AbstractController
 {
@@ -53,10 +58,8 @@ class PreguntasController extends AbstractController
                 'id' => $quiz->getId(),
                 'titulo' => $quiz->getTitulo(),
             ];
-
         }
         return new JsonResponse($data, Response::HTTP_OK);
-
     }
 
     #[Route('/preguntas/{id}', name: 'api_one', methods: ['GET'])]
@@ -113,14 +116,44 @@ class PreguntasController extends AbstractController
     #[Route('/anadir/quiz', name: 'api_añadir_quiz', methods: ['POST'])]
     public function newQuiz(Request $request)
     {
-        $usuario =$this->usuarioRepository->findOneBy(['id'=> $request->get('usuario')]);
+        $array = $request->toArray();
+        $user = $array['usuario'];
+        $titulo = $array['titulo'];
 
+        $usuario =$this->usuarioRepository->findOneBy(['id'=> $user]);
         $quiz = new Quiz;
-        $quiz->setTitulo($request->get('titulo'));
+        $quiz->setTitulo($titulo);
         $quiz->setUsuario($usuario);
         $this->quizRepository->add($quiz);
 
+        $quiz_id=$this->quizRepository->ultimoQuiz($user);
+        //print_r($quiz_id);
+        //$idQuiz=$quiz_id[0]['id'];
+        //print_r($idQuiz);
 
+        for ($i=0;$i<10;$i++) {
+
+            $pregunta = new Preguntas;
+            print_r($quiz_id);
+            $pregunta->setIdQuiz($quiz_id);
+            $pregunta->setEnunciado($array['preguntas'][$i]['enunciado']);
+            $this->preguntasRepository->add($pregunta);
+            $pregunta_id=$this->preguntasRepository->ultimaPregunta($quiz_id);
+
+            $idPregunta=$pregunta_id[0];
+
+            for ($j=0;$j<5;$j++) {
+                $res=$array[$i]['respuestas'][$j]['respuesta'];
+                $estado=$array[$i]['respuestas'][$j]['estado'];
+
+                $respuesta = new Respuestas;
+                $respuesta->setEstado($estado);
+                $respuesta->setPregunta($idPregunta);
+                $respuesta->setRespuesta($res);
+                $this->respuestasRepository->add($respuesta);
+
+            }
+        }
 
         return new JsonResponse(['status' => 'Quiz añadido'], Response::HTTP_CREATED);
 

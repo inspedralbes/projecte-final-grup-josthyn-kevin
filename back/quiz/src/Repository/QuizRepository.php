@@ -47,13 +47,13 @@ class QuizRepository extends ServiceEntityRepository
         }
     }
 
-    public function ultimoQuiz($idUsuario): array
+    public function ultimoQuiz($idUsuario): int
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = "SELECT * FROM quiz WHERE quiz.usuario_id=$idUsuario ORDER BY quiz.id DESC LIMIT 1;";
+        $sql = "SELECT quiz.id FROM quiz WHERE quiz.usuario_id=$idUsuario ORDER BY quiz.id DESC LIMIT 1;";
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
-        return $resultSet->fetchAllAssociative();
+        return $resultSet->fetchOne();
     }
 
     // /**
