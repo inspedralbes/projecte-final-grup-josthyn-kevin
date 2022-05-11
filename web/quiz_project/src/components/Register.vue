@@ -5,10 +5,14 @@ export default {
             Nom: "",
             Apellido: "",
             Correo: "",
-            Contraseny: ""
+            Contraseny: "",
+            estatError: false,
+            msgError: [],
+            estado:"",
+            conectado:"",
         }
     },methods: {
-        Registrarse() {   
+        Registrarse() {
             const datosEnvio = new FormData();
             datosEnvio.append('nombre',this.Nombre);
             datosEnvio.append('apellido',this.Apellido);
@@ -17,10 +21,21 @@ export default {
             fetch(`http://192.168.210.161:8000/anadir/usuario` , {
                 method: 'POST',
                 body: datosEnvio
-            }).then(function(res) {
+            }).then(res => {
                 return res.json();
-            }).then(function(data) {
+            }).then(data => {
                 console.log(data)
+                console.log("HOLA" + data.status)
+                //Si el mensaje de data es el que llega de symfony 
+                //cambviamos el mensaje de la variable
+                if (data.status=="El Usuario ya existe"){
+                    this.estado="ERROR DE AUTENTIFICACION";
+                }
+                else{
+                    this.conectado=true;
+                    this.$router.push('/')
+                    //this.estado="Te has registrado correctament";
+                }
             });
         }
     },
@@ -46,5 +61,8 @@ export default {
             <RouterLink to="/login">
                 <button id="login" value="login">Login</button>
             </RouterLink>
+            <!--Mostrara el mensaje dependiendo del mensaje que envia symfony-->
+            <br>
+            {{this.estado}}
         </div>
 </template>
