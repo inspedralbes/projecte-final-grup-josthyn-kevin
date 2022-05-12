@@ -127,24 +127,24 @@ class PreguntasController extends AbstractController
         $this->quizRepository->add($quiz);
 
         $quiz_id=$this->quizRepository->ultimoQuiz($user);
-        //print_r($quiz_id);
-        //$idQuiz=$quiz_id[0]['id'];
-        //print_r($idQuiz);
+
+        $quiz =$this->quizRepository->findOneBy(['id'=> $quiz_id]);
 
         for ($i=0;$i<10;$i++) {
 
+
             $pregunta = new Preguntas;
             print_r($quiz_id);
-            $pregunta->setIdQuiz($quiz_id);
+            $pregunta->setIdQuiz($quiz);
             $pregunta->setEnunciado($array['preguntas'][$i]['enunciado']);
             $this->preguntasRepository->add($pregunta);
             $pregunta_id=$this->preguntasRepository->ultimaPregunta($quiz_id);
 
-            $idPregunta=$pregunta_id[0];
+            $idPregunta=$this->preguntasRepository->findOneBy(['id'=> $pregunta_id]);
 
             for ($j=0;$j<5;$j++) {
-                $res=$array[$i]['respuestas'][$j]['respuesta'];
-                $estado=$array[$i]['respuestas'][$j]['estado'];
+                $res=$array['preguntas'][$i]['respuestas'][$j]['respuesta'];
+                $estado=$array['preguntas'][$i]['respuestas'][$j]['estado'];
 
                 $respuesta = new Respuestas;
                 $respuesta->setEstado($estado);
