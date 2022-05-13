@@ -25,7 +25,7 @@ const resp = JSON.stringify(this.respost);
       datosEnvio.append('nombre',this.Nombre);
       console.log(this.Nombre)
 
-      fetch(`http://192.168.210.161:8000/anadir/partida` , {
+      fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/anadir/partida` , {
         method: 'POST',
         body: datosEnvio
       }).then(function(res) {
@@ -37,7 +37,7 @@ const resp = JSON.stringify(this.respost);
       },
     },
    mounted () {
-      fetch(`http://192.168.210.161:8000/preguntas/${this.$route.params.id}`)
+      fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/preguntas/${this.$route.params.id}`)
       .then(res => res.json())
       .then((data) => {
         this.myjson = data;
@@ -51,27 +51,15 @@ const resp = JSON.stringify(this.respost);
 </script>
 
 <template>  
-						<!--<input type="radio" :name="'r'+index" id="r1" value="r1"  v-model="respost[index]">
-						<label >{{pre.r1}}</label>
-            <input type="radio" :name="'r'+index" id="r2" value="r2"  v-model="respost[index]">
-						<label >{{pre.r2}}</label>
-            <input type="radio" :name="'r'+index" id="r3" value="r3"  v-model="respost[index]">
-						<label >{{pre.r3}}</label>
-            <input type="radio" :name="'r'+index" id="r4" value="r4"  v-model="respost[index]">
-						<label >{{pre.r4}}</label>
-            <input type="radio" :name="'r'+index" id="r5" value="r5"  v-model="respost[index]">
-						<label >{{pre.r5}}</label>-->
   <div>
       <h4>{{this.myjson.titulo}}</h4>
       <div v-for="(pre,index) in this.myjson.preguntas" :key="index">
         <h3>{{pre.enunciado}}</h3>
-    
         <div v-for="(res,index1) in this.myjson.preguntas[index].respuestas" :key="index1"> 
               <input type="radio" :name="'r' + index"  :value="res.estado" v-model="respost[index]">
               <label>{{res.respuesta}}</label>
             
         </div>  
-        
           <br>
           <br>
       </div>

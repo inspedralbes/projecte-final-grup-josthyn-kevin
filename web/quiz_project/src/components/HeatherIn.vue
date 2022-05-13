@@ -18,6 +18,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style scoped>
 
+    
     nav {
         background-color: rgb(155, 82, 224);
     }
@@ -31,23 +32,4 @@ import { RouterLink, RouterView } from 'vue-router'
         margin-left: 3%;
         color: white;
     }
-
-    .modal-mask {
-        position: fixed;
-        z-index: 9998;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: blueviolet;
-        display: table;
-        transition: opacity .3s ease;
-    }
-
-    .modal.warpper {
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-
 </style>

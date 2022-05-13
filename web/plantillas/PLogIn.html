@@ -9,11 +9,17 @@
 
 </head>
 <body>
-
-
+    <nav class="navbar navbar-light justify-content-end">
+        <div id="hd">
+            <form id="form">
+                <button style="color: white" class="btn btn-dark">Home</button>
+                <button class="btn btn-warning" type="button">Admin</button>
+                <button class="btn btn-warning" type="button">Log in</button>
+                <button class="btn btn-warning" type="button">Registarse</button>
+            </form>
+        </div>
+    </nav>
     <div>
-        
-           
         <div  id="container">
             <div id="log">
                 <h1>Log In</h1>
@@ -28,7 +34,9 @@
                 <button id="bt1" type="button" class="btn btn-warning">Log In</button>
                 <button type="bt2" class="btn btn-warning">Registrarse</button>
                 <br>
-                <small id="registerHelp" class="form-text ">Si no tienes cuenta registrate</small>
+                <div id="res">
+                    <small id="registerHelp" class="form-text ">Si no tienes cuenta registrate</small>
+                </div>
             </div>
         </div>    
     </div>    
@@ -36,27 +44,51 @@
 </html>
 
 <style>
+
+
+    nav {
+        background-color: rgb(155, 82, 224);
+    }
+
+    form {
+        margin-left: -40%;
+        margin-right: 0%;
+    }
+
+    button {
+        margin-left: 3%;
+        color: white;
+    }
+
     #container {
-        margin-top: 14%;
+        margin-top: 10%;
         margin-right: 30%;
-        margin-left: 30%;
-        padding-top: 2%;
-        padding-bottom: 2%;
+        margin-left: 38%;
+        padding-bottom: 4%;
+        width: 25%;
         background-color: blueviolet;
         border: 3px solid black;
         border-radius: 15px;
     }
 
     #log {
+        margin-top: 12%;
         margin-left: 12%;
         margin-right: 12%;
     }
 
     #button {
-        margin-left: 39%;
+        margin-left: -2%;
+        text-align: center;
+
     }
 
     #registerHelp {
+        margin-left: 4%;
         color: black;
+    }
+
+    #res {
+        margin-top: 2%;
     }
 </style>

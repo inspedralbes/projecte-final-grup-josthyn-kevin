@@ -1,9 +1,11 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import Login from '../components/LogIn.vue'
+import Heather from '../components/HeatherIn.vue'
 export default {
   components: {
     Login,
+    Heather
   }
 }
 
@@ -12,6 +14,7 @@ export default {
 
 <template>
     <main>
+        <heather/>
         <login/>
     </main>
 </template>

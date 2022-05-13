@@ -8,7 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
       }
     },
    mounted () {
-      fetch(`http://192.168.210.161:8000/quiz`)
+      fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/quiz`)
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;

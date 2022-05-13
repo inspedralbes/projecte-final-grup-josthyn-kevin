@@ -9,6 +9,7 @@ export default {
             Nombre: "",
             Apellido: "",
             estado: "",
+            URl: "http://192.168.210.161:8000/login"
         }
     },
     methods: {
@@ -19,7 +20,7 @@ export default {
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
             datosEnvio.append("nombre",this.Nombre)
-            fetch(`http://192.168.210.161:8000/login`, {
+            fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/login/login`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -40,20 +41,68 @@ export default {
 }
 </script>
 
-<template>   
-        <div>
-            <h1>Log In</h1>
-            <div>
-                 <label> Correo</label>
-                <input id="Correo" type="text" v-model="Correo"  >
+<template>
+    <div>
+        <div  id="container">
+            <div id="log">
+                <h1>Log In</h1>
+                <label>Correo </label>
+                <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp" placeholder="Enter email" v-model="Correo">
                 <br>
-                 <label>Contrasenya</label>
-                <input id="Contrasenta" type="password" v-model="Contrasena">
+                <label>Contrasenya</label>
+                <input type="password" class="form-control" id="Contrasena" placeholder="Password" v-model="Contrasena">
+                <br>
             </div>
-            <button id="login" @click="login()">Login</button>
-            <RouterLink to="/register">
-                <button id="register" value="register">Register</button>
-            </RouterLink>
-            <p>{{this.estado}}</p>
-        </div>
+            <div id="button">
+                <button id="login" type="button" class="btn btn-warning"  @click="login()">Log In</button>
+                 <RouterLink to="/register">
+                    <button type="button" class="btn btn-warning" id="reg">Registrarse</button>
+                 </RouterLink>   
+                <br>
+                <div id="res">
+                    <small id="registerHelp" class="form-text ">Si no tienes cuenta registrate</small>
+                </div>
+            </div>
+        </div>    
+    </div>    
 </template>
+
+
+<style scoped>
+#container {
+        margin-top: 10%;
+        margin-right: 30%;
+        margin-left: 38%;
+        padding-bottom: 4%;
+        width: 20%;
+        background-color: blueviolet;
+        border: 3px solid black;
+        border-radius: 15px;
+    }
+
+    #log {
+        margin-top: 12%;
+        margin-left: 12%;
+        margin-right: 12%;
+    }
+
+    #button {
+        margin-left: 2%;
+        text-align: center;
+       
+    }
+
+    #registerHelp {
+        margin-left: 1%;
+        color: black;
+    }
+
+    #res {
+        margin-top: 2%;
+    }
+
+    #reg {
+        margin-left: 3%;
+    }
+
+</style>
