@@ -1,4 +1,5 @@
 <script>
+import { RouterLink, RouterView } from 'vue-router'
 export default {
     data() {
         return {
@@ -18,7 +19,7 @@ export default {
             datosEnvio.append('apellido',this.Apellido);
             datosEnvio.append('correo',this.Correo);
             datosEnvio.append('contrasena',this.Contraseny)
-            fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/anadir/usuario` , {
+            fetch(`http://localhost:8000/anadir/usuario` , {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {

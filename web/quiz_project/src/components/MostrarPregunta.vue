@@ -25,7 +25,7 @@ const resp = JSON.stringify(this.respost);
       datosEnvio.append('nombre',this.Nombre);
       console.log(this.Nombre)
 
-      fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/anadir/partida` , {
+      fetch(`http://localhost:8000/anadir/partida` , {
         method: 'POST',
         body: datosEnvio
       }).then(function(res) {
@@ -37,7 +37,7 @@ const resp = JSON.stringify(this.respost);
       },
     },
    mounted () {
-      fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/preguntas/${this.$route.params.id}`)
+      fetch(`http://localhost:8000/preguntas/${this.$route.params.id}`)
       .then(res => res.json())
       .then((data) => {
         this.myjson = data;
