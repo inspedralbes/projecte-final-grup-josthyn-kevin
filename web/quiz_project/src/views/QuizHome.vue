@@ -1,6 +1,6 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-import Heather from '../components/HeatherIn.vue'
+import Heather from '../components/Heathers/HeatherAll.vue'
 import Quizhome from '../components/QuizHomeCom.vue'
 export default {
   components: {
@@ -8,7 +8,6 @@ export default {
     Quizhome,
   }
 }
-
 </script>
 
 <template>
@@ -17,5 +16,4 @@ export default {
         <heather/>
         <quizhome/>
     </main>
-
 </template>

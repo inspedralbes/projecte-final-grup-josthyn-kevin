@@ -72,7 +72,7 @@ export default {
 <style scoped>
 
     body {
-        background-image: url("../../public/fondo.jgp");
+        background-image: url("");
         position: fixed;
         width: 100%;
     }

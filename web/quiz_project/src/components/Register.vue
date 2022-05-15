@@ -30,7 +30,7 @@ export default {
                 //Si el mensaje de data es el que llega de symfony 
                 //cambviamos el mensaje de la variable
                 if (data.status=="El Usuario ya existe"){
-                    this.estado="ERROR DE AUTENTIFICACION";
+                    this.estado="El usuario ya existe";
                 }
                 else{
                     this.conectado=true;
@@ -43,27 +43,77 @@ export default {
 }
 </script>
 <template>   
-        <div>
-            <h1>Register</h1>
-            <div>
+        <div id="container">
+            <div id="log">
+                <h1>Register</h1>
                 <label>Nombre</label>
-                <input id="Nombre" type="text" v-model="Nombre">
-                <br>
+                <input id="Nombre" type="text" class="form-control" v-model="Nombre">
                 <label>Apellido</label>
-                <input id="Apellido" type="text" v-model="Apellido" >
-                <br>
+                <input id="Apellido" type="text" class="form-control" v-model="Apellido" >
                 <label>Correo</label>
-                <input id="Correo" type="text" v-model="Correo" >
-                <br>
+                <input id="Correo" type="text" class="form-control" v-model="Correo" >
                 <label>Contrasenya</label>
-                <input id="Contrasenta" type="text" v-model="Contrasenya">
+                <input id="Contrasenta" class="form-control" type="password" v-model="Contrasenya">
             </div>
-            <button id="register" value="register" @click="Registrarse()">Register</button>
-            <RouterLink to="/login">
-                <button id="login" value="login">Login</button>
-            </RouterLink>
-            <!--Mostrara el mensaje dependiendo del mensaje que envia symfony-->
-            <br>
-            {{this.estado}}
+            <div id="button">
+                <button id="register" class="btn btn-warning" value="register" @click="Registrarse()">Registrarse</button>
+                <RouterLink to="/login">
+                    <button id="login" class="btn btn-warning" value="login">Login</button>
+                </RouterLink>
+                <!--Mostrara el mensaje dependiendo del mensaje que envia symfony-->
+                <br>
+                <div id="res">
+                    <h5 id="registerHelp">{{this.estado}}</h5>
+                </div>
+            </div>
         </div>
 </template>
+
+<style scoped>
+
+    body {
+        background-image: url("fondo.jpg");
+        position: fixed;
+        width: 100%;
+    }
+
+    #container {
+        margin-top: 5%;
+        margin-right: 35%;
+        margin-left: 35%;
+        padding-bottom: 2%;
+        background-color: blueviolet;
+        border: 3px solid black;
+        border-radius: 15px;
+    }
+
+    #log {
+        margin-top: 9%;
+        margin-left: 12%;
+        margin-right: 12%;
+    }
+
+    #button {
+        margin-top: 5%;
+        margin-left: -1%;
+        text-align: center;
+
+    }
+
+    #login {
+        margin-left: 4%;
+        width: 14%;
+    }
+
+    #res {
+        margin-left: -14px;
+    }
+
+    #registerHelp {
+        margin-top: 2%;
+        margin-left: 4%;
+        color: red;
+    }
+
+
+</style>
