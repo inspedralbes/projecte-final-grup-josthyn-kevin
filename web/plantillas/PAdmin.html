@@ -9,22 +9,20 @@
 
 </head>
 <body>
-    
-        <nav class="navbar navbar-light justify-content-end">
-            <div id="hd">
-                <form id="form">
-                    <button style="color: white" class="btn btn-dark">Home</button>
-                    <button class="btn btn-warning" type="button">Admin</button>
-                </form>
-            </div>
-        </nav>
-    
-
+    <nav class="navbar navbar-light justify-content-end">
+        <div id="hd">
+            <form id="form">
+                <button style="color: white" class="btn btn-dark">Home</button>
+                <button class="btn btn-warning" type="button">Log In</button>
+                <button class="btn btn-warning" type="button">Registro</button>
+            </form>
+        </div>
+    </nav>
     <div>
         <div  id="container">
             <div id="log">
-                <h1>Log In</h1>
-                <label>Correo </label>
+                <h1>Administrador</h1>
+                <label>Correo</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                 <br>
                 <label>Contrasenya</label>
@@ -33,16 +31,13 @@
             </div>
             <div id="button">
                 <button id="bt1" type="button" class="btn btn-warning">Log In</button>
-                <button type="bt2" class="btn btn-warning">Registrarse</button>
                 <br>
                 <div id="res">
-                    <small id="registerHelp" class="form-text ">Si no tienes cuenta registrate</small>
+                    <small id="registerHelp" class="form-text ">Si no tiene cuenta admin</small>
                 </div>
             </div>
         </div>    
     </div>
-
-
     <footer>
         <div id="cont_footer" class="grid-container">
                 <div id="info" class="grid-item">
@@ -78,8 +73,6 @@
 
 <style>
 
-
-
     body {
         background-image: url("fondo.jpg");
         position: fixed;
@@ -90,7 +83,6 @@
         color: black;
     }
 
-    /*Part del header*/
     header {
         position: fixed;
         width: 100%;
@@ -119,8 +111,6 @@
         height: 200px;
         background-color: blueviolet;
     }
-
-    /*Part del contingut de log in*/
 
     #container {
         margin-top: 7%;
@@ -154,8 +144,6 @@
     #res {
         margin-top: 2%;
     }
-
-    /*Part del footer*/
 
     .grid-container {
         display: grid;

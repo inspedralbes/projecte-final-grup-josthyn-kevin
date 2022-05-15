@@ -47,10 +47,10 @@ export default {
             <div id="log">
                 <h1>Log In</h1>
                 <label>Correo </label>
-                <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp" placeholder="Enter email" v-model="Correo">
+                <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp"  v-model="Correo">
                 <br>
-                <label>Contrasenya</label>
-                <input type="password" class="form-control" id="Contrasena" placeholder="Password" v-model="Contrasena">
+                <b><label>Contrasenya</label></b>
+                <input type="password" class="form-control" id="Contrasena" v-model="Contrasena">
                 <br>
             </div>
             <div id="button">
@@ -62,19 +62,28 @@ export default {
                 <div id="res">
                     <small id="registerHelp" class="form-text ">Si no tienes cuenta registrate</small>
                 </div>
+                <h5 id="error">{{this.estado}}</h5>
             </div>
-        </div>    
+        </div> 
     </div>    
 </template>
 
 
 <style scoped>
-#container {
-        margin-top: 10%;
+
+    body {
+        background-image: url("../../public/fondo.jgp");
+        position: fixed;
+        width: 100%;
+    }
+
+    #container {
+        margin-top: 6%;
         margin-right: 30%;
         margin-left: 38%;
+        margin-bottom: 12%;
         padding-bottom: 4%;
-        width: 20%;
+        width: 25%;
         background-color: blueviolet;
         border: 3px solid black;
         border-radius: 15px;
@@ -103,6 +112,10 @@ export default {
 
     #reg {
         margin-left: 3%;
+    }
+
+    #error {
+        color: red;
     }
 
 </style>

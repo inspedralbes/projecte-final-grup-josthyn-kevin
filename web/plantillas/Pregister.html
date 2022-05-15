@@ -14,41 +14,95 @@
             <form id="form">
                 <button style="color: white" class="btn btn-dark">Home</button>
                 <button class="btn btn-warning" type="button">Admin</button>
-                <button class="btn btn-warning" type="button">Log in</button>
-                <button class="btn btn-warning" type="button">Registarse</button>
             </form>
         </div>
-    </nav>
-
-
-    <div>   
+    </nav>  
         <div  id="container">
             <div id="log">
                 <h1>Registro</h1>
                 <label>Nombre </label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Nombre">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" >
                 <label>Apellido</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Apellido">
+                <input type="text" class="form-control" id="exampleInputPassword1" >
                 <label>Correo </label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Correo">
+                <input type="text" class="form-control" id="email" aria-describedby="emailHelp">
                 <label>Contrasenña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                <input type="password" class="form-control" id="exampleInputPassword1">
                 <br>
             </div>
             <div id="button">
                 <button type="bt2" class="btn btn-warning">Registrarse</button>
+                <button type="bt2" class="btn btn-warning">Log In</button>
+                <br>
+                <div id="res">
+                    <small id="registerHelp" class="form-text ">Mensaje de error</small>
+                </div>
             </div>
-        </div>    
-    </div>    
+        </div>
+        <footer>
+            <div id="cont_footer" class="grid-container">
+                    <div id="info" class="grid-item">
+                        <b><p>QUIENES SOMOS? </p></b>
+                        <b><p>Somos dos estudiantes de GS DAW (Josthyn,kevin)
+                            . Creamos una pagina web con la posibilidad de crear y realizar quidz.
+                            Es una ide nuestra pensada en INS pedralbes
+                        </p></b>
+                    </div>
+                    <div id="contacto" class="grid-item">
+                        <b><p>CONTACTO</p></b>
+                        <div class="grid-info-container">
+                            <div class="grid-info-item">
+                                <br>
+                                <b><p>Josthyn</p></b>
+                                <b><p>Email: jost243@gmail.com</p></b>
+                                <b><p>Tel: 674678488</p></b>
+                            </div>
+                            <div class="grid-info-item">
+                                <b><p>Josthyn</p></b>
+                                <b><p>Email: jost243@gmail.com</p></b>
+                                <b><p>Tel: 674678488</p></b>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="copy" class="grid-item">
+                    </div>
+            </div>
+        </footer>    
 </body>
 </html>
 
 <style>
+
+    body {
+        background-image: url("fondo.jpg");
+        position: fixed;
+        width: 100%;
+    }
+
+    header {
+        position: fixed;
+        width: 100%;
+    }
+
+    nav {
+        background-color: blueviolet;
+        height: 7vh;
+    }
+
+    form {
+        margin-left: -40%;
+        margin-right: 0%;
+    }
+
+    button {
+        margin-left: 3%;
+        color: white;
+    }
+
     #container {
-        margin-top: 7%;
+        margin-top: 5%;
         margin-right: 35%;
         margin-left: 35%;
-        padding-top: 2%;
         padding-bottom: 2%;
         background-color: blueviolet;
         border: 3px solid black;
@@ -56,18 +110,60 @@
     }
 
     #log {
-        margin-left: 25%;
-        margin-right: 25%;
+        margin-top: 9%;
+        margin-left: 12%;
+        margin-right: 12%;
     }
 
     #button {
-        margin-left: 57%;
+        margin-left: -2%;
+        text-align: center;
+
+    }
+
+    #res {
+        margin-top: 2%;
     }
 
     #registerHelp {
+        margin-left: 4%;
         color: black;
     }
-    nav {
-        background-color: rgb(155, 82, 224);
+
+    footer {
+        background-color: red;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 200px;
+        background-color: blueviolet;
     }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        margin-right: 20%;
+        margin-left: 6%;
+        margin-top: 1%;
+        justify-content: center;
+    }
+
+    .grid-item {
+        margin-right: 10%;
+        margin-left: 30%;
+    }
+
+    .grid-info-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: baseline;
+        margin-left: -20;
+        padding-right: -10;
+    }
+
+    .grid-info-item {
+        justify-content: space-between;
+    }
+
+    
 </style>
