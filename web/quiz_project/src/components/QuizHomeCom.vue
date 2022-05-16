@@ -8,7 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
       }
     },
    mounted () {
-      fetch(`http://localhost:8000/quiz`)
+      fetch(`http://192.168.210.161:8000/quiz`)
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;

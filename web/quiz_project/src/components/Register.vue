@@ -19,7 +19,7 @@ export default {
             datosEnvio.append('apellido',this.Apellido);
             datosEnvio.append('correo',this.Correo);
             datosEnvio.append('contrasena',this.Contraseny)
-            fetch(`http://localhost:8000/anadir/usuario` , {
+            fetch(`http://192.168.210.161:8000/anadir/usuario` , {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
