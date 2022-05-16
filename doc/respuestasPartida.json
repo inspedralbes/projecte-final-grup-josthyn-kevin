@@ -1,0 +1,56 @@
+{
+	"id_quiz": 1,
+	"usuario": 17,
+	"respuestas": [
+			{
+				"id_pregunta":1,
+				"id_respuesta": 1,
+				"estado": 0
+			},
+			{
+				"id_pregunta":2,
+				"id_respuesta": 7,
+				"estado": 1
+			},
+			{
+				"id_pregunta":3,
+				"id_respuesta": 13,
+				"estado": 0
+			},
+			{
+				"id_pregunta":4,
+				"id_respuesta": 18,
+				"estado": 1
+			},
+			{
+				"id_pregunta":5,
+				"id_respuesta": 23,
+				"estado": 0
+			},
+			{
+				"id_pregunta":6,
+				"id_respuesta": 27,
+				"estado": 1
+			},
+			{
+				"id_pregunta":7,
+				"id_respuesta": 34,
+				"estado": 1
+			},
+			{
+				"id_pregunta":8,
+				"id_respuesta": 41,
+				"estado": 0
+			},
+			{
+				"id_pregunta":9,
+				"id_respuesta": 45,
+				"estado": 1
+			},
+			{
+				"id_pregunta":10,
+				"id_respuesta": 51,
+				"estado": 1
+		}
+	]
+}
