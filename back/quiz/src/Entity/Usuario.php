@@ -54,6 +54,11 @@ class Usuario
         return $this->id;
     }
 
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
+
     public function getNombre(): ?string
     {
         return $this->nombre;

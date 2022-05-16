@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Partidas
  *
- * @ORM\Table(name="partidas", indexes={@ORM\Index(name="IDX_12114278853CD175", columns={"quiz_id"})})
+ * @ORM\Table(name="partidas", indexes={@ORM\Index(name="IDX_12114278853CD175", columns={"quiz_id"}), @ORM\Index(name="usuario", columns={"usuario"})})
  * @ORM\Entity
  */
 class Partidas
@@ -29,13 +29,6 @@ class Partidas
     private $puntuacion;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
-     */
-    private $nombre;
-
-    /**
      * @var \Quiz
      *
      * @ORM\ManyToOne(targetEntity="Quiz")
@@ -44,6 +37,16 @@ class Partidas
      * })
      */
     private $quiz;
+
+    /**
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario", referencedColumnName="id")
+     * })
+     */
+    private $usuario;
 
     public function getId(): ?int
     {
@@ -62,18 +65,6 @@ class Partidas
         return $this;
     }
 
-    public function getNombre(): ?string
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre(string $nombre): self
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
     public function getQuiz(): ?Quiz
     {
         return $this->quiz;
@@ -82,6 +73,18 @@ class Partidas
     public function setQuiz(?Quiz $quiz): self
     {
         $this->quiz = $quiz;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

@@ -55,6 +55,14 @@ class PartidasRepository extends ServiceEntityRepository
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchAllAssociative();
     }
+    public function ultimaPartida($idUsuario): int
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT partidas.id FROM partidas WHERE partidas.usuario=$idUsuario ORDER BY partidas.id DESC LIMIT 1;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchOne();
+    }
 
     // /**
     //  * @return Partidas[] Returns an array of Partidas objects

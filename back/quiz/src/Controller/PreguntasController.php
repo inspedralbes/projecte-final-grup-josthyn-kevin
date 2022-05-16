@@ -6,11 +6,13 @@ use App\Entity\Partidas;
 use App\Entity\Quiz;
 use App\Entity\Preguntas;
 use App\Entity\Respuestas;
+use App\Entity\Respuestaspartida;
 use App\Repository\PreguntasRepository;
 use App\Repository\QuizRepository;
 use App\Repository\PartidasRepository;
 use App\Repository\RespuestasRepository;
 use App\Repository\UsuarioRepository;
+use App\Repository\RespuestaspartidaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,14 +29,16 @@ class PreguntasController extends AbstractController
     private PartidasRepository $partidasRepository;
     private RespuestasRepository $respuestasRepository;
     private UsuarioRepository $usuarioRepository;
+    private RespuestaspartidaRepository $respuestaspartidaRepository;
 
-    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository, PartidasRepository $partidasRepository,RespuestasRepository $respuestasRepository, UsuarioRepository $usuarioRepository )
+    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository, PartidasRepository $partidasRepository,RespuestasRepository $respuestasRepository, UsuarioRepository $usuarioRepository, RespuestaspartidaRepository $respuestaspartidaRepository )
     {
         $this->preguntasRepository = $preguntasRepository;
         $this->quizRepository = $quizRepository;
         $this->partidasRepository = $partidasRepository;
         $this->respuestasRepository = $respuestasRepository;
         $this->usuarioRepository = $usuarioRepository;
+        $this->respuestaspartidaRepository = $respuestaspartidaRepository;
     }
 
 
@@ -94,23 +98,53 @@ class PreguntasController extends AbstractController
     #[Route('/anadir/partida', name: 'api_añadir_partida', methods: ['POST'])]
     public function new(Request $request)
     {
-        $quiz =$this->quizRepository->findOneBy(['id'=> $request->get('quiz')]);
-        $array=json_decode($_POST["resposta"]);
+
+        $array = $request->toArray();
+        $idQuiz=$array['id_quiz'];
+        $idUsuario=$array['usuario'];
+        $quiz =$this->quizRepository->findOneBy(['id'=> $idQuiz]);
+        $usuario=$this->usuarioRepository->findOneBy(['id'=> $idUsuario]);
         $puntos=0;
-        foreach ($array as $item) {
-            $respuesta=$item;
-            if($respuesta==1){
-                $puntos+=10;
-            }
+        for ($i=0;$i<10;$i++) {
+                $respuesta = $array['respuestas'][$i]['estado'];
+                if ($respuesta == 1) {
+                    $puntos += 10;
+                }
         }
         $partida = new Partidas;
-        $partida->setPuntuacion($puntos);
         $partida->setQuiz($quiz);
-        $partida->setNombre($request->get('nombre'));
+        $partida->setPuntuacion($puntos);
+        $partida->setUsuario($usuario);
 
         $this->partidasRepository->add($partida);
 
-        return new JsonResponse(['puntuacion' => $puntos], Response::HTTP_OK);
+        $idpartida=$this->partidasRepository->ultimaPartida($usuario);
+
+
+        for ($i=0;$i<10;$i++) {
+
+
+            $idPregunta=$array['respuestas'][$i]['id_pregunta'];
+            $idRespuesta=$array['respuestas'][$i]['id_respuesta'];
+
+            $id_partida=$this->partidasRepository->findOneBy(['id' => $idpartida]);
+            $id_pregunta=$this->preguntasRepository->findOneBy(['id' => $idPregunta]);
+            $id_respuesta=$this->respuestasRepository->findOneBy(['id' => $idRespuesta]);
+
+            $respuestasPartida = new Respuestaspartida;
+            $respuestasPartida->setIdpartida($id_partida);
+            $respuestasPartida->setIdpregunta($id_pregunta);
+            $respuestasPartida->setIdrespuesta($id_respuesta);
+
+            $this->respuestaspartidaRepository->add($respuestasPartida);
+
+        }
+
+        //return new JsonResponse([$array], Response::HTTP_OK);
+        return new JsonResponse(['status' => 'Quiz añadido'], Response::HTTP_CREATED);
+
+
+
     }
 
     #[Route('/anadir/quiz', name: 'api_añadir_quiz', methods: ['POST'])]
@@ -132,9 +166,7 @@ class PreguntasController extends AbstractController
 
         for ($i=0;$i<10;$i++) {
 
-
             $pregunta = new Preguntas;
-            print_r($quiz_id);
             $pregunta->setIdQuiz($quiz);
             $pregunta->setEnunciado($array['preguntas'][$i]['enunciado']);
             $this->preguntasRepository->add($pregunta);

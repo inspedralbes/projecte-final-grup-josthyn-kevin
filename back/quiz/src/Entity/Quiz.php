@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Quiz
  *
- * @ORM\Table(name="quiz", indexes={@ORM\Index(name="usuario_id", columns={"usuario_id"})})
+ * @ORM\Table(name="quiz", indexes={@ORM\Index(name="usuario_id", columns={"usuario_id"}), @ORM\Index(name="tema", columns={"tema"})})
  * @ORM\Entity
  */
 class Quiz
@@ -38,6 +38,16 @@ class Quiz
      */
     private $usuario;
 
+    /**
+     * @var \Tema
+     *
+     * @ORM\ManyToOne(targetEntity="Tema")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tema", referencedColumnName="id")
+     * })
+     */
+    private $tema;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -63,6 +73,18 @@ class Quiz
     public function setUsuario(?Usuario $usuario): self
     {
         $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    public function getTema(): ?Tema
+    {
+        return $this->tema;
+    }
+
+    public function setTema(?Tema $tema): self
+    {
+        $this->tema = $tema;
 
         return $this;
     }
