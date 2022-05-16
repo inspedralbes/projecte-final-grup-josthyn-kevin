@@ -5,15 +5,16 @@ import { RouterLink, RouterView } from 'vue-router'
       return {
       quiz: [],
       Nombre: "",
+
+
       }
     },
    mounted () {
-      fetch(`http://localhost:8000/quiz`)
+      fetch(`http://192.168.210.161:8000/quiz`)
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
-        console.log(this.quiz)
-        console.log(this.quiz)
+       
       });
     },
   }
@@ -21,9 +22,11 @@ import { RouterLink, RouterView } from 'vue-router'
 
 
 <template>
-    
-    
+
     <main>
+
+
+    
 
     <h4>Quiz</h4>
       <div v-for="(quizs,index) in this.quiz" :key="index">
@@ -31,6 +34,7 @@ import { RouterLink, RouterView } from 'vue-router'
                 <h5>{{quizs.titulo}}</h5>
         </RouterLink>
       </div>    
+
     </main>
 </template>
 

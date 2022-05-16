@@ -1,7 +1,7 @@
 <script >
 import { RouterLink, RouterView } from 'vue-router'
 import MostrarPregunta from '../components/MostrarPregunta.vue'
-import Heather from '../components/Heathers/HeatherIn.vue'
+import Heather from '../components/Heathers/HeatherAll.vue'
 export default {
   components: {
     MostrarPregunta,

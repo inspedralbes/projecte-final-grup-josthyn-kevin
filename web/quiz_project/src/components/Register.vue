@@ -8,7 +8,6 @@ export default {
             Correo: "",
             Contraseny: "",
             estatError: false,
-            msgError: [],
             estado:"",
             conectado:"",
         }
@@ -19,7 +18,7 @@ export default {
             datosEnvio.append('apellido',this.Apellido);
             datosEnvio.append('correo',this.Correo);
             datosEnvio.append('contrasena',this.Contraseny)
-            fetch(`http://localhost:8000/anadir/usuario` , {
+            fetch(`http://192.168.210.161:8000/anadir/usuario` , {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -47,13 +46,13 @@ export default {
             <div id="log">
                 <h1>Register</h1>
                 <label>Nombre</label>
-                <input id="Nombre" type="text" class="form-control" v-model="Nombre">
+                <input id="Nombre" type="text" class="form-control" v-model="Nombre" required>
                 <label>Apellido</label>
-                <input id="Apellido" type="text" class="form-control" v-model="Apellido" >
+                <input id="Apellido" type="text" class="form-control" v-model="Apellido" required>
                 <label>Correo</label>
-                <input id="Correo" type="text" class="form-control" v-model="Correo" >
+                <input id="Correo" type="text" class="form-control" v-model="Correo" required>
                 <label>Contrasenya</label>
-                <input id="Contrasenta" class="form-control" type="password" v-model="Contrasenya">
+                <input id="Contrasenta" class="form-control" type="password" v-model="Contrasenya" required>
             </div>
             <div id="button">
                 <button id="register" class="btn btn-warning" value="register" @click="Registrarse()">Registrarse</button>
@@ -78,13 +77,14 @@ export default {
     }
 
     #container {
-        margin-top: 5%;
-        margin-right: 35%;
-        margin-left: 35%;
+        margin-top: 2%;
+        margin-right: 20%;
+        margin-left: 38%;
         padding-bottom: 2%;
         background-color: blueviolet;
         border: 3px solid black;
         border-radius: 15px;
+        width: 25%;
     }
 
     #log {
@@ -95,14 +95,14 @@ export default {
 
     #button {
         margin-top: 5%;
-        margin-left: -1%;
+        margin-left: 1%;
         text-align: center;
 
     }
 
     #login {
         margin-left: 4%;
-        width: 14%;
+        width: 27%;
     }
 
     #res {
