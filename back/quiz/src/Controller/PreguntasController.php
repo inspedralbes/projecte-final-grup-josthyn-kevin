@@ -141,7 +141,7 @@ class PreguntasController extends AbstractController
         }
 
         //return new JsonResponse([$array], Response::HTTP_OK);
-        return new JsonResponse(['status' => 'Quiz añadido'], Response::HTTP_CREATED);
+        return new JsonResponse(['status' => 'Partida Jugada'], Response::HTTP_CREATED);
 
 
 
