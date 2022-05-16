@@ -4,18 +4,20 @@ import { RouterLink, RouterView } from 'vue-router'
 export default {
     data() {
         return {
+            Id: "",
             Correo: "",
             Contrasena: "",
             Nombre: "",
             Apellido: "",
             estado: "",
+            logueado: false,
             URl: "http://192.168.210.161:8000/login"
         }
     },
     methods: {
         login() {
-
             const datosEnvio = new FormData();
+            datosEnvio.append("id",this.id)
             datosEnvio.append("correo",this.Correo);
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
@@ -28,12 +30,13 @@ export default {
             }).then(data => {
                 console.log(data);
                 console.log(data.correo);
+                console.log(data.id);
                 if(data.status == "Correo no registrado o incorrecto") {
-                    this.estado = "Correo no registrado o incorrecto";
-                } else if(data.status == "Contraseña incorrecta") {
+                    this.estado = "Correo no registrado o incorrecto" ;
+                } else if(data.status == "Contraseña") {
                     this.estado = "Contraseña Incorrecta";
                 } else if (data.correo == this.Correo && data.contrasena == this.Contrasena) {
-                    this.$router.push('/');
+                    this.$router.push(`/${data.id}`);
                 }
             })
         }
@@ -78,7 +81,7 @@ export default {
     }
 
     #container {
-        margin-top: 6%;
+        margin-top: 4%;
         margin-right: 30%;
         margin-left: 38%;
         margin-bottom: 12%;

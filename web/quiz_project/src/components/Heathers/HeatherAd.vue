@@ -1,47 +1,25 @@
-
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 
-export default {
-    data() {
-        return {
 
-            id: "",
-            nom: ""
-        }
-    },
 
-    methods: {
-         getidInombre() {
 
-            console.log(this.$route.params.idLogin)
-            this.id = this.$route.params.idLogin;
-            console.log(this.id + " id")   
-        }
-    },
-    mounted(){
-            this.getidInombre()
-    }
-}
 
 </script>
+
+
 <template>
     <header>
         <nav class="navbar navbar-light justify-content-end">
             <div id="hd">
                 <form id="form">
-
-                    <p v-bind:name="id">{{id}}</p>
-
-
+                    <p></p>
                     <RouterLink to="/"><button style="color: white" class="btn btn-dark">Home</button></RouterLink>
-                    <RouterLink to="/admin"><button class="btn btn-warning" type="button">Admin</button></RouterLink>
                     <RouterLink to="/login"><button class="btn btn-warning" type="button">Log in</button></RouterLink>
                     <RouterLink to="/register"><button class="btn btn-warning" type="button">Registarse</button></RouterLink>
                 </form>
             </div>
         </nav>
-
     </header>
 </template>
 
