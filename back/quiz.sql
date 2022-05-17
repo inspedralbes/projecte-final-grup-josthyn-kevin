@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Temps de generació: 13-05-2022 a les 12:54:40
+-- Temps de generació: 17-05-2022 a les 14:22:11
 -- Versió del servidor: 10.4.22-MariaDB
 -- Versió de PHP: 8.1.1
 
@@ -71,43 +71,26 @@ CREATE TABLE `partidas` (
   `id` int(11) NOT NULL,
   `quiz_id` int(11) DEFAULT NULL,
   `puntuacion` int(11) NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `usuario` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Bolcament de dades per a la taula `partidas`
 --
 
-INSERT INTO `partidas` (`id`, `quiz_id`, `puntuacion`, `nombre`) VALUES
-(2, 1, 20, 'Paco'),
-(3, 1, 20, 'Smirnoff'),
-(6, 1, 50, 'Josthyn'),
-(7, 1, 70, 'Marc'),
-(8, 1, 70, 'Josue'),
-(9, 1, 80, 'Dani'),
-(10, 1, 90, 'Alberto'),
-(11, 1, 100, 'Pedro'),
-(12, 1, 100, 'Antonio'),
-(13, 1, 100, 'Jose Luis'),
-(14, 1, 20, 'Paquito '),
-(15, 1, 0, 'Kevin'),
-(16, 1, 40, 'Gonzales'),
-(17, 1, 30, 'Gonzales'),
-(18, 1, 30, 'Jorge'),
-(20, 1, 50, 'Manu'),
-(21, 1, 0, 'ssdas'),
-(24, 1, 40, ''),
-(25, 1, 40, ''),
-(26, 1, 10, ''),
-(27, 1, 10, ''),
-(28, 1, 10, ''),
-(29, 1, 0, ''),
-(30, 1, 0, ''),
-(31, 1, 0, ''),
-(32, 1, 0, ''),
-(33, 1, 10, ''),
-(34, 1, 0, ''),
-(35, 1, 10, 'asda');
+INSERT INTO `partidas` (`id`, `quiz_id`, `puntuacion`, `usuario`) VALUES
+(2, 1, 20, 1),
+(3, 1, 20, 13),
+(6, 1, 50, 8),
+(7, 1, 70, 17),
+(8, 1, 70, 8),
+(9, 1, 80, 11),
+(52, 1, 60, 17),
+(53, 1, 50, 17),
+(56, 1, 60, 17),
+(57, 1, 60, 17),
+(58, 1, 0, 17),
+(59, 1, 0, 19);
 
 -- --------------------------------------------------------
 
@@ -156,19 +139,20 @@ INSERT INTO `preguntas` (`id`, `id_quiz_id`, `enunciado`) VALUES
 CREATE TABLE `quiz` (
   `id` int(11) NOT NULL,
   `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `usuario_id` int(11) NOT NULL
+  `usuario_id` int(11) NOT NULL,
+  `tema` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Bolcament de dades per a la taula `quiz`
 --
 
-INSERT INTO `quiz` (`id`, `titulo`, `usuario_id`) VALUES
-(1, 'Historia', 1),
-(3, 'Real Madrid', 1),
-(4, 'Ciencias Sociales', 1),
-(6, 'Morsas', 1),
-(7, 'Mundos', 1);
+INSERT INTO `quiz` (`id`, `titulo`, `usuario_id`, `tema`) VALUES
+(1, 'Historia', 1, 1),
+(3, 'Real Madrid', 1, 2),
+(4, 'Ciencias Sociales', 1, 1),
+(6, 'Morsas', 1, 2),
+(7, 'Mundos', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -292,6 +276,64 @@ INSERT INTO `respuestas` (`id`, `pregunta`, `respuesta`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de la taula `respuestaspartida`
+--
+
+CREATE TABLE `respuestaspartida` (
+  `id` int(11) NOT NULL,
+  `idPartida` int(11) DEFAULT NULL,
+  `idPregunta` int(11) DEFAULT NULL,
+  `idRespuesta` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Bolcament de dades per a la taula `respuestaspartida`
+--
+
+INSERT INTO `respuestaspartida` (`id`, `idPartida`, `idPregunta`, `idRespuesta`) VALUES
+(11, 52, 1, 1),
+(12, 52, 2, 7),
+(13, 52, 3, 13),
+(14, 52, 4, 18),
+(15, 52, 5, 23),
+(16, 52, 6, 27),
+(17, 52, 7, 34),
+(18, 52, 8, 41),
+(19, 52, 9, 45),
+(20, 52, 10, 51),
+(31, 56, 1, 1),
+(32, 56, 2, 7),
+(33, 56, 3, 13),
+(34, 56, 4, 18),
+(35, 56, 5, 23),
+(36, 56, 6, 27),
+(37, 56, 7, 34),
+(38, 56, 9, 43),
+(39, 56, 9, 45),
+(40, 56, 10, 51);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de la taula `tema`
+--
+
+CREATE TABLE `tema` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Bolcament de dades per a la taula `tema`
+--
+
+INSERT INTO `tema` (`id`, `nombre`) VALUES
+(1, 'Historia'),
+(2, 'Deporte');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de la taula `usuario`
 --
 
@@ -321,7 +363,19 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `correo`, `contrasena`) VALUE
 (16, 'undefined', '', '', '$2y$10$BVVlSgiuTLi6HVb5j6dE3eseJQv8ngwIM1Q.lwgWYr427F3gTiD2C'),
 (17, 'jost243', 'jost243', 'jost@gmail.com', '$2y$10$n.SHRmkSsS2c5NImYa5xdeykRXRWW1a2OUcHa1q.OF1rbvcQChD5e'),
 (18, 'sss', 'sss', 'jo@gmail.com', '$2y$10$GnnX7gRaPFPVkAPJ9tIr5uFOWD/Fp2.X51JUlGA9AfPyC/AfFbsmi'),
-(19, 'aa', 'aa', 'a', '$2y$10$eOxpx5dfb5K3VqGZrwu.AO/BJA8IsZjId61pAUtSGoRc5Os8FZoeu');
+(19, 'aa', 'aa', 'a', '$2y$10$eOxpx5dfb5K3VqGZrwu.AO/BJA8IsZjId61pAUtSGoRc5Os8FZoeu'),
+(20, 'undefined', 'ds', 'ds', '$2y$10$pbfFhgENViufIonhjXcFv.Tmzmp5VWGVqxXwuPSrklQuzy2Hl3TIG'),
+(21, 'undefined', 'asa', 'asa', '$2y$10$7Su2f.Ubwa4xniffijZqCeXdp.93obBuKjFSxYJf34p1GU2myTnWe'),
+(22, 'a', 'a', 'aw', '$2y$10$qyZkAgmE45CCPjCp3D4WzetSXxMv4Y55n8xI.flV9e0yYjN3Rk2..'),
+(23, 'a', 'a', 'al', '$2y$10$gtKBWL1GjfzkrV.tltAALucLh1Q1oPScdI0WOm52tkgMWtHj0lxHG'),
+(24, 'ee', 'ee', 'ee', '$2y$10$CPox4Fk0XDYqklgxoSTWBetK.s8O3v9eKQ9g0QmW8Rbr5hnltiGGy'),
+(25, 'a', 'a', 'aaa', '$2y$10$rIOCuA7lv.ytQaUYGKYeTe0IjX5O526.DFPb627BEOamrgUH/etk.'),
+(26, 'a', 'a', 'af', '$2y$10$BZuwR9GCH2zOkpz3CXBQWOS86JE8vZX4FAQlvfOK/wz6OWzE3uYQe'),
+(28, 'Kevin', 'Hoyos', 'a18kevhoylor@gmail.cat', '$2y$10$YB4LJT8BM2Cj3KlDLuQBcOyLjPI1HcUTDnkJDxMC1UeYIMQJfW1HO'),
+(29, 'gh', 'gh', 'gh', '$2y$10$MYB2vmhd6iC7H/xDiba9COH6fMZ0wt4kPHcqVO.dWDlhcFlSbMAWm'),
+(30, 'df', 'df', 'df', '$2y$10$Lw29q9S323r9QW2MMtaaKeOlPMdhH/RLSWZE1CDkIgRT5ZdeJ8agm'),
+(31, 'Alfonso', 'Perez', 'a18kevhoylor@gmail.com', '$2y$10$f/UYGBsf0eEADi2Yd2tljehMB26.Rd7We9VXm34.foYEgxQ7pV5Xi'),
+(32, 'josthyn', 'loma', 'j243@gmail.com', '$2y$10$pBO0zkwKMBTgYHDhi3eV6uo5h8S1nRE4x3c7ZmudjW9SQClL4/YZS');
 
 --
 -- Índexs per a les taules bolcades
@@ -347,7 +401,8 @@ ALTER TABLE `messenger_messages`
 --
 ALTER TABLE `partidas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_12114278853CD175` (`quiz_id`);
+  ADD KEY `IDX_12114278853CD175` (`quiz_id`),
+  ADD KEY `usuario` (`usuario`);
 
 --
 -- Índexs per a la taula `preguntas`
@@ -361,7 +416,8 @@ ALTER TABLE `preguntas`
 --
 ALTER TABLE `quiz`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario_id` (`usuario_id`);
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `tema` (`tema`);
 
 --
 -- Índexs per a la taula `respuestas`
@@ -369,6 +425,21 @@ ALTER TABLE `quiz`
 ALTER TABLE `respuestas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pregunta` (`pregunta`);
+
+--
+-- Índexs per a la taula `respuestaspartida`
+--
+ALTER TABLE `respuestaspartida`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idPartida` (`idPartida`),
+  ADD KEY `idPregunta` (`idPregunta`),
+  ADD KEY `idRespuesta` (`idRespuesta`);
+
+--
+-- Índexs per a la taula `tema`
+--
+ALTER TABLE `tema`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índexs per a la taula `usuario`
@@ -390,7 +461,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT per la taula `partidas`
 --
 ALTER TABLE `partidas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT per la taula `preguntas`
@@ -411,10 +482,22 @@ ALTER TABLE `respuestas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
+-- AUTO_INCREMENT per la taula `respuestaspartida`
+--
+ALTER TABLE `respuestaspartida`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+
+--
+-- AUTO_INCREMENT per la taula `tema`
+--
+ALTER TABLE `tema`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT per la taula `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restriccions per a les taules bolcades
@@ -424,7 +507,8 @@ ALTER TABLE `usuario`
 -- Restriccions per a la taula `partidas`
 --
 ALTER TABLE `partidas`
-  ADD CONSTRAINT `FK_12114278853CD175` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`id`);
+  ADD CONSTRAINT `FK_12114278853CD175` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`id`),
+  ADD CONSTRAINT `partidas_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`);
 
 --
 -- Restriccions per a la taula `preguntas`
@@ -436,13 +520,22 @@ ALTER TABLE `preguntas`
 -- Restriccions per a la taula `quiz`
 --
 ALTER TABLE `quiz`
-  ADD CONSTRAINT `quiz_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `quiz_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
+  ADD CONSTRAINT `quiz_ibfk_2` FOREIGN KEY (`tema`) REFERENCES `tema` (`id`);
 
 --
 -- Restriccions per a la taula `respuestas`
 --
 ALTER TABLE `respuestas`
   ADD CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`pregunta`) REFERENCES `preguntas` (`id`);
+
+--
+-- Restriccions per a la taula `respuestaspartida`
+--
+ALTER TABLE `respuestaspartida`
+  ADD CONSTRAINT `respuestaspartida_ibfk_1` FOREIGN KEY (`idPartida`) REFERENCES `partidas` (`id`),
+  ADD CONSTRAINT `respuestaspartida_ibfk_2` FOREIGN KEY (`idPregunta`) REFERENCES `preguntas` (`id`),
+  ADD CONSTRAINT `respuestaspartida_ibfk_3` FOREIGN KEY (`idRespuesta`) REFERENCES `respuestas` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
