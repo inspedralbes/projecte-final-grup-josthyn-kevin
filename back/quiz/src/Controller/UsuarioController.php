@@ -65,14 +65,15 @@ class UsuarioController extends AbstractController
         if (!empty($usuario)){
 
             $contrasenaBBDD=$usuario->getContrasena();
+
             if (password_verify($contrasena,$contrasenaBBDD)){
 
                 $data= [
                     'id' => $usuario->getId(),
-                    //'correo' => $correo,
-                    //'contrasena' => $contrasena,
-                    //'nombre' => $usuario->getNombre(),
-                    //'apellido' => $usuario->getApellido(),
+                    'correo' => $correo,
+                    'contrasena' => $contrasena,
+                    'nombre' => $usuario->getNombre(),
+                    'apellido' => $usuario->getApellido(),
 
                 ];
 

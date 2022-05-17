@@ -18,9 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\PropertyAccess\PropertyAccess;
 
-$propertyAccessor = PropertyAccess::createPropertyAccessor();
 
 class PreguntasController extends AbstractController
 {
@@ -99,17 +97,29 @@ class PreguntasController extends AbstractController
     public function new(Request $request)
     {
 
-        $array = $request->toArray();
+        /*$array = $request->toArray();
         $idQuiz=$array['id_quiz'];
         $idUsuario=$array['usuario'];
         $quiz =$this->quizRepository->findOneBy(['id'=> $idQuiz]);
         $usuario=$this->usuarioRepository->findOneBy(['id'=> $idUsuario]);
+        */
+        $quiz =$this->quizRepository->findOneBy(['id'=> $request->get('quiz')]);
+        $usuario=$this->usuarioRepository->findOneBy(['id'=> $request->get('idUsuario')]);
         $puntos=0;
-        for ($i=0;$i<10;$i++) {
-                $respuesta = $array['respuestas'][$i]['estado'];
-                if ($respuesta == 1) {
+        $respuestas=json_decode($_POST["respostas"]);
+
+        /*for ($i=0;$i<10;$i++) {
+                $respuesta = $this->respuestasRepository->estado($array['respuestas'][$i]['id_respuesta']);
+                $estado=$respuesta[0]["estado"];
+                if ($estado == 1) {
                     $puntos += 10;
                 }
+        }*/
+        for ($i=0;$i<10;$i++) {
+            $respuesta = $this->respuestasRepository->estado($respuestas[$i]);
+            if ($respuesta == 1) {
+                $puntos += 10;
+            }
         }
         $partida = new Partidas;
         $partida->setQuiz($quiz);
@@ -123,9 +133,10 @@ class PreguntasController extends AbstractController
 
         for ($i=0;$i<10;$i++) {
 
-
-            $idPregunta=$array['respuestas'][$i]['id_pregunta'];
-            $idRespuesta=$array['respuestas'][$i]['id_respuesta'];
+            $preguntas = $this->respuestasRepository->estado($respuestas[$i]);
+            $pregunta = $preguntas[0]["pregunta"];
+            $idPregunta=$pregunta;
+            $idRespuesta=$respuestas[$i];
 
             $id_partida=$this->partidasRepository->findOneBy(['id' => $idpartida]);
             $id_pregunta=$this->preguntasRepository->findOneBy(['id' => $idPregunta]);

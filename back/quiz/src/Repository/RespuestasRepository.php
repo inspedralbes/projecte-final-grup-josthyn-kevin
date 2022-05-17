@@ -56,6 +56,15 @@ class RespuestasRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
+    public function estado($id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT respuestas.estado, respuestas.pregunta FROM respuestas WHERE respuestas.id=$id;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }
+
     // /**
     //  * @return Respuestas[] Returns an array of Respuestas objects
     //  */
