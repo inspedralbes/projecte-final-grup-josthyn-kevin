@@ -1,6 +1,8 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-     export default {
+import { sessioStore } from '@/stores/sessioStore'
+import { mapStores } from 'pinia'
+  export default {
     data() {
       return {
       quiz: [],
@@ -9,12 +11,17 @@ import { RouterLink, RouterView } from 'vue-router'
 
       }
     },
+      
+    computed: {
+        ...mapStores(sessioStore)
+    },
    mounted () {
       fetch(`http://192.168.210.161:8000/quiz`)
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
-       
+        //this.Usuario=this.sessioStore.get.username;
+        //this.AUsuario=this.sessioStore.get.apellido;
       });
     },
   }
@@ -24,11 +31,7 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
 
     <main>
-
-
-    
-
-    <h4>Quiz</h4>
+    <!--<h4>Quiz</h4> <h1>{{this.Usuario}}{{this.AUsuario}}</h1>-->
       <div v-for="(quizs,index) in this.quiz" :key="index">
         <RouterLink :to="`/pregunta/${quizs.id}`">
                 <h5>{{quizs.titulo}}</h5>

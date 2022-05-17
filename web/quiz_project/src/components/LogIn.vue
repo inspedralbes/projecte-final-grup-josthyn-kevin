@@ -1,6 +1,8 @@
 
 <script>
 import { RouterLink, RouterView } from 'vue-router'
+import { sessioStore } from '@/stores/sessioStore'
+import { mapStores } from 'pinia'
 export default {
     data() {
         return {
@@ -11,13 +13,14 @@ export default {
             Apellido: "",
             estado: "",
             logueado: false,
-            URl: "http://192.168.210.161:8000/login"
         }
+    },computed: {
+       ...mapStores(sessioStore)
     },
     methods: {
         login() {
             const datosEnvio = new FormData();
-            datosEnvio.append("id",this.id)
+            datosEnvio.append("id",this.Id)
             datosEnvio.append("correo",this.Correo);
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
@@ -29,13 +32,14 @@ export default {
                 return res.json();
             }).then(data => {
                 console.log(data);
-                console.log(data.correo);
-                console.log(data.id);
+                console.log(data.nombre);
                 if(data.status == "Correo no registrado o incorrecto") {
                     this.estado = "Correo no registrado o incorrecto" ;
-                } else if(data.status == "Contraseña") {
+                } else if(data.status == "Contraseña incorrecta") {
                     this.estado = "Contraseña Incorrecta";
                 } else if (data.correo == this.Correo && data.contrasena == this.Contrasena) {
+                    this.logueado = true;
+                    this.sessioStore.set({idUser:data.id,estadoLogin:this.logueado,username:data.nombre, apellido: data.apellido});
                     this.$router.push(`/${data.id}`);
                 }
             })
@@ -53,7 +57,7 @@ export default {
                 <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp"  v-model="Correo">
                 <br>
                 <b><label>Contrasenya</label></b>
-                <input type="password" class="form-control" id="Contrasena" v-model="Contrasena">
+                <input type="text" class="form-control" id="Contrasena" v-model="Contrasena">
                 <br>
             </div>
             <div id="button">

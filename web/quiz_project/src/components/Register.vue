@@ -6,7 +6,7 @@ export default {
             Nom: "",
             Apellido: "",
             Correo: "",
-            Contraseny: "",
+            Contrasenya: "",
             estatError: false,
             estado:"",
             conectado:"",
@@ -17,7 +17,7 @@ export default {
             datosEnvio.append('nombre',this.Nombre);
             datosEnvio.append('apellido',this.Apellido);
             datosEnvio.append('correo',this.Correo);
-            datosEnvio.append('contrasena',this.Contraseny)
+            datosEnvio.append('contrasena',this.Contrasenya)
             fetch(`http://192.168.210.161:8000/anadir/usuario` , {
                 method: 'POST',
                 body: datosEnvio
@@ -52,7 +52,7 @@ export default {
                 <label>Correo</label>
                 <input id="Correo" type="text" class="form-control" v-model="Correo" required>
                 <label>Contrasenya</label>
-                <input id="Contrasenta" class="form-control" type="password" v-model="Contrasenya" required>
+                <input id="Contrasenta" class="form-control" type="text" v-model="Contrasenya" required>
             </div>
             <div id="button">
                 <button id="register" class="btn btn-warning" value="register" @click="Registrarse()">Registrarse</button>

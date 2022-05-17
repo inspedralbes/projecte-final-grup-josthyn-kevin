@@ -6,26 +6,28 @@
       myjson: [],
       respost:[],
       Nombre: "",
-      miarray: [],
       }
     },methods: {
       enviarRespostes() {
       //Creamos formato json
         const resp = JSON.stringify(this.respost);
-        console.log(this.$route.params.id)
+        console.log(this.$route.params.id);
         if(this.respost.length!= 10 || resp.includes(null)) {
           alert("Responde todas las preguntas")
         } else {     
             const datosEnvio = new FormData();
             datosEnvio.append('quiz',this.myjson.id_quiz);
-            datosEnvio.append('resposta',resp);
+            datosEnvio.append('idUsuario',19)
+            console.log(this.myjson.id_quiz);
+            datosEnvio.append('respostas',resp);
             console.log(resp);
+            //const da = JSON.stringify(this.datosEnvio);
             fetch(`http://192.168.210.161:8000/anadir/partida` , {
               method: 'POST',
               body: datosEnvio
-            }).then(function(res) {
+            }).then(res => {
               return res.json();
-            }).then(function(data) {
+            }).then(data => {
               console.log(data)
             });
             }
@@ -36,44 +38,7 @@
       .then(res => res.json())
       .then((data) => {
         this.myjson = data;
-        console.log(this.myjson.id_quiz)
-        console.log(this.myjson.titulo)
-        console.log(this.myjson.preguntas[0].respuestas);
-        console.log(this.myjson.preguntas[0].respuestas[2].id);
-        console.log(this.myjson.preguntas[0].respuestas[2].estado);
-
-        
-        // this.miarray.push({idquiz: this.myjson.id_quiz})
-        // this.miarray.push({titulo: this.myjson.titulo})
-
-
-
-
-        // let respuestasarray = new Array();
-
-        // respuestasarray.push(this.myjson.preguntas);
-
-        // this.miarray.push({preguntas: respuestasarray});
-
-
-
-        // console.log(this.miarray)
-
-
-        //  let res = JSON.stringify(this.miarray);
-        // console.log(res)
-
-
-
-
-
-
-
-
-
-
-
-
+        console.log(this.myjson);
       });
     },
   }
@@ -86,7 +51,7 @@
       <div v-for="(pre,index) in this.myjson.preguntas" :key="index">
         <h3>{{pre.enunciado}}</h3>
         <div v-for="(res,index1) in this.myjson.preguntas[index].respuestas" :key="index1"> 
-              <input type="radio" :name="'r' + index"  :value="res.estado" v-model="respost[index] ">
+              <input type="radio" :name="'r' + index"  :value="res.id" v-model="respost[index] ">
               <label>{{res.respuesta}}</label>
         </div>  
           <br>

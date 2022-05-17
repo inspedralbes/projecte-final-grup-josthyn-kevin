@@ -1,10 +1,5 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-
-
-
-
-
 </script>
 
 
@@ -13,7 +8,6 @@ import { RouterLink, RouterView } from 'vue-router'
         <nav class="navbar navbar-light justify-content-end">
             <div id="hd">
                 <form id="form">
-                    <p></p>
                     <RouterLink to="/"><button style="color: white" class="btn btn-dark">Home</button></RouterLink>
                     <RouterLink to="/login"><button class="btn btn-warning" type="button">Log in</button></RouterLink>
                     <RouterLink to="/register"><button class="btn btn-warning" type="button">Registarse</button></RouterLink>
