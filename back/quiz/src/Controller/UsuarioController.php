@@ -91,6 +91,41 @@ class UsuarioController extends AbstractController
 
     }
 
+    #[Route('/modificar/usuario/{id}', name: 'api_modificar_usuario', methods: ['PUT'])]
+    public function modificar(Request $request, $id)
+    {
+
+        /*$correo=$request->get('correo');
+        $usuario = $this->usuarioRepository->findOneBy(['id' => $id]);
+        $existe = $this->usuarioRepository->findOneBy(['correo' => $correo]);
+        $contrasenaBBDD=$usuario->getContrasena();
+        $contrasenaNueva=$request->get('contrasena');
+        $contrasena=password_hash($contrasenaNueva, PASSWORD_BCRYPT);
+
+        return new JsonResponse($usuario, Response::HTTP_OK);*/
+        //if (empty($correo)){
+
+            $contrasenaNueva=$request->get('contrasena');
+            $contrasena=password_hash($contrasenaNueva, PASSWORD_BCRYPT);
+
+            $usuario = $this->usuarioRepository->findOneBy(['id' => $id]);
+
+            $usuario->setCorreo($request->get('correo'));
+            $usuario->setNombre($request->get('nombre'));
+            $usuario->setApellido($request->get('apellido'));
+            $usuario->setContrasena($contrasena);
+            $this->usuarioRepository->update($usuario);
+
+            return new JsonResponse(['status' => 'Usuario modificado correctamente'], Response::HTTP_CREATED);
+
+        //}else{
+
+            //return new JsonResponse(['status' => 'El correo que intenta introducir ya existe'], Response::HTTP_CREATED);
+
+        //}*/
+
+    }
+
 
 
 

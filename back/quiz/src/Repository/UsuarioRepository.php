@@ -56,6 +56,11 @@ class UsuarioRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }*/
 
+    public function update(Usuario $entity, bool $flush = true): void
+    {
+        $this->_em->flush();
+    }
+
     // /**
     //  * @return Usuario[] Returns an array of Usuario objects
     //  */
