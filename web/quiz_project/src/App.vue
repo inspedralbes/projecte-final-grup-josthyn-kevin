@@ -6,8 +6,6 @@ import "bootstrap";
 
 </script>
 <template>
-
-
   <RouterView />
 </template>
 

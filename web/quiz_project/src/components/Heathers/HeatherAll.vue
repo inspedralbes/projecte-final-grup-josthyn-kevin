@@ -14,7 +14,8 @@ export default {
     methods: {
         logout() {
             this.estado=false;
-            //this.sessioStore.set()
+            this.sessioStore.set({idUser:"",estadoLogin:this.estado,username:"",apellido:""})
+            this.$router.push("/");
         }
     },
      computed: {
