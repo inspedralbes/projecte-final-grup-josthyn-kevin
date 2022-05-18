@@ -1,28 +1,16 @@
 
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-
+import { sessioStore } from '@/stores/sessioStore'
+import { mapStores } from 'pinia'
 export default {
-    data() {
-        return {
-
-            id: "",
-            nom: ""
-        }
+     computed: {
+        ...mapStores(sessioStore)
+    },mounted () {
+        this.Usuario = this.sessioStore.get.username;
     },
-
-    methods: {
-         getidInombre() {
-
-            console.log(this.$route.params.idLogin)
-            this.id = this.$route.params.idLogin;
-            console.log(this.id + " id")   
-        }
-    },
-    mounted(){
-            this.getidInombre()
-    }
 }
+
 
 </script>
 <template>
@@ -30,10 +18,7 @@ export default {
         <nav class="navbar navbar-light justify-content-end">
             <div id="hd">
                 <form id="form">
-
-                    <p v-bind:name="id">{{id}}</p>
-
-
+                    <button>{{this.Usuario}}</button>    
                     <RouterLink to="/"><button style="color: white" class="btn btn-dark">Home</button></RouterLink>
                     <RouterLink to="/admin"><button class="btn btn-warning" type="button">Admin</button></RouterLink>
                     <RouterLink to="/login"><button class="btn btn-warning" type="button">Log in</button></RouterLink>
@@ -41,7 +26,6 @@ export default {
                 </form>
             </div>
         </nav>
-
     </header>
 </template>
 
