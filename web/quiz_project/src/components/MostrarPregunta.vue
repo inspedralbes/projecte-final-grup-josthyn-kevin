@@ -1,12 +1,17 @@
 
 <script>
+import { sessioStore } from '@/stores/sessioStore'
+import { mapStores } from 'pinia'
   export default {
     data() {
       return {
       myjson: [],
       respost:[],
       Nombre: "",
+      Id: "",
       }
+    }, computed: {
+        ...mapStores(sessioStore)
     },methods: {
       enviarRespostes() {
       //Creamos formato json
@@ -17,19 +22,20 @@
         } else {     
             const datosEnvio = new FormData();
             datosEnvio.append('quiz',this.myjson.id_quiz);
-            datosEnvio.append('idUsuario',19)
             console.log(this.myjson.id_quiz);
+            datosEnvio.append('idUsuario',this.Id)
+            console.log(this.Id)
             datosEnvio.append('respostas',resp);
             console.log(resp);
             //const da = JSON.stringify(this.datosEnvio);
-            fetch(`http://192.168.210.161:8000/anadir/partida` , {
-              method: 'POST',
-              body: datosEnvio
-            }).then(res => {
-              return res.json();
-            }).then(data => {
-              console.log(data)
-            });
+              fetch(`http://192.168.210.161:8000/anadir/partida` , {
+                method: 'POST',
+                body: datosEnvio
+              }).then(res => {
+                return res.json();
+              }).then(data => {
+                console.log(data)
+              });
             }
         },
       },
@@ -39,6 +45,7 @@
       .then((data) => {
         this.myjson = data;
         console.log(this.myjson);
+        this.Id = this.sessioStore.get.idUser;
       });
     },
   }

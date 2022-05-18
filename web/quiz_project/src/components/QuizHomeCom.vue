@@ -7,11 +7,8 @@ import { mapStores } from 'pinia'
       return {
       quiz: [],
       Nombre: "",
-
-
       }
     },
-      
     computed: {
         ...mapStores(sessioStore)
     },
@@ -20,8 +17,8 @@ import { mapStores } from 'pinia'
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
-        //this.Usuario=this.sessioStore.get.username;
-        //this.AUsuario=this.sessioStore.get.apellido;
+        this.Usuario=this.sessioStore.get.username;
+        this.AUsuario=this.sessioStore.get.apellido;
       });
     },
   }

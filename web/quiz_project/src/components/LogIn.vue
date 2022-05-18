@@ -40,7 +40,7 @@ export default {
                 } else if (data.correo == this.Correo && data.contrasena == this.Contrasena) {
                     this.logueado = true;
                     this.sessioStore.set({idUser:data.id,estadoLogin:this.logueado,username:data.nombre, apellido: data.apellido});
-                    this.$router.push(`/${data.id}`);
+                    this.$router.push(`/usuario/${data.id}`);
                 }
             })
         }

@@ -14,7 +14,7 @@ const router = createRouter({
       component: Quizhome
     },
     {
-      path: '/:idLogin',
+      path: '/usuario/:idLogin',
       name: 'QuizHomeLog',
       component: Quizhome,
       props: true
