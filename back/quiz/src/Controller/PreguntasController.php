@@ -97,27 +97,15 @@ class PreguntasController extends AbstractController
     public function new(Request $request)
     {
 
-        /*$array = $request->toArray();
-        $idQuiz=$array['id_quiz'];
-        $idUsuario=$array['usuario'];
-        $quiz =$this->quizRepository->findOneBy(['id'=> $idQuiz]);
-        $usuario=$this->usuarioRepository->findOneBy(['id'=> $idUsuario]);
-        */
         $quiz =$this->quizRepository->findOneBy(['id'=> $request->get('quiz')]);
         $usuario=$this->usuarioRepository->findOneBy(['id'=> $request->get('idUsuario')]);
         $puntos=0;
         $respuestas=json_decode($_POST["respostas"]);
 
-        /*for ($i=0;$i<10;$i++) {
-                $respuesta = $this->respuestasRepository->estado($array['respuestas'][$i]['id_respuesta']);
-                $estado=$respuesta[0]["estado"];
-                if ($estado == 1) {
-                    $puntos += 10;
-                }
-        }*/
         for ($i=0;$i<10;$i++) {
             $respuesta = $this->respuestasRepository->estado($respuestas[$i]);
-            if ($respuesta == 1) {
+            print_r($respuesta);
+            if ($respuesta[0]["estado"] == 1) {
                 $puntos += 10;
             }
         }
