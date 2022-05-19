@@ -106,13 +106,14 @@ class UsuarioController extends AbstractController
         //if (empty($correo)){
 
             $contrasenaNueva=$request->get('contrasena');
+            $correo=$request->get('correo');
+            //print_r($contrasenaNueva);
             $contrasena=password_hash($contrasenaNueva, PASSWORD_BCRYPT);
-
+            //print_r($id);
             $usuario = $this->usuarioRepository->findOneBy(['id' => $id]);
-
-            $usuario->setCorreo($request->get('correo'));
-            $usuario->setNombre($request->get('nombre'));
-            $usuario->setApellido($request->get('apellido'));
+            $usuario->setCorreo($correo);
+            //$usuario->setNombre($request->get('nombre'));
+            //$usuario->setApellido($request->get('apellido'));
             $usuario->setContrasena($contrasena);
             $this->usuarioRepository->update($usuario);
 
