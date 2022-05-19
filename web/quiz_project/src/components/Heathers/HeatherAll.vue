@@ -8,13 +8,12 @@ export default {
       return {
         Usuario: "",
         estado: "",
-        isUserL: "",
       }
     },
     methods: {
         logout() {
             this.estado=false;
-            this.sessioStore.set({idUser:"",estadoLogin:this.estado,username:"",apellido:""})
+            this.sessioStore.set({idUser:"",estadoLogin:this.estado,username:"",apellido:"", contrasena:"",correo:""})
             this.$router.push("/");
         }
     },
@@ -41,7 +40,7 @@ export default {
                 <form v-else class="form">
                     <button>{{this.Usuario}}</button>    
                     <RouterLink :to="`/usuario/${this.idUserL}`"><button style="color: white" class="btn btn-dark">Home</button></RouterLink>
-                    <RouterLink to="/admin"><button class="btn btn-warning" type="button">Admin</button></RouterLink>
+                    <RouterLink :to="`/datosUs/${this.idUserL}`"><button style="color: white" class="btn btn-warning">Perfil</button></RouterLink>
                     <button @click="logout" class="btn btn-warning" type="button">Log out</button>
                 </form>
             </div>

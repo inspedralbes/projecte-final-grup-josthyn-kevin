@@ -3,6 +3,7 @@ import Pregunta from '../views/PreguntaView.vue'
 import Quizhome from '../views/Quizhome.vue'
 import LogIn from '../views/LogInView.vue'
 import Register from '../views/RegisterView.vue'
+import datosUsuario from '../views/DatosUsuarioView.vue'
 import Admin from '../views/AdminView.vue'
 
 const router = createRouter({
@@ -38,6 +39,12 @@ const router = createRouter({
       path: '/admin',
       name: 'admin',
       component: Admin
+    },
+    {
+      path: '/datosUs/:idUser',
+      name: 'datosUs',
+      component: datosUsuario
+
     },
     {
       path: '/about',

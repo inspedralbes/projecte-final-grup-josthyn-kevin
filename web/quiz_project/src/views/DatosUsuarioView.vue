@@ -1,24 +1,22 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-import Login from '../components/LogIn.vue'
-import Heather from '../components/Heathers/HeatherAll.vue'
+import Heather from '../components/Heathers/HeatherIn.vue'
+import Datos from '../components/DatosUs.vue'
 import Footer from '../components/FooterAll.vue'
 export default {
   components: {
-    Login,
+    Datos,
     Footer,
     Heather
-   
   }
 }
 
 </script>
 
-
 <template>
     <main>
         <heather/>
-        <login/>
+        <Datos/>
         <Footer/>
     </main>
 </template>

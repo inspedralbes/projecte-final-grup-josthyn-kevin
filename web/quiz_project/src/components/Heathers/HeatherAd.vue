@@ -1,5 +1,7 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
+import { sessioStore } from '@/stores/sessioStore'
+import { mapStores } from 'pinia'
 </script>
 
 
@@ -9,7 +11,7 @@ import { RouterLink, RouterView } from 'vue-router'
             <div id="hd">
                 <form id="form">
                     <RouterLink to="/"><button style="color: white" class="btn btn-dark">Home</button></RouterLink>
-                    <RouterLink to="/login"><button class="btn btn-warning" type="button">Log in</button></RouterLink>
+                    <RouterLink to="/login"><button style="color: white" class="btn btn-warning">Log In</button></RouterLink>
                     <RouterLink to="/register"><button class="btn btn-warning" type="button">Registarse</button></RouterLink>
                 </form>
             </div>
