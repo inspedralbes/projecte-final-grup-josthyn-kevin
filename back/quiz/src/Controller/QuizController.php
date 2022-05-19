@@ -97,13 +97,34 @@ class QuizController extends AbstractController
     #[Route('/quiz/usuario/{id}', name: 'api_quiz_usuario', methods: ['GET'])]
     public function mostrarQuizUsuario($id)
     {
-        print_r($id);
-
         $quizs = $this->quizRepository->quizUsuario($id);
 
         return new JsonResponse($quizs, Response::HTTP_OK);
 
     }
+
+    #[Route('/quiz/puntuacion/{id}', name: 'api_quiz_usuario', methods: ['GET'])]
+    public function quizPuntuacion($id)
+    {
+        $quizs = $this->quizRepository->quizJugados($id);
+        //$partidas = $this->quizRepository->quizPuntuacion();
+        $i=0;
+        $data = [];
+
+        foreach ($quizs as $quiz) {
+            $quizID=$quiz['quiz_id'];
+            $data[$i]=[
+                'quiz' =>$this->quizRepository->quizPuntuacion($quizID,$id),
+            ];
+            $i++;
+        }
+
+
+        return new JsonResponse($data, Response::HTTP_OK);
+
+    }
+
+
 
 
 }
