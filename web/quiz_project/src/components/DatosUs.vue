@@ -6,8 +6,6 @@ export default {
     data() {
       return {
         disabled: 0,
-        //usuario,titulo
-        //array[preguntas[enunciado,respuesta[respuestas,estado]
       }
     },
      computed: {
@@ -32,13 +30,18 @@ export default {
             console.log(this.Usuario)
             datosEnvio.append("correo",this.Correo);
             console.log(datosEnvio)
-            fetch(`http://192.168.210.161:8000/modificar/usuario/${this.idUserL}`, {
+            fetch(`http://192.168.1.148:8000/modificar/usuario/${this.idUserL}`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
                 return res.json();
             }).then(data => {
                 console.log(data);
+                console.log(this.estado);
+                if(this.estado == true && data.status == "Usuario modificado correctamente") {
+                    this.sessioStore.set({})
+                    this.$router.push("/login");
+                }
             })
         }
     },
@@ -54,7 +57,7 @@ export default {
         <button>Quiz Jugados</button>
         <div>
             <label>Nombre Usuario</label>
-            <input type="text" v-model="this.Usuario" class="info form-control" id="nombre" :disabled="disabled == 0">
+            <input type="text" v-model="this.Usuario"  class="info form-control" id="nombre" :disabled="disabled == 0">
             <label>Apellido Usuario</label>
             <input type="text" v-model="this.apellido" class="info form-control" id="apellido" :disabled="disabled == 0">
             <label>Correo</label>

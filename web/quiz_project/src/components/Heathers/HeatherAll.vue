@@ -24,6 +24,7 @@ export default {
         this.Usuario = this.sessioStore.get.username;
         this.estado = this.sessioStore.get.estadoLogin;
         this.idUserL = this.sessioStore.get.idUser; 
+        this.Cambiado = this.sessioStore.get.cambiado;
     }
 }
 </script>
@@ -38,7 +39,7 @@ export default {
                     <RouterLink to="/register"><button class="btn btn-warning" type="button">Registarse</button></RouterLink>
                 </form>
                 <form v-else class="form">
-                    <button>{{this.Usuario}}</button>    
+                    <p>{{this.Usuario}}</p>    
                     <RouterLink :to="`/usuario/${this.idUserL}`"><button style="color: white" class="btn btn-dark">Home</button></RouterLink>
                     <RouterLink :to="`/datosUs/${this.idUserL}`"><button style="color: white" class="btn btn-warning">Perfil</button></RouterLink>
                     <button @click="logout" class="btn btn-warning" type="button">Log out</button>
