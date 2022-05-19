@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Expr\Array_;
 
 /**
  * @extends ServiceEntityRepository<Quiz>
@@ -54,6 +55,23 @@ class QuizRepository extends ServiceEntityRepository
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchOne();
+    }
+
+    public function quizUsuario($id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT quiz.titulo FROM quiz WHERE quiz.usuario_id = $id;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }
+    public function quizPuntuacion($id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT quiz.titulo, partidas.puntuacion FROM partidas JOIN quiz ON partidas.quiz_id=quiz.id JOIN usuario ON partidas.usuario=usuario.id WHERE partidas.quiz_id=3 AND partidas.usuario=19 ORDER BY partidas.puntuacion DESC LIMIT 1;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
     }
 
     // /**

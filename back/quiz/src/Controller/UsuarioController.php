@@ -29,7 +29,7 @@ class UsuarioController extends AbstractController
         ]);
     }
 
-    #[Route('/anadir/usuario', name: 'api_añadir_usuario', methods: ['GET','POST'])]
+    #[Route('/anadir/usuario', name: 'api_añadir_usuario', methods: ['POST'])]
     public function new(Request $request)
     {
         $registrado = $this->usuarioRepository->findOneBy(['correo' => $request->get('correo')]);
@@ -91,39 +91,41 @@ class UsuarioController extends AbstractController
 
     }
 
-    #[Route('/modificar/usuario/{id}', name: 'api_modificar_usuario', methods: ['PUT'])]
+    #[Route('/modificar/usuario/{id}', name: 'api_modificar_usuario', methods: ['GET','POST'])]
     public function modificar(Request $request, $id)
     {
 
-        /*$correo=$request->get('correo');
-        $usuario = $this->usuarioRepository->findOneBy(['id' => $id]);
+        $id = $this->usuarioRepository->findOneBy(['id' => $id]);
+        $correo=$request->get('correo');
         $existe = $this->usuarioRepository->findOneBy(['correo' => $correo]);
-        $contrasenaBBDD=$usuario->getContrasena();
+        $correoAnterior=$id->getCorreo();
         $contrasenaNueva=$request->get('contrasena');
         $contrasena=password_hash($contrasenaNueva, PASSWORD_BCRYPT);
 
-        return new JsonResponse($usuario, Response::HTTP_OK);*/
-        //if (empty($correo)){
-
-            $contrasenaNueva=$request->get('contrasena');
-            $correo=$request->get('correo');
-            //print_r($contrasenaNueva);
-            $contrasena=password_hash($contrasenaNueva, PASSWORD_BCRYPT);
-            //print_r($id);
-            $usuario = $this->usuarioRepository->findOneBy(['id' => $id]);
+        if (empty($existe)){
+            $usuario = $id;
             $usuario->setCorreo($correo);
-            //$usuario->setNombre($request->get('nombre'));
-            //$usuario->setApellido($request->get('apellido'));
+            $usuario->setNombre($request->get('nombre'));
+            $usuario->setApellido($request->get('apellido'));
+            $usuario->setContrasena($contrasena);
+            $this->usuarioRepository->update($usuario);
+
+            return new JsonResponse(['status' => 'Usuario modificado correctamente'], Response::HTTP_CREATED);
+        }else if(!empty($existe) && $correoAnterior==$correo) {
+
+            $usuario = $id;
+            $usuario->setNombre($request->get('nombre'));
+            $usuario->setApellido($request->get('apellido'));
             $usuario->setContrasena($contrasena);
             $this->usuarioRepository->update($usuario);
 
             return new JsonResponse(['status' => 'Usuario modificado correctamente'], Response::HTTP_CREATED);
 
-        //}else{
+        }else{
 
-            //return new JsonResponse(['status' => 'El correo que intenta introducir ya existe'], Response::HTTP_CREATED);
+            return new JsonResponse(['status' => 'El correo que intenta introducir ya existe'], Response::HTTP_CREATED);
 
-        //}*/
+        }
 
     }
 
