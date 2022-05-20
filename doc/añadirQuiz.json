@@ -1,0 +1,256 @@
+{
+    "usuario": 1,
+	"titulo": "Real Madrid",
+	"preguntas": [
+		{
+			"enunciado": "¿Año en el que el Real Madrid se proclamo por primera vez como campeon de la antes conocida como  \"Copa de Europa\"?",
+			"respuestas": [
+				{
+					"respuesta": "1956",
+					"estado": 1
+				},
+				{
+					"respuesta": "1966",
+					"estado": 0
+				},
+				{
+					"respuesta": "1958",
+					"estado": 0
+				},
+				{
+					"respuesta": "1954",
+					"estado": 0
+				},
+				{
+					"respuesta": "1970",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"enunciado": "¿Nombre del máximo goleador histórico del club?",
+			"respuestas": [
+				{
+					"respuesta": "Raul Gonzalez Blanco",
+					"estado": 0
+				},
+				{
+					"respuesta": "Alfredo Di Stefano",
+					"estado": 0
+				},
+				{
+					"respuesta": "Alvaro Arbeloa",
+					"estado": 0
+				},
+				{
+					"respuesta": "Cristiano Ronaldo",
+					"estado": 1
+				},
+				{
+					"respuesta": "Lionel Messi",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"enunciado": "¿Nombre del estadio en el que juega como local el conjunto Blanco? ",
+			"respuestas": [
+				{
+					"respuesta": "Wanda Metropilitano",
+					"estado": 0
+				},
+				{
+					"respuesta": "Santiago Bernabeu",
+					"estado": 1
+				},
+				{
+					"respuesta": "La Cartuja",
+					"estado": 0
+				},
+				{
+					"respuesta": "Camp nou",
+					"estado": 0
+				},
+				{
+					"respuesta": "San Mames",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"enunciado": "Número de Ligas que tiene en su haber",
+			"respuestas": [
+				{
+					"respuesta": "32",
+					"estado": 0
+				},
+				{
+					"respuesta": "40",
+					"estado": 0
+				},
+				{
+					"respuesta": "35",
+					"estado": 1
+				},
+				{
+					"respuesta": "27",
+					"estado": 0
+				},
+				{
+					"respuesta": "13",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"enunciado": "¿En que año se fundo el club?",
+			"respuestas": [
+				{
+					"respuesta": "1903",
+					"estado": 0
+				},
+				{
+					"respuesta": "1913",
+					"estado": 0
+				},
+				{
+					"respuesta": "1920",
+					"estado": 0
+				},
+				{
+					"respuesta": "1907",
+					"estado": 0
+				},
+				{
+					"respuesta": "1902",
+					"estado": 1
+				}
+			]
+		},
+		{
+			"enunciado": "¿Cómo se llama el ex lateral derecho del Real Madrid y actual delegado del club?",
+			"respuestas": [
+				{
+					"respuesta": "Miguel Porlán \"Chendo\"",
+					"estado": 1
+				},
+				{
+					"respuesta": "Roberto Carlos",
+					"estado": 0
+				},
+				{
+					"respuesta": "Dani Carvajal",
+					"estado": 0
+				},
+				{
+					"respuesta": "Nacho Fernadez",
+					"estado": 0
+				},
+				{
+					"respuesta": "Álvaro Arbeloa",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"enunciado": "¿En qué país nació el ex delantero Ferenc Puskas?",
+			"respuestas": [
+				{
+					"respuesta": "Unión Sovietica",
+					"estado": 0
+				},
+				{
+					"respuesta": "Hungria",
+					"estado": 1
+				},
+				{
+					"respuesta": "Eslovenia",
+					"estado": 0
+				},
+				{
+					"respuesta": "Marruecos",
+					"estado": 0
+				},
+				{
+					"respuesta": "Islandia",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"enunciado": "¿Contra qué equipo ganó la final de la cuarta Copa de Europa?",
+			"respuestas": [
+				{
+					"respuesta": "Atletico de Madrid",
+					"estado": 0
+				},
+				{
+					"respuesta": "AC Milan",
+					"estado": 0
+				},
+				{
+					"respuesta": "AC Fiorentina",
+					"estado": 0
+				},
+				{
+					"respuesta": "Stade de Reims",
+					"estado": 1
+				},
+				{
+					"respuesta": "Eintract de Frankfurt",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"enunciado": "¿En que localidad madrileña nacio Iker Casillas?",
+			"respuestas": [
+				{
+					"respuesta": "Getafe",
+					"estado": 0
+				},
+				{
+					"respuesta": "Mostoles",
+					"estado": 1
+				},
+				{
+					"respuesta": "Pinto",
+					"estado": 0
+				},
+				{
+					"respuesta": "Valdemoro",
+					"estado": 0
+				},
+				{
+					"respuesta": "Alcalá de Henares",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"enunciado": "¿Como se llama el equipo al que Zidane marca el gol de la \"Novena\"?",
+			"respuestas": [
+				{
+					"respuesta": "Valencia CF",
+					"estado": 0
+				},
+				{
+					"respuesta": "Monaco FC",
+					"estado": 0
+				},
+				{
+					"respuesta": "Bayer Leverkusen",
+					"estado": 1
+				},
+				{
+					"respuesta": "Deportivo de la Coruña",
+					"estado": 0
+				},
+				{
+					"respuesta": "PSG",
+					"estado": 0
+				}
+			]
+		}
+	]
+}
