@@ -93,7 +93,6 @@ class QuizController extends AbstractController
 
     }
 
-
     #[Route('/quiz/usuario/{id}', name: 'api_quiz_usuario', methods: ['GET'])]
     public function mostrarQuizUsuario($id)
     {
@@ -132,6 +131,55 @@ class QuizController extends AbstractController
 
         return new JsonResponse(['status' => 'Quiz eliminado'], Response::HTTP_CREATED);
 
+    }
+
+    #[Route('/quiz/modificar/{id}', name: 'api_quiz_modificar', methods: ['POST'])]
+    public function modificarQuiz(Request $request, $id)
+    {
+        $array = $request->toArray();
+        $titulo = $array['titulo'];
+
+        $j=0;
+        $i=0;
+
+        $idQuiz=$this->quizRepository->findOneBy(['id'=> $id]);
+        $preguntas = $this->preguntasRepository->findBy(['idQuiz' => $id]);
+
+        $quiz = $idQuiz;
+        $quiz->setTitulo($titulo);
+        $this->quizRepository->update($quiz);
+
+        foreach ($preguntas as $pregunta) {
+
+            $idPregunta=$pregunta->getId();
+            $enunciado=$array['preguntas'][$i]['enunciado'];
+            $pre=$this->preguntasRepository->findOneBy(['id'=> $idPregunta]);
+
+            $preguntaN=$pre;
+            $preguntaN->setEnunciado($enunciado);
+            $this->preguntasRepository->update($preguntaN);
+
+            $respuestas = $this->respuestasRepository->findBy(['pregunta' => $idPregunta]);
+
+            foreach ($respuestas as $respuesta) {
+
+                $idRespuesta=$respuesta->getId();
+                $respu=$this->respuestasRepository->findOneBy(['id'=> $idRespuesta]);
+
+                $res=$array['preguntas'][$i]['respuestas'][$j]['respuesta'];
+                $estado=$array['preguntas'][$i]['respuestas'][$j]['estado'];
+
+                $respuesta = $respu;
+                $respuesta->setEstado($estado);
+                $respuesta->setRespuesta($res);
+                $this->respuestasRepository->update($respuesta);
+                $j++;
+            }
+            $i++;
+            $j=0;
+        }
+        return new JsonResponse(['status' => 'Quiz actualizado'], Response::HTTP_CREATED);
+        //return new JsonResponse($preguntaN, Response::HTTP_OK);
     }
 
 

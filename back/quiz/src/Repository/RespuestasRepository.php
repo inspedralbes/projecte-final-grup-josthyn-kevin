@@ -47,6 +47,11 @@ class RespuestasRepository extends ServiceEntityRepository
         }
     }
 
+    public function update(Respuestas $entity, bool $flush = true): void
+    {
+        $this->_em->flush();
+    }
+
     public function respuestas($id, $idPregunta): array
     {
         $conn = $this->getEntityManager()->getConnection();

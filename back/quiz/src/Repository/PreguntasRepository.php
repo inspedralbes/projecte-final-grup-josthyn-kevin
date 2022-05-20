@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Preguntas;
+use App\Entity\Quiz;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -45,6 +46,11 @@ class PreguntasRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+
+    public function update(Preguntas $entity, bool $flush = true): void
+    {
+        $this->_em->flush();
     }
 
     public function ultimaPregunta($quiz_id): int

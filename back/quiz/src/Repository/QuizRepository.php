@@ -47,6 +47,10 @@ class QuizRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    public function update(Quiz $entity, bool $flush = true): void
+    {
+        $this->_em->flush();
+    }
 
     public function ultimoQuiz($idUsuario): int
     {
