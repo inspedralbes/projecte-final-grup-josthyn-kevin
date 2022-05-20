@@ -129,6 +129,19 @@ class UsuarioController extends AbstractController
 
     }
 
+    #[Route('/eliminar/usuario/{id}', name: 'api_eliminar', methods: ['DELETE'])]
+    public function eliminar($id)
+    {
+        $usuario = $this->usuarioRepository->findOneBy(['id' => $id]);
+
+        //Utilitza el mètode creat al repository amb el controlador
+        $this->usuarioRepository->remove($usuario);
+
+        return new JsonResponse(['status' => 'Restaurante eliminado'], Response::HTTP_CREATED);
+
+    }
+
+
 
 
 
