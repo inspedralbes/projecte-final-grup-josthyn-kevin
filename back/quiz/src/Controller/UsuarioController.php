@@ -74,6 +74,7 @@ class UsuarioController extends AbstractController
                     'contrasena' => $contrasena,
                     'nombre' => $usuario->getNombre(),
                     'apellido' => $usuario->getApellido(),
+                    'admin' => $usuario->getAdmin()
 
                 ];
 

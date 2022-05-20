@@ -29,16 +29,6 @@ class Quiz
     private $titulo;
 
     /**
-     * @var \Usuario
-     *
-     * @ORM\ManyToOne(targetEntity="Usuario")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
-     * })
-     */
-    private $usuario;
-
-    /**
      * @var \Tema
      *
      * @ORM\ManyToOne(targetEntity="Tema")
@@ -47,6 +37,16 @@ class Quiz
      * })
      */
     private $tema;
+
+    /**
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * })
+     */
+    private $usuario;
 
     public function getId(): ?int
     {
@@ -65,18 +65,6 @@ class Quiz
         return $this;
     }
 
-    public function getUsuario(): ?Usuario
-    {
-        return $this->usuario;
-    }
-
-    public function setUsuario(?Usuario $usuario): self
-    {
-        $this->usuario = $usuario;
-
-        return $this;
-    }
-
     public function getTema(): ?Tema
     {
         return $this->tema;
@@ -85,6 +73,18 @@ class Quiz
     public function setTema(?Tema $tema): self
     {
         $this->tema = $tema;
+
+        return $this;
+    }
+
+    public function getUsuario(): ?Usuario
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario(?Usuario $usuario): self
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

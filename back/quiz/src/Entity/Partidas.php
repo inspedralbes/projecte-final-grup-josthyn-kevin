@@ -29,16 +29,6 @@ class Partidas
     private $puntuacion;
 
     /**
-     * @var \Quiz
-     *
-     * @ORM\ManyToOne(targetEntity="Quiz")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
-     * })
-     */
-    private $quiz;
-
-    /**
      * @var \Usuario
      *
      * @ORM\ManyToOne(targetEntity="Usuario")
@@ -47,6 +37,16 @@ class Partidas
      * })
      */
     private $usuario;
+
+    /**
+     * @var \Quiz
+     *
+     * @ORM\ManyToOne(targetEntity="Quiz")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="quiz_id", referencedColumnName="id")
+     * })
+     */
+    private $quiz;
 
     public function getId(): ?int
     {
@@ -65,18 +65,6 @@ class Partidas
         return $this;
     }
 
-    public function getQuiz(): ?Quiz
-    {
-        return $this->quiz;
-    }
-
-    public function setQuiz(?Quiz $quiz): self
-    {
-        $this->quiz = $quiz;
-
-        return $this;
-    }
-
     public function getUsuario(): ?Usuario
     {
         return $this->usuario;
@@ -85,6 +73,18 @@ class Partidas
     public function setUsuario(?Usuario $usuario): self
     {
         $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    public function getQuiz(): ?Quiz
+    {
+        return $this->quiz;
+    }
+
+    public function setQuiz(?Quiz $quiz): self
+    {
+        $this->quiz = $quiz;
 
         return $this;
     }
