@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Respuestaspartida;
 use App\Repository\PartidasRepository;
 use App\Repository\PreguntasRepository;
 use App\Repository\QuizRepository;
