@@ -24,7 +24,7 @@ export default {
                 if(data.admin != true) {
                     this.estadoAd = "Este usuario no es administrador"
                 } else {
-                    this.$router.push("/adminUs")a
+                    this.$router.push("/adminUs")
                 }
             })
         }
