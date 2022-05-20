@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Respuestaspartida;
+use App\Entity\Partidas;
 use App\Repository\PartidasRepository;
 use App\Repository\PreguntasRepository;
 use App\Repository\QuizRepository;
@@ -11,6 +12,7 @@ use App\Repository\RespuestasRepository;
 use App\Repository\UsuarioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -53,7 +55,6 @@ class PartidaController extends AbstractController
 
         for ($i=0;$i<10;$i++) {
             $respuesta = $this->respuestasRepository->estado($respuestas[$i]);
-            print_r($respuesta);
             if ($respuesta[0]["estado"] == 1) {
                 $puntos += 10;
             }

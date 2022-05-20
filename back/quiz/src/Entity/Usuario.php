@@ -60,7 +60,9 @@ class Usuario
     {
         return $this->id;
     }
-
+    public function __toString() {
+        return $this->id;
+    }
     public function getNombre(): ?string
     {
         return $this->nombre;
@@ -109,7 +111,7 @@ class Usuario
         return $this;
     }
 
-    public function getAdmin(): ?bool
+    public function isAdmin(): ?bool
     {
         return $this->admin;
     }

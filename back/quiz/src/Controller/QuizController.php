@@ -122,6 +122,18 @@ class QuizController extends AbstractController
 
     }
 
+    #[Route('/quiz/eliminar/{id}', name: 'api_quiz_eliminar', methods: ['DELETE'])]
+    public function eliminarQuiz($id)
+    {
+
+        $quiz=$this->quizRepository->findOneBy(['id'=> $id]);
+
+        $this->quizRepository->remove($quiz);
+
+        return new JsonResponse(['status' => 'Quiz eliminado'], Response::HTTP_CREATED);
+
+    }
+
 
 
 

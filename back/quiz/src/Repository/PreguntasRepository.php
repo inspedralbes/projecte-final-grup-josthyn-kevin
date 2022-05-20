@@ -47,13 +47,13 @@ class PreguntasRepository extends ServiceEntityRepository
         }
     }
 
-    public function ultimaPregunta($quiz_id): array
+    public function ultimaPregunta($quiz_id): int
     {
         $conn = $this->getEntityManager()->getConnection();
         $sql = "SELECT preguntas.id FROM preguntas WHERE preguntas.id_quiz_id=$quiz_id ORDER BY preguntas.id DESC LIMIT 1;";
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
-        return $resultSet->fetchAllAssociative();
+        return $resultSet->fetchOne();
     }
 
     // /**

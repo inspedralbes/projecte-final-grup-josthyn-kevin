@@ -62,7 +62,7 @@ class Respuestas
         return $this;
     }
 
-    public function getEstado(): ?bool
+    public function isEstado(): ?bool
     {
         return $this->estado;
     }
