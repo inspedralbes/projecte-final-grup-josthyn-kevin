@@ -118,8 +118,6 @@ class QuizController extends AbstractController
             ];
             $i++;
         }
-
-
         return new JsonResponse($data, Response::HTTP_OK);
 
     }

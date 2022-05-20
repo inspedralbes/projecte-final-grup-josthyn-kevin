@@ -64,6 +64,15 @@ class PartidasRepository extends ServiceEntityRepository
         return $resultSet->fetchOne();
     }
 
+    public function partidasJugadas($id): int
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT COUNT(partidas.id) FROM partidas WHERE partidas.quiz_id=$id;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchOne();
+    }
+
     // /**
     //  * @return Partidas[] Returns an array of Partidas objects
     //  */

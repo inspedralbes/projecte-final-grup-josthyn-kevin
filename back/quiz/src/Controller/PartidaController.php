@@ -11,6 +11,7 @@ use App\Repository\UsuarioRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PartidaController extends AbstractController
 {
@@ -91,10 +92,12 @@ class PartidaController extends AbstractController
 
     }
 
-    #[Route('/quiz/usuario', name: 'api_añadir_partida', methods: ['POST'])]
-    public function mostrarQuizUsuario(Request $request)
+    #[Route('/partidas/{id}', name: 'api_jugadas_partida', methods: ['GET'])]
+    public function partidasJugadas($id)
     {
+        $numPartidas = $this->partidasRepository->partidasJugadas($id);
 
+        return new JsonResponse($numPartidas, Response::HTTP_OK);
 
     }
 
