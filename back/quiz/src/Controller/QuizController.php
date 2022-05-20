@@ -103,7 +103,7 @@ class QuizController extends AbstractController
 
     }
 
-    #[Route('/quiz/puntuacion/{id}', name: 'api_quiz_usuario', methods: ['GET'])]
+    #[Route('/quiz/puntuacion/{id}', name: 'api_quiz_puntuacion', methods: ['GET'])]
     public function quizPuntuacion($id)
     {
         $quizs = $this->quizRepository->quizJugados($id);

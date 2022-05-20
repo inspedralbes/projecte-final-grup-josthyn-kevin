@@ -49,14 +49,16 @@ class Usuario
      */
     private $contrasena;
 
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="admin", type="boolean", nullable=true)
+     */
+    private $admin = '0';
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function __toString()
-    {
-        return (string) $this->id;
     }
 
     public function getNombre(): ?string
@@ -103,6 +105,18 @@ class Usuario
     public function setContrasena(string $contrasena): self
     {
         $this->contrasena = $contrasena;
+
+        return $this;
+    }
+
+    public function getAdmin(): ?bool
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(?bool $admin): self
+    {
+        $this->admin = $admin;
 
         return $this;
     }
