@@ -5,6 +5,7 @@ import LogIn from '../views/LogInView.vue'
 import Register from '../views/RegisterView.vue'
 import datosUsuario from '../views/DatosUsuarioView.vue'
 import Admin from '../views/AdminView.vue'
+import AdminUs from '../views/AdminUsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +46,11 @@ const router = createRouter({
       name: 'datosUs',
       component: datosUsuario
 
+    },
+    {
+      path: '/adminUs',
+      name: 'adminUs',
+      component: AdminUs
     },
     {
       path: '/about',

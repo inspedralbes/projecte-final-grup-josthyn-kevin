@@ -30,7 +30,7 @@ export default {
             console.log(this.Usuario)
             datosEnvio.append("correo",this.Correo);
             console.log(datosEnvio)
-            fetch(`http://192.168.210.161:8000/modificar/usuario/${this.idUserL}`, {
+            fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/modificar/usuario/${this.idUserL}`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -46,6 +46,12 @@ export default {
         }
     },
 }
+
+//Quiz del usuario --> /quiz/usuario/id
+
+//Quiz usuarios jugados --> /quiz/puntuacion/id
+
+
 </script>
 
 <template>

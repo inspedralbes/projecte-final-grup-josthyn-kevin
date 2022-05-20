@@ -1,32 +1,30 @@
 <script>
-
+import { RouterLink, RouterView } from 'vue-router'
 export default {
     data() {
         return {
             Correo: "",
-            Contrasenya: ""
+            Contrasenya: "",
+            estadoAd: ""
         }
     },methods: {
-        login() {
+        loginAdmin() {
             const datosEnvio = new FormData();
             datosEnvio.append("correo",this.Correo);
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
             datosEnvio.append("nombre",this.Nombre)
-            fetch(`http://192.168.1.148:8000/login`, {
+            fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/login`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
                 return res.json();
             }).then(data => {
                 console.log(data);
-                console.log(data.correo);
-                if(data.status == "Correo no registrado o incorrecto") {
-                    this.estado = "Correo no registrado o incorrecto";
-                } else if(data.status == "Contraseña incorrecta") {
-                    this.estado = "Contraseña Incorrecta";
-                } else if (data.correo == this.Correo && data.contrasena == this.Contrasena) {
-                    this.$router.push('/');
+                if(data.admin != true) {
+                    this.estadoAd = "Este usuario no es administrador"
+                } else {
+                    this.$router.push("/adminUs")
                 }
             })
         }
@@ -48,9 +46,9 @@ export default {
                 <br>
             </div>
             <div id="button">
-                <button id="login" type="button" class="btn btn-warning"  @click="login()">Log In</button>
+                <button id="login" type="button" class="btn btn-warning"  @click="loginAdmin()">Log In</button>
                 <br>
-                <h5 id="error">{{this.estado}}</h5>
+                <h5 id="error">{{this.estadoAd}}</h5>
             </div>
         </div> 
     </div>    
