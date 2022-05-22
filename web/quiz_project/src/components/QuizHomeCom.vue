@@ -11,8 +11,6 @@ import { mapStores } from 'pinia'
     },
     computed: {
         ...mapStores(sessioStore)
-    },beforeMount() {
-        this.estados = this.sessioStore.get.estadoLogin;
     },
    mounted () {
       fetch(`http://192.168.1.148:8000/quiz`)
@@ -28,14 +26,12 @@ import { mapStores } from 'pinia'
 
 <template>
 
-    <div v-if="!this.estados === true" id="contenidor">
+    <div v-if="!this.sessioStore.get.estadoLogin === true" id="contenidor">
       <article>
-     
           <div v-for="(quizs,index) in this.quiz" :key="index">
                   <h5>{{quizs.titulo}}</h5>
-                  <p>Tiene quu estar registrado para iniar quiz</p>
+                  <p>Registrate o incia Secion para realizar el quiz</p>
           </div>
-     
       </article> 
     </div>
     <div v-else id="contenidor">
@@ -53,14 +49,24 @@ import { mapStores } from 'pinia'
 
      body {
       width: 100%;
+      margin: 0;
+  	  padding: 0;
+      line-height: 1.5em;
+	    padding-top: 80px;
     }
-    
+
     div {
-        margin: 2%;
-        border: 2px solid black
+        margin: 4%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        border: 2px solid black;
     }
 
     #contenidor{
-     margin-top:6%;
+     margin-top:8%;
+     margin-bottom: 6%;
+     margin-right: 7%;
+     margin-left: 7%;
+     padding: 1%;
     }
 </style>

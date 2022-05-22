@@ -30,10 +30,10 @@ export default {
 </script>
 <template >
     <header id="main-header">
-		<a id="logo-header" href="#">
+		<div id="logo-header" >
 			<span class="site-name">QuizDaw</span>
-			<span class="site-desc">La mejor web de Quiz</span>
-		</a>
+			<p class="site-desc">La mejor web de Quiz</p>
+		</div>
 		<nav>
 			<ul v-if="!this.estado === true">
 				<li><RouterLink to="/">Inicio</RouterLink></li>
@@ -49,26 +49,6 @@ export default {
 		</nav><!-- / nav -->
 
 	</header>
-    <!--
-    <header>
-        <nav class="navbar navbar-light justify-content-end">
-            <div id="hd">
-                <form v-if="!this.estado === true" class="form">    
-                    <RouterLink to="/"><button style="color: white" class="btn btn-dark">Home</button></RouterLink>
-                    <RouterLink to="/admin"><button class="btn btn-warning" type="button">Admin</button></RouterLink>
-                    <RouterLink to="/login"><button class="btn btn-warning" type="button">Log in</button></RouterLink>
-                    <RouterLink to="/register"><button class="btn btn-warning" type="button">Registarse</button></RouterLink>
-                </form>
-                <form v-else class="form">
-                    <p>{{this.Usuario}}</p>    
-                    <RouterLink :to="`/usuario/${this.idUserL}`"><button style="color: white" class="btn btn-dark">Home</button></RouterLink>
-                    <RouterLink :to="`/datosUs/${this.idUserL}`"><button style="color: white" class="btn btn-warning">Perfil</button></RouterLink>
-                    <button @click="logout" class="btn btn-warning" type="button">Log out</button>
-                </form>
-            </div>
-        </nav>
-    </header>
-    -->
 </template>
 
 
@@ -80,23 +60,19 @@ export default {
         margin-right: 0%;
     }
 
-    p {
-	margin: 0 0 1.5em 0;
-    }
-
     button {
         margin-left: 3%;
         color: white;
     }
 
     #main-header {
-	background: #333;
+	background: #5C1473;
 	color: white;
 	height: 80px;
-    width: 100%; /* hacemos que la cabecera ocupe el ancho completo de la página */
-	left: 0; /* Posicionamos la cabecera al lado izquierdo */
-	top: 0; /* Posicionamos la cabecera pegada arriba */
-	position: fixed; /* Hacemos que la cabecera tenga una posición fija */
+    width: 100%; 
+	left: 0;
+	top: 0;
+	position: fixed;
 }	
 	#main-header a {
 		color: white;
@@ -104,24 +80,21 @@ export default {
 
     #logo-header {
 	float: left;
-	padding: 15px 0 0 20px;
-	text-decoration: none;
-}
+	padding: 15px 20px;
+
+    }
+
 	#logo-header:hover {
-		color: #0b76a6;
+		color: yellow;
 	}
 	
 	#logo-header .site-name {
 		display: block;
-		font-weight: 700;
-		font-size: 1.2em;
 	}
 	
 	#logo-header .site-desc {
 		display: block;
-		font-weight: 300;
-		font-size: 0.8em;
-		color: #999;
+		color: white;
 	}
 
     nav {
@@ -130,7 +103,7 @@ export default {
 	nav ul {
 		margin: 0;
 		padding: 0;
-		list-style: none;
+	
 		padding-right: 20px;
 	}
 	
@@ -142,11 +115,11 @@ export default {
 			nav ul li a {
 				display: block;
 				padding: 0 10px;
-				text-decoration: none;
+				
 			}
 			
 				nav ul li a:hover {
-					background: #0b76a6;
+					background: #BBB933;
 				}
 
 </style>
