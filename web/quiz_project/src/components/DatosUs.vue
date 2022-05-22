@@ -23,14 +23,14 @@ export default {
          //   const datosEnvio = new FormData();
             var datosEnvio= new URLSearchParams();
             datosEnvio.append("contrasena",this.Contrasena);
-            console.log(this.Contrasena);
+            
             datosEnvio.append("apellido",this.apellido);
-            console.log(this.apellido)
+           
             datosEnvio.append("nombre",this.Usuario);
-            console.log(this.Usuario)
+            
             datosEnvio.append("correo",this.Correo);
-            console.log(datosEnvio)
-            fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/modificar/usuario/${this.idUserL}`, {
+        
+            fetch(`http://192.168.1.148:8000/modificar/usuario/${this.idUserL}`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -59,8 +59,8 @@ export default {
     <div v-if="this.estado === true">
         <h2>{{this.Usuario}} {{this.apellido}}</h2>
         <button>Crear Quiz</button>
-        <button>Quiz creados</button>
-        <button>Quiz Jugados</button>
+        <RouterLink :to="`/quizCreadas/${this.idUserL}`"><button>Quiz creados</button></RouterLink>
+        <RouterLink :to="`/partidas/${this.idUserL}`" ><button>Quiz Jugados</button></RouterLink>
         <div>
             <label>Nombre Usuario</label>
             <input type="text" v-model="this.Usuario"  class="info form-control" id="nombre" :disabled="disabled == 0">

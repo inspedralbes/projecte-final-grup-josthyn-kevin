@@ -4,6 +4,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
 
 <template>
+
+    <footer id="contenidor_foot">
+        <p>&copy; 2014 FranciscoAMK.com</p>
+    </footer>
+
+
+<!--
     <footer>
             <div id="cont_footer" class="grid-container">
                     <div id="info" class="grid-item">
@@ -33,47 +40,21 @@ import { RouterLink, RouterView } from 'vue-router'
                     </div>
             </div>
         </footer>
+        -->
+      
 </template>
 
 <style scoped>
 
-footer {
-        background-color: red;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 200px;
-        background-color: blueviolet;
+    #contenidor_foot {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
     }
-
-    .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        margin-right: 20%;
-        margin-left: 6%;
-        margin-top: 1%;
-        justify-content: center;
-    }
-
-    .grid-item {
-        margin-right: 10%;
-        margin-left: 30%;
-    }
-
-    .grid-info-container {
-        display: grid;
-        grid-template-columns: auto auto;
-        justify-content: baseline;
-        margin-left: -20;
-        padding-right: -10;
-    }
-
-    .grid-info-item {
-        justify-content: space-between;
-    }
-
-    p {
-        color: black;
-    }
+        #contenidor_foot p {
+            margin: 0;
+        }
 
 </style>

@@ -6,6 +6,8 @@ import Register from '../views/RegisterView.vue'
 import datosUsuario from '../views/DatosUsuarioView.vue'
 import Admin from '../views/AdminView.vue'
 import AdminUs from '../views/AdminUsView.vue'
+import QuizJugados from '../views/QuizJugView.vue'
+import QuizCreados from '../views/QuizCreView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +53,16 @@ const router = createRouter({
       path: '/adminUs',
       name: 'adminUs',
       component: AdminUs
+    },
+    {
+      path: '/partidas/:idUs',
+      name: 'partidas',
+      component: QuizJugados
+    },
+    {
+      path: '/quizCreadas/:idUsu',
+      name: 'creadas',
+      component: QuizCreados
     },
     {
       path: '/about',

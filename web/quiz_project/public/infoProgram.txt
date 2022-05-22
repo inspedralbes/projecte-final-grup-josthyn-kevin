@@ -1,3 +1,4 @@
 LOCAL_CLASSE: 192.168.210.161:8000
+LOCAL_HOME: 192.168.1.148:8000
 
 PRODUCCION: proyectefinaljoskevback.alumnes.inspedralbes.cat

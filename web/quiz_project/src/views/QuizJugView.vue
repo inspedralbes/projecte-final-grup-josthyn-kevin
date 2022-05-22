@@ -1,13 +1,11 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import Heather from '../components/Heathers/HeatherAll.vue'
-import Quizhome from '../components/QuizHomeCom.vue'
-import Footer from '../components/FooterAll.vue'
+import QuizJugados from '../components/QuizJugados.vue'
 export default {
   components: {
     Heather,
-    Quizhome,
-    Footer
+    QuizJugados,
   }
 }
 </script>
@@ -16,7 +14,6 @@ export default {
     
     <main>
         <heather/>
-        <quizhome/>
-        <Footer/>
+        <quizJugados/>
     </main>
 </template>

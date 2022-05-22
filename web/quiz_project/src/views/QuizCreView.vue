@@ -1,22 +1,18 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import Heather from '../components/Heathers/HeatherAll.vue'
-import Quizhome from '../components/QuizHomeCom.vue'
-import Footer from '../components/FooterAll.vue'
+import QuizCreados from '../components/QuizCreados.vue'
 export default {
   components: {
     Heather,
-    Quizhome,
-    Footer
+    QuizCreados,
   }
 }
 </script>
 
 <template>
-    
     <main>
         <heather/>
-        <quizhome/>
-        <Footer/>
+        <quizCreados/>
     </main>
 </template>

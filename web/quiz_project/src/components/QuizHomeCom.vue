@@ -11,13 +11,15 @@ import { mapStores } from 'pinia'
     },
     computed: {
         ...mapStores(sessioStore)
+    },beforeMount() {
+        this.estados = this.sessioStore.get.estadoLogin;
     },
    mounted () {
-      fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/quiz`)
+      fetch(`http://192.168.1.148:8000/quiz`)
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
-        this.estado=this.sessioStore.get.estadoLogin;
+        console.log(this.sessioStore.get.estadoLogin);
       });
     },
   }
@@ -26,20 +28,39 @@ import { mapStores } from 'pinia'
 
 <template>
 
-    <main>
-    <!--<h4>Quiz</h4> <h1>{{this.Usuario}}{{this.AUsuario}}</h1>-->
-      <div v-for="(quizs,index) in this.quiz" :key="index">
-        <RouterLink :to="`/pregunta/${quizs.id}`">
-                <h5>{{quizs.titulo}}</h5>
-        </RouterLink>
-      </div>    
-
-    </main>
+    <div v-if="!this.estados === true" id="contenidor">
+      <article>
+     
+          <div v-for="(quizs,index) in this.quiz" :key="index">
+                  <h5>{{quizs.titulo}}</h5>
+                  <p>Tiene quu estar registrado para iniar quiz</p>
+          </div>
+     
+      </article> 
+    </div>
+    <div v-else id="contenidor">
+      <article>
+          <div v-for="(quizs,index) in this.quiz" :key="index">
+                <RouterLink :to="`/pregunta/${quizs.id}`">
+                  <h5>{{quizs.titulo}}</h5>
+                </RouterLink>
+          </div>
+      </article>
+      </div> 
 </template>
 
 <style scoped>
+
+     body {
+      width: 100%;
+    }
+    
     div {
         margin: 2%;
         border: 2px solid black
+    }
+
+    #contenidor{
+     margin-top:6%;
     }
 </style>
