@@ -37,11 +37,11 @@ import { mapStores } from 'pinia'
 
     <div v-else id="contenidor">
       <article>
-          <button v-for="(quizs,index) in this.quiz" :key="index">
+          <div v-for="(quizs,index) in this.quiz" :key="index">
                 <RouterLink :to="`/pregunta/${quizs.id}`">
                   <h5>{{quizs.titulo}}</h5>
                 </RouterLink>
-          </button>
+          </div>
       </article>
       </div> 
 </template>

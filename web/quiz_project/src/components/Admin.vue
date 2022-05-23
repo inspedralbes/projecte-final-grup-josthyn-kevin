@@ -1,12 +1,17 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
+import { sessioStore } from '@/stores/sessioStore'
+import { mapStores } from 'pinia'
 export default {
     data() {
         return {
             Correo: "",
             Contrasenya: "",
-            estadoAd: ""
+            estadoAd: "",
+            logueado: false
         }
+    }, computed: {
+        ...mapStores(sessioStore)
     },methods: {
         loginAdmin() {
             const datosEnvio = new FormData();
@@ -24,6 +29,8 @@ export default {
                 if(data.admin != true) {
                     this.estadoAd = "Este usuario no es administrador"
                 } else {
+                    this.logueado = true;
+                    this.sessioStore.set({idAdmin:data.id,estadoLogin:this.logueado,username:data.nombre, apellido: data.apellido,contrasena: data.contrasena, correo: data.correo});
                     this.$router.push("/adminUs")
                 }
             })
