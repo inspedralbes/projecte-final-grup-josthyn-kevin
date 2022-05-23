@@ -73,6 +73,7 @@ export default {
 	left: 0;
 	top: 0;
 	position: fixed;
+	z-index: 2;
 }	
 	#main-header a {
 		color: white;

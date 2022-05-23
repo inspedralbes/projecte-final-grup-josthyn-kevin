@@ -23,7 +23,7 @@ import { mapStores } from 'pinia'
         this.quizsId = this.sessioStore.get.quizId;
     },
    mounted () {
-      fetch(`http://192.168.210.161:8000/quiz/puntuacion/${this.idUserL}`)
+      fetch(`proyectefinaljoskevback.alumnes.inspedralbes.cat/quiz/puntuacion/${this.idUserL}`)
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
