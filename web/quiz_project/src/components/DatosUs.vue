@@ -30,7 +30,7 @@ export default {
             
             datosEnvio.append("correo",this.Correo);
         
-            fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/modificar/usuario/${this.idUserL}`, {
+            fetch(`http://192.168.210.161:8000/modificar/usuario/${this.idUserL}`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -58,7 +58,7 @@ export default {
 
     <div v-if="this.estado === true">
         <h2>{{this.Usuario}} {{this.apellido}}</h2>
-        <button>Crear Quiz</button>
+        <RouterLink :to="`/quizCreated/${this.idUserL}`"><button>Crear Quiz</button></RouterLink>
         <RouterLink :to="`/quizCreadas/${this.idUserL}`"><button>Quiz creados</button></RouterLink>
         <RouterLink :to="`/partidas/${this.idUserL}`" ><button>Quiz Jugados</button></RouterLink>
         <div>
