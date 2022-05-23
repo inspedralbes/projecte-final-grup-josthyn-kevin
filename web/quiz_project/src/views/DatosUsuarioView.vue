@@ -1,6 +1,6 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-import Heather from '../components/Heathers/HeatherIn.vue'
+import Heather from '../components/Heathers/HeatherAll.vue'
 import Datos from '../components/DatosUs.vue'
 import Footer from '../components/FooterAll.vue'
 export default {

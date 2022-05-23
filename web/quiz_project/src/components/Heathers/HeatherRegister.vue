@@ -37,7 +37,8 @@ export default {
 		<nav>
 			<ul v-if="!this.estado === true">
 				<li><RouterLink to="/">Home</RouterLink></li>
-				<li><RouterLink to="/admin">Admin</RouterLink></li>
+				<li><RouterLink to="/login">Login</RouterLink></li>
+                <li><RouterLink to="/admin">Admin</RouterLink></li>
 			</ul>
 		</nav>
 	</header>

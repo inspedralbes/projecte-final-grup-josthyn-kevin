@@ -28,7 +28,7 @@ import { mapStores } from 'pinia'
             datosEnvio.append('respostas',resp);
             console.log(resp);
             //const da = JSON.stringify(this.datosEnvio);
-              fetch(`http://192.168.210.161:8000/anadir/partida` , {
+              fetch(`http://192.168.1.148:8000/anadir/partida` , {
                 method: 'POST',
                 body: datosEnvio
               }).then(res => {
@@ -40,7 +40,7 @@ import { mapStores } from 'pinia'
         },
       },
    mounted () {
-      fetch(`http://192.168.210.161:8000/preguntas/${this.$route.params.id}`)
+      fetch(`http://192.168.1.148:8000/preguntas/${this.$route.params.id}`)
       .then(res => res.json())
       .then((data) => {
         this.myjson = data;
@@ -74,8 +74,6 @@ import { mapStores } from 'pinia'
 
       </div>
 
-      <label for="Nombre">Nombre</label>
-                <input v-model="Nombre" type="text" class="form-control" id="UsNom" placeholder="Introduzca vuestro nombre">
       <button id="EnviarRes" type="button" @click="enviarRespostes()"  class="btn btn-primary">Terminar Quiz!</button>
 
   </div>

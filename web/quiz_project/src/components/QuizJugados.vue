@@ -7,7 +7,6 @@ import { mapStores } from 'pinia'
       return {
       quiz: [],
       Nombre: "",
-
       }
     },
     computed: {
@@ -23,7 +22,7 @@ import { mapStores } from 'pinia'
         this.quizsId = this.sessioStore.get.quizId;
     },
    mounted () {
-      fetch(`http://192.168.210.161:8000/quiz/puntuacion/${this.idUserL}`)
+      fetch(`http://192.168.1.148:8000/quiz/puntuacion/${this.idUserL}`)
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
@@ -31,7 +30,6 @@ import { mapStores } from 'pinia'
         console.log(this.quiz)
         this.estado=this.sessioStore.get.estadoLogin;
         this.idUserL=this.sessioStore.get.idUser;
-        this.quizsId = this.sessioStore.get.quizId;
       });
     },
   }
