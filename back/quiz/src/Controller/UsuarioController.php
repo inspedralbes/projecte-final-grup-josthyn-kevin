@@ -100,6 +100,7 @@ class UsuarioController extends AbstractController
         $correo=$request->get('correo');
         $existe = $this->usuarioRepository->findOneBy(['correo' => $correo]);
         $correoAnterior=$id->getCorreo();
+
         $contrasenaNueva=$request->get('contrasena');
         $contrasena=password_hash($contrasenaNueva, PASSWORD_BCRYPT);
 

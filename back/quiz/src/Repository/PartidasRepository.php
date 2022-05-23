@@ -72,6 +72,14 @@ class PartidasRepository extends ServiceEntityRepository
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchOne();
     }
+    public function partidasQuiz(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT DISTINCT partidas.quiz_id FROM partidas;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }
 
     // /**
     //  * @return Partidas[] Returns an array of Partidas objects

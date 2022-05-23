@@ -9,6 +9,7 @@ use App\Repository\PreguntasRepository;
 use App\Repository\QuizRepository;
 use App\Repository\RespuestasRepository;
 use App\Repository\UsuarioRepository;
+use App\Repository\PartidasRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,13 +22,15 @@ class QuizController extends AbstractController
     private QuizRepository $quizRepository;
     private RespuestasRepository $respuestasRepository;
     private UsuarioRepository $usuarioRepository;
+    private PartidasRepository $partidasRepository;
 
-    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository,RespuestasRepository $respuestasRepository, UsuarioRepository $usuarioRepository )
+    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository,RespuestasRepository $respuestasRepository, UsuarioRepository $usuarioRepository,PartidasRepository $partidasRepository )
     {
         $this->preguntasRepository = $preguntasRepository;
         $this->quizRepository = $quizRepository;
         $this->respuestasRepository = $respuestasRepository;
         $this->usuarioRepository = $usuarioRepository;
+        $this->partidasRepository = $partidasRepository;
     }
 
 
@@ -181,6 +184,23 @@ class QuizController extends AbstractController
         return new JsonResponse(['status' => 'Quiz actualizado'], Response::HTTP_CREATED);
         //return new JsonResponse($preguntaN, Response::HTTP_OK);
     }
+
+    #[Route('/quiz/masJugados', name: 'api_quiz_masJugados', methods: ['GET'])]
+    public function quizMasJugados()
+    {
+        $quizsJugados = $this->partidasRepository->partidasQuiz();
+
+        $data = [];
+
+        foreach ($quizsJugados as $quiz) {
+            $data[] = [
+                'id' => $quiz->getId(),
+                'titulo' => $quiz->getTitulo(),
+            ];
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+
 
 
 
