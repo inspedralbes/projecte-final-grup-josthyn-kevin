@@ -26,10 +26,15 @@ export default {
             datosEnvio.append("apellido",this.Apellido);
             datosEnvio.append("nombre",this.Nombre)
             fetch(`http://192.168.210.161:8000/login`, {
+
+                mode: 'no-cors',
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: datosEnvio
             }).then(res => {
-                return res.json();
+                return res.json()
             }).then(data => {
                 console.log(data);
                 console.log(data.nombre);
