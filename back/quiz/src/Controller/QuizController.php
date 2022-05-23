@@ -108,16 +108,16 @@ class QuizController extends AbstractController
         $quizs = $this->quizRepository->quizJugados($id);
         //$partidas = $this->quizRepository->quizPuntuacion();
         $i=0;
-        $data = [];
+        $data1 = [];
 
         foreach ($quizs as $quiz) {
             $quizID=$quiz['quiz_id'];
-            $data[$i]=[
-                'quiz' =>$this->quizRepository->quizPuntuacion($quizID,$id),
-            ];
+            $data1[$i]=$this->quizRepository->quizPuntuacion($quizID,$id);
             $i++;
+
         }
-        return new JsonResponse($data, Response::HTTP_OK);
+
+        return new JsonResponse($data1, Response::HTTP_OK);
 
     }
 

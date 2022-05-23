@@ -64,7 +64,7 @@ class QuizRepository extends ServiceEntityRepository
     public function quizUsuario($id): array
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = "SELECT quiz.titulo FROM quiz WHERE quiz.usuario_id = $id;";
+        $sql = "SELECT quiz.titulo, quiz.id FROM quiz WHERE quiz.usuario_id = $id;";
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchAllAssociative();
