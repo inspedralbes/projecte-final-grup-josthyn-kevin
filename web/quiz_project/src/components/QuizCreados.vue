@@ -21,15 +21,9 @@ import { mapStores } from 'pinia'
         this.Contrasena = this.sessioStore.get.contrasena
         this.idUserL = this.sessioStore.get.idUser; 
     },methods: {
-        eliminarQuiz() {
-            const datosEnvio = new URLSearchParams();
-            datosEnvio.append('quiz',this.$route.params.idUsu);
-           fetch(`http://192.168.1.148:8000/quiz/eliminar/${this.idUserL}` , {
-                method: 'POST',
-                 headers: {
-                'Content-Type': 'application/json'
-                },
-                body: datosEnvio
+        eliminarQuiz(id) {
+           fetch(`http://192.168.210.161:8000/quiz/eliminar/${id}` , {
+                method: 'DELETE',
               }).then(res => {
                 return res.json();
               }).then(data => {
@@ -38,13 +32,12 @@ import { mapStores } from 'pinia'
         }
     },
    mounted () {
-      fetch(`http://192.168.1.148:8000/quiz/usuario/${this.idUserL}`)
+      fetch(`http://192.168.210.161:8000/quiz/usuario/${this.idUserL}`)
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
         console.log(this.$route.params.idUsu)
         this.quizLeng = this.quiz.length;
-        console.log(this.quiz)
         this.estado=this.sessioStore.get.estadoLogin;
         this.idUserL = this.sessioStore.get.idUser;
       });
@@ -63,10 +56,10 @@ import { mapStores } from 'pinia'
     </div>
     <div v-else>
         <div v-for="(quizs,index) in this.quiz" :key="index">
-            <RouterLink :to="`/pregunta/${this.idUserL}`">
-                    <h5>{{quizs}}</h5>
+            <RouterLink :to="`/pregunta/${quizs.id}`">
+                    <h5>{{quizs.titulo}}</h5>
             </RouterLink>
-            <button @click="eliminarQuiz()">Eliminar Quiz</button>
+            <button @click="eliminarQuiz(quizs.id)">Eliminar Quiz</button>
         </div>
     </div>    
     </main>
