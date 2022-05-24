@@ -42,25 +42,30 @@ import { mapStores } from 'pinia'
 
 
 <template>
-
-    <div v-if="!this.sessioStore.get.estadoLogin === true" id="contenidor">
+    <div v-if="!this.sessioStore.get.estadoLogin === true" class="contenidor">
       <article>
-
-          <div v-for="(temas,index) in this.quizTemas" :key="index">
-              <h5>{{temas.titulo}}</h5>
+        <h3>Categories</h3>
+          <div class="container">
+            <div class="grid-item" v-for="(temas,index) in this.quizTemas" :key="index">
+              <button class="categoria">{{temas.titulo}}</button>
+            </div>
           </div>
-          <div v-for="(quizses,index) in this.quizMasJugados" :key="index">
-                  <h5>{{quizses.Titulo}}</h5>
-          </div>
-          <div v-for="(mejores,index) in this.quizMejores" :key="index">
-                  <p>{{mejores.nombre}}</p>
-                  <p>{{mejores.apellido}}</p>
-                  <p>{{mejores.puntuacion}}</p>
-          </div>
-      </article> 
+       </article>   
+        <aside>
+            <h4>Quiz mas Jugados</h4>
+            <ol>
+               <li class="nostyle" v-for="(quizses,index) in this.quizMasJugados" :key="index">{{quizses.Titulo}}</li>
+            </ol>
+           
+            <h4>Mejores Jugadores</h4>
+            <ol>
+              <li class="nostyle" v-for="(mejores,index) in this.quizMejores" :key="index">{{mejores.nombre}}{{mejores.apellido}}{{mejores.puntuacion}}</li>
+            </ol>  
+        </aside>
+      
     </div>
-    
-    <div v-else id="contenidor">
+
+    <div v-else class="contenidor">
       <article>
           <div v-for="(temas,index) in this.quizTemas" :key="index">
               <RouterLink :to="`/usuario/${temas.id}`">{{temas.id}}{{temas.titulo}}</RouterLink>
@@ -76,31 +81,67 @@ import { mapStores } from 'pinia'
                   <p>{{mejores.puntuacion}}</p>
           </div>
       </article>
-      </div> 
+    </div> 
 </template>
 
 <style scoped>
 
-     body {
-      width: 100%;
-      margin: 0;
-  	  padding: 0;
-      line-height: 1.5em;
-	    padding-top: 80px;
+
+    .contenidor{
+        margin-top: 7%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-bottom: 28.200%;
     }
 
-    #quizes {
-        margin: 4%;
+    .container{
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        margin-right: 10%;
+        height: 90%;
+        /*border: solid #5C1473 1px;*/
+    }
+
+    .categoria{
+        font-size: small;
+        line-height: 10%;
+        text-align: center;
+        width: 50%;
+        height: 50%;
+        border-radius: 30px;
+        color: #5C1473;
+    }
+
+    article{
+        text-align: center;
+    }
+
+    li.nostyle {
+        list-style-type: none;
+    }
+
+    aside{
+        text-align: center;
         padding-top: 2%;
-        padding-bottom: 2%;
-        border: 2px solid black;
     }
 
-    #contenidor{
-     margin-top:8%;
-     margin-bottom: 6%;
-     margin-right: 7%;
-     margin-left: 7%;
-     padding: 1%;
+    .aleatorio{
+        font-size: small;
+        line-height: 10%;
+        text-align: center;
+        width: 17%;
+        padding: 3%;
+        border-radius: 30px;
+        color: #5C1473;
+        margin-right: 2%;
     }
+
+    #aleatorio{
+        height: 40%;
+        border: 1px black solid;
+    }
+
+
+
 </style>
+
