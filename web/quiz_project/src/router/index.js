@@ -9,12 +9,23 @@ import AdminUs from '../views/AdminUsView.vue'
 import QuizJugados from '../views/QuizJugView.vue'
 import QuizCreados from '../views/QuizCreView.vue'
 import QuizCreated from '../views/QuizCreatedView.vue'
+import Inici from '../views/IniciView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
+      name: 'inici',
+      component: Inici
+    },
+    {
+      path: '/:idLogin',
+      name: 'iniciLogin',
+      component: Inici
+    },
+    {
+      path: '/QuizHome',
       name: 'QuizHome',
       component: Quizhome
     },

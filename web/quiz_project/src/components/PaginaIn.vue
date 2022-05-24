@@ -5,19 +5,18 @@ import { mapStores } from 'pinia'
   export default {
     data() {
       return {
-      quiz: [],
-      Nombre: "",
+      quizMasJugados: [],
       }
     },
     computed: {
         ...mapStores(sessioStore)
     },
    mounted () {
-      fetch(`http://192.168.1.148:8000/quiz`) 
+      fetch(`http://192.168.1.148:8000/quiz/masJugados`) 
       .then(res => res.json())
       .then((data) => {
-        this.quiz = data;
-       
+        this.quizMasJugados = data;
+        console.log(this.quizMasJugados);
       });
     },
   }
@@ -26,24 +25,18 @@ import { mapStores } from 'pinia'
 
 <template>
 
-    <div v-if="!this.sessioStore.get.estadoLogin === true" id="contenidor">
-      <article>
-          <div v-for="(quizs,index) in this.quiz" :key="index">
-                  <h5>{{quizs.titulo}}</h5>
-                  <p>Registrate o incia Secion para realizar el quiz</p>
-          </div>
-      </article> 
-    </div>
 
-    <div v-else id="contenidor">
+    <div id="contenidor">
       <article>
-          <div v-for="(quizs,index) in this.quiz" :key="index">
+          <div id="quizes" v-for="(quizs,index) in this.quizMasJugados" :key="index">
                 <RouterLink :to="`/pregunta/${quizs.id}`">
                   <h5>{{quizs.titulo}}</h5>
                 </RouterLink>
+                <p>{{quizs.cont}}</p>
           </div>
       </article>
-      </div> 
+    </div> 
+
 </template>
 
 <style scoped>
@@ -56,7 +49,7 @@ import { mapStores } from 'pinia'
 	    padding-top: 80px;
     }
 
-    div {
+    #quizes {
         margin: 4%;
         padding-top: 2%;
         padding-bottom: 2%;

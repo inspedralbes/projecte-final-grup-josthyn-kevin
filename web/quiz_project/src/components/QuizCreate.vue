@@ -68,7 +68,7 @@ export default {
 
             //const respues = JSON.stringify(this.respues);
 
-            fetch(`http://192.168.210.161:8000/anadir/quiz` , {
+            fetch(`http://192.168.1.148:8000/anadir/quiz` , {
                 method: 'POST',
                 body: JSON.stringify({usuario:this.usuario,titulo: this.titulo,preguntas: this.respues}),   
               }).then(res => {

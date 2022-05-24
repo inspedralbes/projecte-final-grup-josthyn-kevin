@@ -40,7 +40,7 @@ export default {
 		<nav>
 			<ul v-if="this.estado === true && !this.estadoAd === true ">
 				<li style="color:yellow">Usuario: {{this.Usuario}} {{this.apellido}}</li>
-                <li><RouterLink :to="`/usuario/${this.idUserL}`">Inicio</RouterLink></li>
+                <li><RouterLink :to="`/${this.idUserL}`">Inicio</RouterLink></li>
 				<li><RouterLink :to="`/datosUs/${this.idUserL}`">perfil</RouterLink></li>
                 <li><button @click="logout" class="btn btn-warning" type="button">Log out</button></li>
 			</ul>

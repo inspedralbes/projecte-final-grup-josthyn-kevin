@@ -19,7 +19,7 @@ export default {
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
             datosEnvio.append("nombre",this.Nombre)
-            fetch(`http://192.168.210.161:8000/login`, {
+            fetch(`http://192.168.1.148:8000/login`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -48,7 +48,7 @@ export default {
                 <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp"  v-model="Correo">
                 <br>
                 <b><label>Contrasenya</label></b>
-                <input type="text" class="form-control" id="Contrasena" v-model="Contrasena">
+                <input type="text" class="form-control" id="Contrasena" v-model="Contrasenya">
                 <br>
             </div>
             <div id="button">

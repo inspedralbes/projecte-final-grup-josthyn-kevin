@@ -40,7 +40,7 @@ import { mapStores } from 'pinia'
         },
       },
    mounted () {
-      fetch(`http://192.168.210.161:8000/preguntas/${this.$route.params.id}`)
+      fetch(`http://192.168.1.148:8000/preguntas/${this.$route.params.id}`)
       .then(res => res.json())
       .then((data) => {
         this.myjson = data;
