@@ -7,27 +7,18 @@ import { mapStores } from 'pinia'
       return {
       quizMasJugados: [],
       quizTemas: [],
+      quizMeUsuarios: []
       }
     },
     computed: {
         ...mapStores(sessioStore)
     },
    mounted () {
-
-     //Fetch recupera los mejores quiz
-      fetch(`http://192.168.1.148:8000/quiz/masJugados`) 
-      .then(res => res.json())
-      .then((data) => {
-        this.quizMasJugados = data;
-        console.log(this.quizMasJugados);
-      });
-
-      //Fetch recupera los temas
-      fetch(`http://192.168.1.148:8000/tema`) 
+     fetch(`http://192.168.1.148:8000/tema`) 
       .then(res => res.json())
       .then((data) => {
         this.quizTemas = data;
-        console.log(this.quizTemas);
+        console.log(this.quizTemas)
       });
     },
   }
@@ -39,7 +30,7 @@ import { mapStores } from 'pinia'
     <div v-if="!this.sessioStore.get.estadoLogin === true" id="contenidor">
       <article>
 
-          <div v-for="(temas,index1) in this.quizTemas" :key="index1">
+          <div v-for="(temas,index) in this.quizTemas" :key="index">
               <h5>{{temas.titulo}}</h5>
           </div>
           <div v-for="(quizses,index) in this.quizMasJugados" :key="index">
