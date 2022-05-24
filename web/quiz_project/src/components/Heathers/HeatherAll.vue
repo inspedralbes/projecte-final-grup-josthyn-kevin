@@ -35,7 +35,6 @@ export default {
     <header id="main-header">
 		<div id="logo-header" >
 			<span class="site-name">QuizDaw</span>
-			<p class="site-desc">La mejor web de Quiz</p>
 		</div>
 		<nav>
 			<ul v-if="this.estado === true && !this.estadoAd === true ">

@@ -81,7 +81,7 @@ export default {
 
     nav {
 	float: right;
-}
+	}
 	nav ul {
 		margin: 0;
 		padding: 0;
@@ -89,18 +89,18 @@ export default {
 		padding-right: 20px;
 	}
 	
-		nav ul li {
-			display: inline-block;
-			line-height: 80px;
-		}
+	nav ul li {
+		display: inline-block;
+		line-height: 80px;
+	}
 			
-			nav ul li a {
-				display: block;
-				padding: 0 10px;
+	nav ul li a {
+		display: block;
+		padding: 0 10px;
 				
-			}
+	}
 			
-				nav ul li a:hover {
-					background: #BBB933;
-				}
+	nav ul li a:hover {
+		background: #BBB933;
+	}
 </style>
