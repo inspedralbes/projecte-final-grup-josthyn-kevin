@@ -89,11 +89,14 @@ class QuizController extends AbstractController
         $array = $request->toArray();
         $user = $array['usuario'];
         $titulo = $array['titulo'];
+        //$theme = $array['tema'];
 
+        //$tema=$this->temaRepository->findOneBy(['id'=> $theme]);
         $usuario =$this->usuarioRepository->findOneBy(['id'=> $user]);
         $quiz = new Quiz;
         $quiz->setTitulo($titulo);
         $quiz->setUsuario($usuario);
+        //$quiz->setTema($tema);
         $this->quizRepository->add($quiz);
 
         $quiz_id=$this->quizRepository->ultimoQuiz($user);

@@ -26,7 +26,6 @@ import { mapStores } from 'pinia'
               }).then(res => {
                 return res.json();
               }).then(data => {
-                console.log(data);
               });
         }
     },
@@ -35,7 +34,6 @@ import { mapStores } from 'pinia'
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
-        console.log(this.$route.params.idUsu)
         this.quizLeng = this.quiz.length;
         this.estado=this.sessioStore.get.estadoLogin;
         this.idUserL = this.sessioStore.get.idUser;

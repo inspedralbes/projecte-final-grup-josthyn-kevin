@@ -25,7 +25,6 @@ export default {
             }).then(res => {
                 return res.json();
             }).then(data => {
-                console.log(data);
                 if(data.admin != true) {
                     this.estadoAd = "Este usuario no es administrador"
                 } else {

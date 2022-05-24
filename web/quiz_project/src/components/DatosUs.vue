@@ -29,7 +29,6 @@ export default {
             datosEnvio.append("nombre",this.Usuario);
             
             datosEnvio.append("correo",this.Correo);
-            console.log(this.Usuario)
         
             fetch(`http://192.168.1.148:8000/modificar/usuario/${this.idUserL}`, {
                 method: 'POST',
@@ -37,8 +36,6 @@ export default {
             }).then(res => {
                 return res.json();
             }).then(data => {
-                console.log(data);
-                console.log(this.estado);
                 if(this.estado == true && data.status == "Usuario modificado correctamente") {
                     this.sessioStore.set({})
                     this.$router.push("/login");

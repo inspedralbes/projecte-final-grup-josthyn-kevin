@@ -19,14 +19,12 @@ import { mapStores } from 'pinia'
       .then(res => res.json())
       .then((data) => {
         this.quizMasJugados = data;
-        console.log(this.quizMasJugados);
       });
 
      fetch(`http://192.168.1.148:8000/tema`) 
       .then(res => res.json())
       .then((data) => {
         this.quizTemas = data;
-        console.log(this.quizTemas)
       });
 
 
@@ -34,7 +32,6 @@ import { mapStores } from 'pinia'
       .then(res => res.json())
       .then((data) => {
         this.quizMejores = data;
-        console.log(this.quizMejores)
       });
     },
   }

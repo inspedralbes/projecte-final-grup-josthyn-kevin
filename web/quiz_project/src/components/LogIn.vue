@@ -31,8 +31,6 @@ export default {
             }).then(res => {
                 return res.json()
             }).then(data => {
-                console.log(data);
-                console.log(data.nombre);
                 if(data.status == "Correo no registrado o incorrecto" ) {
                     this.estado = "Correo no registrado o incorrecto" ;
                 } else if(data.status == "Contraseña incorrecta") {
@@ -56,8 +54,8 @@ export default {
                 <label>Correo </label>
                 <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp"  v-model="Correo">
                 <br>
-                <b><label>Contrasenya</label></b>
-                <input type="text" class="form-control" id="Contrasena" v-model="Contrasena">
+                <b><label>Contraseña</label></b>
+                <input type="password" class="form-control" id="Contrasena" v-model="Contrasena">
                 <br>
             </div>
             <div id="button">
