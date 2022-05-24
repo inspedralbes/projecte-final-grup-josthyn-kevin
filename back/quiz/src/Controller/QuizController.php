@@ -36,7 +36,7 @@ class QuizController extends AbstractController
         $this->temaRepository=$temaRepository;
     }
 
-    #[Route('/quiz', name: 'api_quiz', methods: ['GET'])]
+    #[Route('/quiz', name: 'api_quiz_all', methods: ['GET'])]
     public function allQuiz()
     {
         $quizs = $this->quizRepository->findAll();
@@ -65,7 +65,7 @@ class QuizController extends AbstractController
         }
         return new JsonResponse($data, Response::HTTP_OK);
     }
-    
+
     #[Route('/tema', name: 'api_tema', methods: ['GET'])]
     public function tema()
     {

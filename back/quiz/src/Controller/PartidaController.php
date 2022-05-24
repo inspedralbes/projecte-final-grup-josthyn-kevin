@@ -89,9 +89,8 @@ class PartidaController extends AbstractController
 
         }
 
-        //return new JsonResponse([$array], Response::HTTP_OK);
-        return new JsonResponse(['status' => 'Partida Jugada'], Response::HTTP_CREATED);
-
+        return new JsonResponse([$puntos], Response::HTTP_OK);
+        
     }
 
     #[Route('/partidas/{id}', name: 'api_jugadas_partida', methods: ['GET'])]
