@@ -8,6 +8,7 @@ import { mapStores } from 'pinia'
       myjson: [],
       respost:[],
       Nombre: "",
+      puntuacion: "",
       Id: "",
       }
     }, computed: {
@@ -34,7 +35,7 @@ import { mapStores } from 'pinia'
               }).then(res => {
                 return res.json();
               }).then(data => {
-                console.log(data)
+                this.puntuacion = data[0]
               });
             }
         },
@@ -56,15 +57,16 @@ import { mapStores } from 'pinia'
   <div class="contenidor">
       <h2 style="color:yellow">{{this.myjson.titulo}}</h2>
       <div class="conPregunta" v-for="(pre,index) in this.myjson.preguntas" :key="index">
-        <h3>{{pre.enunciado}}</h3>
-        <div v-for="(res,index1) in this.myjson.preguntas[index].respuestas" :key="index1"> 
+        <h3 style="color:yellow">{{pre.enunciado}}</h3>
+        <div class="respuestas" v-for="(res,index1) in this.myjson.preguntas[index].respuestas" :key="index1"> 
               <input type="radio" :name="'r' + index"  :value="res.id" v-model="respost[index] ">
               <label>{{res.respuesta}}</label>
         </div>  
           <br>
           <br>
       </div>
-      <button id="EnviarRes" type="button" @click="enviarRespostes()"  class="btn btn-primary">Terminar Quiz!</button>
+      <button id="EnviarRes" type="button" @click="enviarRespostes()"  class="btn btn-warning">Terminar Quiz!</button>
+      <h1 id="puntuacion">PUNTUACION : {{this.puntuacion}}</h1>
   </div>
 </template>
 
@@ -83,7 +85,28 @@ import { mapStores } from 'pinia'
   }
 
   .conPregunta {
-    background-color: yellow;
+    margin: 5%;
+
+  }
+
+  .respuestas {
+    background-color:yellow;
+    margin-top:1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+    border: 4px solid black;
+    border-radius: 15px;
+  }
+  button {
+    margin-left: 45%;
+  }
+
+  #puntuacion {
+    margin-top: 3%;
+    margin-left: 25%;
+    margin-bottom: 3%;
+    color: yellow
   }
 
 </style>
