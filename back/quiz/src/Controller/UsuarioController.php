@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Usuario;
 use App\Repository\UsuarioRepository;
+use App\Repository\QuizRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,10 +15,12 @@ use Symfony\Component\HttpFoundation\Request;
 class UsuarioController extends AbstractController
 {
     private UsuarioRepository $usuarioRepository;
+    private QuizRepository $quizRepository;
 
-    public function __construct(UsuarioRepository $usuarioRepository)
+    public function __construct(UsuarioRepository $usuarioRepository, QuizRepository $quizRepository)
     {
         $this->usuarioRepository = $usuarioRepository;
+        $this->quizRepository = $quizRepository;
 
     }
 
@@ -138,6 +141,18 @@ class UsuarioController extends AbstractController
 
         //Utilitza el mètode creat al repository amb el controlador
         $this->usuarioRepository->remove($usuario);
+
+        return new JsonResponse(['status' => 'Restaurante eliminado'], Response::HTTP_CREATED);
+
+    }
+
+    public function mejoresUsuarios()
+    {
+
+
+        $data1=$this->quizRepository->quizPuntuacion($quizID,$id);
+
+
 
         return new JsonResponse(['status' => 'Restaurante eliminado'], Response::HTTP_CREATED);
 

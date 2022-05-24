@@ -55,6 +55,9 @@ class QuizController extends AbstractController
     #[Route('/anadir/quiz', name: 'api_añadir_quiz', methods: ['POST'])]
     public function new(Request $request)
     {
+        //print_r(json_decode($request->get('titulo')));
+        //$user = json_decode($request->get('usuario'));
+        //$titulo = json_decode($request->get('titulo'));
         $array = $request->toArray();
         $user = $array['usuario'];
         $titulo = $array['titulo'];
@@ -69,7 +72,7 @@ class QuizController extends AbstractController
 
         $quiz =$this->quizRepository->findOneBy(['id'=> $quiz_id]);
 
-        for ($i=0;$i<10;$i++) {
+        for ($i=0;$i<5;$i++) {
 
             $pregunta = new Preguntas;
             $pregunta->setIdQuiz($quiz);
@@ -109,18 +112,19 @@ class QuizController extends AbstractController
     public function quizPuntuacion($id)
     {
         $quizs = $this->quizRepository->quizJugados($id);
-        //$partidas = $this->quizRepository->quizPuntuacion();
         $i=0;
-        $data1 = [];
 
         foreach ($quizs as $quiz) {
             $quizID=$quiz['quiz_id'];
-            $data1[$i]=$this->quizRepository->quizPuntuacion($quizID,$id);
+            $data1=$this->quizRepository->quizPuntuacion($quizID,$id);
+            $data[$i]=[
+                'id' => $data1[0]['id'],
+                'titulo' => $data1[0]['titulo'],
+                'puntuacion' => $data1[0]['puntuacion'],
+            ];
             $i++;
-
         }
-
-        return new JsonResponse($data1, Response::HTTP_OK);
+        return new JsonResponse($data, Response::HTTP_OK);
 
     }
 
@@ -188,17 +192,32 @@ class QuizController extends AbstractController
     #[Route('/quiz/masJugados', name: 'api_quiz_masJugados', methods: ['GET'])]
     public function quizMasJugados()
     {
-        $quizsJugados = $this->partidasRepository->partidasQuiz();
+        $quizsJugados = $this->partidasRepository->partidasIdQuiz();
 
         $data = [];
 
         foreach ($quizsJugados as $quiz) {
+
+            $id=$quiz['quiz_id'];
+            $numPartidas = $this->partidasRepository->numPartidas($id);
+
             $data[] = [
-                'id' => $quiz->getId(),
-                'titulo' => $quiz->getTitulo(),
+                'id' => $id,
+                'cont' => $numPartidas,
             ];
+            $price = array_column($data, 'cont');
+            array_multisort($price, SORT_DESC, $data);
+            $data1 = array_slice($data, 0, 2);
+
         }
-        return new JsonResponse($data, Response::HTTP_OK);
+        return new JsonResponse($data1, Response::HTTP_OK);
+    }
+
+    #[Route('/quiz/aleatorio', name: 'api_quiz_aleatorio', methods: ['GET'])]
+    public function quizAleatorio()
+    {
+        $quiz = $this->quizRepository->quizAleatorio();
+        return new JsonResponse($quiz, Response::HTTP_OK);
     }
 
 
