@@ -27,7 +27,6 @@ import { mapStores } from 'pinia'
       .then((data) => {
         this.quiz = data;
         this.quizLeng = this.quiz.length;
-        console.log(this.quiz)
         this.estado=this.sessioStore.get.estadoLogin;
         this.idUserL=this.sessioStore.get.idUser;
       });
