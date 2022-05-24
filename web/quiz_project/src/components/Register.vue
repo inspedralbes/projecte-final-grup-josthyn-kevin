@@ -123,6 +123,13 @@ export default {
         }
 
     }
+     @media screen and (min-width: 800px){
+       #container {
+        margin-top: 8%;
+        margin-left: 37%;
+        width: 25%;
+        }
+    }
 
 
 </style>

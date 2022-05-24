@@ -85,13 +85,13 @@ export default {
     }
 
     #container {
-        margin-top: 10.75%;
-        margin-right: 30%;
-        margin-left: 38%;
+        margin-right: 15%;
+        margin-left: 20%;
+        margin-top: 25%;
         margin-bottom: 10%;
         color: white;
         padding-bottom: 4%;
-        width: 25%;
+        width: 60%;
         background-color: #5C1473;
         border: 5px solid black;
         border-radius: 15px;
@@ -132,6 +132,14 @@ export default {
         margin-right: 15%;
         margin-left: 25%;
         width: 50%;
+        }
+
+    }
+     @media screen and (min-width: 800px){
+       #container {
+        margin-top: 10%;
+        margin-left: 37%;
+        width: 25%;
         }
     }
 
