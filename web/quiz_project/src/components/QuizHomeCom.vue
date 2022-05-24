@@ -6,17 +6,17 @@ import { mapStores } from 'pinia'
     data() {
       return {
       quiz: [],
-      Nombre: "",
       }
     },
     computed: {
         ...mapStores(sessioStore)
     },
    mounted () {
-      fetch(`http://192.168.1.148:8000/quiz`) 
+      fetch(`http://192.168.1.148:8000/quiz/${this.$route.params.idLogin}`) 
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
+        console.log(this.quiz)
        
       });
     },
