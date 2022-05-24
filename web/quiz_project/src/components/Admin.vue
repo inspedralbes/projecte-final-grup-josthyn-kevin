@@ -19,7 +19,7 @@ export default {
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
             datosEnvio.append("nombre",this.Nombre)
-            fetch(`http://192.168.1.148:8000/login`, {
+            fetch(`http://192.168.210.161:8000/login`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -30,7 +30,8 @@ export default {
                     this.estadoAd = "Este usuario no es administrador"
                 } else {
                     this.logueado = true;
-                    this.sessioStore.set({idAdmin:data.id,estadoLogin:this.logueado,username:data.nombre, apellido: data.apellido,contrasena: data.contrasena, correo: data.correo});
+                    this.sessioStore.set({});
+                    this.sessioStore.set({idAdmin:data.id,estadoAdmin:this.logueado,username:data.nombre, apellido: data.apellido,contrasena: data.contrasena, correo: data.correo});
                     this.$router.push("/adminUs")
                 }
             })

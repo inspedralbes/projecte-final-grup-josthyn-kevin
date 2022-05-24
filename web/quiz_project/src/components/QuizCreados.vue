@@ -21,7 +21,7 @@ import { mapStores } from 'pinia'
         this.idUserL = this.sessioStore.get.idUser; 
     },methods: {
         eliminarQuiz(id) {
-           fetch(`http://192.168.1.148:8000/quiz/eliminar/${id}` , {
+           fetch(`http://192.168.210.161:8000/quiz/eliminar/${id}` , {
                 method: 'DELETE',
               }).then(res => {
                 return res.json();
@@ -31,7 +31,7 @@ import { mapStores } from 'pinia'
         }
     },
    mounted () {
-      fetch(`http://192.168.1.148:8000/quiz/usuario/${this.idUserL}`)
+      fetch(`http://192.168.210.161:8000/quiz/usuario/${this.idUserL}`)
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
