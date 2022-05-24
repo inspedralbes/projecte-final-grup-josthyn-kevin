@@ -41,23 +41,55 @@ import { mapStores } from 'pinia'
     <main>
     <!--<h4>Quiz</h4> <h1>{{this.Usuario}}{{this.AUsuario}}</h1>-->
      <p>{{this.quizLeng}}</p>
-    <div v-if="this.quizLeng === 0">
+    <div v-if="this.quizLeng === 0" class="contenidor" >
         <h1>No hay partidas</h1>
     </div>
-    <div v-else>
+    <div v-else class="contenidor" >
         <div v-for="(quizse,index) in this.quiz" :key="index">
-            <RouterLink :to="`/pregunta/${quizse.id}`">
+
+            <button><RouterLink :to="`/pregunta/${quizse.id}`">
                     <h5>{{quizse.titulo}}</h5>
+                    <p>Puntuacion: {{quizse.puntuacion}}</p>
             </RouterLink>
-            <p>{{quizse.puntuacion}}</p>
+            </button>
         </div>
     </div>    
     </main>
 </template>
 
 <style scoped>
-    div {
-        margin: 2%;
-        border: 2px solid black
+    body {
+      width: 100%;
+      margin: 0;
+  	  padding: 0;
+      line-height: 1.5em;
+	    padding-top: 80px;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    button {
+       margin: 3%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        border: 3px solid black;
+        width: 95%;
+        text-align: center;
+        background-color: #e3e014;
+        border-radius: 20px;
+    }
+
+    .contenidor{
+     margin-top:8%;
+     margin-bottom: 6%;
+     margin-right: 7%;
+     margin-left: 7%;
+     padding: 1%;
+     border: 5px solid black;
+     border-radius: 25px;
+     background-color: #5C1473;
     }
 </style>

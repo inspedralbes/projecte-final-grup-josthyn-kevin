@@ -25,21 +25,23 @@ import { mapStores } from 'pinia'
 
 <template>
 
-    <div v-if="!this.sessioStore.get.estadoLogin === true" id="contenidor">
+    <div v-if="!this.sessioStore.get.estadoLogin === true" class="contenidor">
       <article>
-          <div v-for="(quizs,index) in this.quiz" :key="index">
+          <div class="quizs" v-for="(quizs,index) in this.quiz" :key="index">
                   <h5>{{quizs.titulo}}</h5>
                   <p>Registrate o incia Secion para realizar el quiz</p>
           </div>
       </article> 
     </div>
-    
-    <div v-else id="contenidor">
+
+    <div v-else class="contenidor">
       <article>
           <div v-for="(quizs,index) in this.quiz" :key="index">
-                <RouterLink :to="`/pregunta/${quizs.id}`">
+                <button><RouterLink :to="`/pregunta/${quizs.id}`">
                   <h5>{{quizs.titulo}}</h5>
                 </RouterLink>
+                </button>
+                
           </div>
       </article>
       </div> 
@@ -55,18 +57,42 @@ import { mapStores } from 'pinia'
 	    padding-top: 80px;
     }
 
-    div {
-        margin: 4%;
-        padding-top: 2%;
-        padding-bottom: 2%;
-        border: 2px solid black;
+    a {
+      text-decoration: none;
+      color: black;
     }
 
-    #contenidor{
+    button {
+       margin: 3%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        border: 3px solid black;
+        width: 95%;
+        text-align: center;
+        background-color: #e3e014;
+        border-radius: 20px;
+    }
+
+    .quizs {
+     margin: 4%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        border: 3px solid black;
+        text-align: center;
+        background-color: #e3e014;
+        border-radius: 20px;
+    }
+
+    
+
+    .contenidor{
      margin-top:8%;
      margin-bottom: 6%;
      margin-right: 7%;
      margin-left: 7%;
      padding: 1%;
+     border: 5px solid black;
+     border-radius: 25px;
+     background-color: #5C1473;
     }
 </style>

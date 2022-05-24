@@ -49,15 +49,12 @@ import { mapStores } from 'pinia'
 
     <main>
     <!--<h4>Quiz</h4> <h1>{{this.Usuario}}{{this.AUsuario}}</h1>-->
-     <p>{{this.quizLeng}}</p>
-    <div v-if="this.quizLeng === 0">
-        <h1>No Tienes ningun quiz creado</h1>
+    <div v-if="this.quizLeng === 0" class="contenidor" >
+        <h1 style="color:white">No Tienes ningun quiz creado</h1>
     </div>
-    <div v-else>
-        <div v-for="(quizs,index) in this.quiz" :key="index">
-            <RouterLink :to="`/pregunta/${quizs.id}`">
+    <div v-else class="contenidor"  >
+        <div  class="quizs" v-for="(quizs,index) in this.quiz" :key="index">
                     <h5>{{quizs.titulo}}</h5>
-            </RouterLink>
             <button @click="eliminarQuiz(quizs.id)">Eliminar Quiz</button>
         </div>
     </div>    
@@ -65,8 +62,47 @@ import { mapStores } from 'pinia'
 </template>
 
 <style scoped>
-    div {
+     body {
+      width: 100%;
+      margin: 0;
+  	  padding: 0;
+      line-height: 1.5em;
+	    padding-top: 80px;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+
+    .quizs {
         margin: 2%;
-        border: 2px solid black
+        padding-top: 1%;
+        padding-bottom: 1%;
+        border: 3px solid black;
+        text-align: center;
+        background-color: #e3e014;
+        border-radius: 20px;
+    }
+
+    button {
+      margin-top: 2%;
+      padding: 1%;
+      border: 2px solid black;
+      border-radius: 10px;
+      color: white;
+      background-color: #5C1473;
+
+    }
+    .contenidor{
+     margin-top:8%;
+     margin-bottom: 6%;
+     margin-right: 7%;
+     margin-left: 7%;
+     padding: 1%;
+     border: 5px solid black;
+     border-radius: 25px;
+     background-color: #5C1473;
     }
 </style>
