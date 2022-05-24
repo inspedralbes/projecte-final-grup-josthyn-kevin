@@ -7,7 +7,8 @@ export default {
       return {
         usuario: "",
         titulo: "",
-        respues: [
+        respues: 
+            [
             {
             enunciado:'',
             respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
@@ -65,19 +66,11 @@ export default {
 
         crearQuiz() {
 
-           // const respues = JSON.stringify(this.respues);
-            const datosEnvio = new FormData();
-            datosEnvio.append('usuario',this.usuario)
-            datosEnvio.append('titulo',this.titulo)
-            console.log(this.titulo)
-            datosEnvio.append('preguntas',this.respues)
-            console.log(this.respues);
+            //const respues = JSON.stringify(this.respues);
+
             fetch(`http://192.168.210.161:8000/anadir/quiz` , {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: datosEnvio,
+                body: JSON.stringify({usuario:this.usuario,titulo: this.titulo,preguntas: this.respues}),   
               }).then(res => {
                 return res.json();
               }).then(data => {
@@ -99,7 +92,7 @@ export default {
     <div id="f" v-if="this.estado === true">
         <label>Titulo de Quiz: </label>
         <input type="text" name="titulo" v-model="titulo"  class="info form-control" id="titulo" >
-            <div id="pregunta" v-for="(item,indexPR) in 1" :key="indexPR">
+            <div id="pregunta" v-for="(item,indexPR) in 5" :key="indexPR">
                 <label>Pregunta:</label>
                 <input type="text" v-model="this.respues[indexPR].enunciado" :name="'p' + indexPR"  class="info form-control" id="preguntas" >
                  <div id="respuestas" v-for="(res,indexRESP) in 5" :key="indexRESP">
