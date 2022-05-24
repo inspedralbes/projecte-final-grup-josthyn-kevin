@@ -44,13 +44,12 @@ import { mapStores } from 'pinia'
 
 
 <template>
-
     <div v-if="!this.sessioStore.get.estaLogin === true" id="contenidor">
       <article>
-          <div v-for="(quizs,index) in this.quiz" :key="index">
-                  <h5>{{quizs.titulo}}</h5>
-                  <button @click="eliminarQuiz(quizs.id)">Eliminar Quiz</button>
-          </div>
+          <div  class="quizs" v-for="(quizs,index) in this.quiz" :key="index">
+                    <h5>{{quizs.titulo}}</h5>
+            <button @click="eliminarQuiz(quizs.id)">Eliminar Quiz</button>
+        </div>
       </article> 
     </div>
 </template>
@@ -65,18 +64,38 @@ import { mapStores } from 'pinia'
 	    padding-top: 80px;
     }
 
-    div {
-        margin: 4%;
-        padding-top: 2%;
-        padding-bottom: 2%;
-        border: 2px solid black;
+    a {
+      text-decoration: none;
+      color: black;
     }
 
-    #contenidor{
+    .quizs {
+        margin: 2%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        border: 3px solid black;
+        text-align: center;
+        background-color: #e3e014;
+        border-radius: 20px;
+    }
+
+    button {
+      margin-top: 2%;
+      padding: 1%;
+      border: 2px solid black;
+      border-radius: 10px;
+      color: white;
+      background-color: #5C1473;
+
+    }
+    .contenidor{
      margin-top:8%;
      margin-bottom: 6%;
      margin-right: 7%;
      margin-left: 7%;
      padding: 1%;
+     border: 5px solid black;
+     border-radius: 25px;
+     background-color: #5C1473;
     }
 </style>
