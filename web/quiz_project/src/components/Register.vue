@@ -18,7 +18,7 @@ export default {
             datosEnvio.append('apellido',this.Apellido);
             datosEnvio.append('correo',this.Correo);
             datosEnvio.append('contrasena',this.Contrasenya)
-            fetch(`http://192.168.1.148:8000/anadir/usuario` , {
+            fetch(`http://127.0.0.1:8000/anadir/usuario` , {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -75,13 +75,13 @@ export default {
     }
 
    #container {
-        margin-top: 10.2%;
-        margin-right: 30%;
-        margin-left: 38%;
+        margin-right: 15%;
+        margin-left: 20%;
+        margin-top: 25%;
         margin-bottom: 8.06%;
         color: white;
-        padding-bottom: 2.505%;
-        width: 25%;
+        padding-bottom: 3.540%;
+        width: 60%;
         background-color: #5C1473;
         border: 5px solid black;
         border-radius: 15px;
@@ -97,7 +97,7 @@ export default {
         margin-left: 2%;
         margin-top: 7%;
         text-align: center;
-       
+    
     }
 
     #res {
@@ -111,6 +111,17 @@ export default {
     #error {
         margin-left: 1%;
         color: red;
+    }
+
+
+    @media screen and (min-width: 600px){
+       #container {
+        margin-top: 20%;
+        margin-right: 15%;
+        margin-left: 25%;
+        width: 50%;
+        }
+
     }
 
 
