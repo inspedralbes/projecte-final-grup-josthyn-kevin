@@ -13,7 +13,7 @@ import { mapStores } from 'pinia'
         ...mapStores(sessioStore)
     },
    mounted () {
-      fetch(`http://192.168.210.161:8000/quiz`) 
+      fetch(`http://192.168.1.148:8000/quiz`) 
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
@@ -37,11 +37,11 @@ import { mapStores } from 'pinia'
 
     <div v-else id="contenidor">
       <article>
-          <button v-for="(quizs,index) in this.quiz" :key="index">
+          <div v-for="(quizs,index) in this.quiz" :key="index">
                 <RouterLink :to="`/pregunta/${quizs.id}`">
                   <h5>{{quizs.titulo}}</h5>
                 </RouterLink>
-          </button>
+          </div>
       </article>
       </div> 
 </template>

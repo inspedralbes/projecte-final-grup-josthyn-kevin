@@ -25,9 +25,7 @@ export default {
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
             datosEnvio.append("nombre",this.Nombre)
-            fetch(`http://192.168.210.161:8000/login`, {
-
-               
+            fetch(`http://192.168.1.148:8000/login`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -87,14 +85,15 @@ export default {
     }
 
     #container {
-        margin-top: 4%;
+        margin-top: 10.75%;
         margin-right: 30%;
         margin-left: 38%;
-        margin-bottom: 12%;
+        margin-bottom: 10%;
+        color: white;
         padding-bottom: 4%;
         width: 25%;
-        background-color: blueviolet;
-        border: 3px solid black;
+        background-color: #5C1473;
+        border: 5px solid black;
         border-radius: 15px;
     }
 
@@ -112,7 +111,7 @@ export default {
 
     #registerHelp {
         margin-left: 1%;
-        color: black;
+        color: white;
     }
 
     #res {

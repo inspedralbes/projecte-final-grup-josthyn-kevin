@@ -1,12 +1,17 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
+import { sessioStore } from '@/stores/sessioStore'
+import { mapStores } from 'pinia'
 export default {
     data() {
         return {
             Correo: "",
             Contrasenya: "",
-            estadoAd: ""
+            estadoAd: "",
+            logueado: false
         }
+    }, computed: {
+        ...mapStores(sessioStore)
     },methods: {
         loginAdmin() {
             const datosEnvio = new FormData();
@@ -14,7 +19,7 @@ export default {
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
             datosEnvio.append("nombre",this.Nombre)
-            fetch(`http://192.168.210.161:8000/login`, {
+            fetch(`http://192.168.1.148:8000/login`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -24,6 +29,8 @@ export default {
                 if(data.admin != true) {
                     this.estadoAd = "Este usuario no es administrador"
                 } else {
+                    this.logueado = true;
+                    this.sessioStore.set({idAdmin:data.id,estadoLogin:this.logueado,username:data.nombre, apellido: data.apellido,contrasena: data.contrasena, correo: data.correo});
                     this.$router.push("/adminUs")
                 }
             })
@@ -32,15 +39,15 @@ export default {
 }
 </script>
 <template>
-    <div>
+   <div>
         <div  id="container">
             <div id="log">
-                <h1>Admin</h1>
+                <h1>Administrador</h1>
                 <label>Correo </label>
                 <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp"  v-model="Correo">
                 <br>
                 <b><label>Contrasenya</label></b>
-                <input type="password" class="form-control" id="Contrasena" v-model="Contrasena">
+                <input type="text" class="form-control" id="Contrasena" v-model="Contrasena">
                 <br>
             </div>
             <div id="button">
@@ -49,27 +56,27 @@ export default {
                 <h5 id="error">{{this.estadoAd}}</h5>
             </div>
         </div> 
-    </div>    
+    </div>        
 </template>
-
 
 <style scoped>
 
-    body {
+     body {
         background-image: url("");
         position: fixed;
         width: 100%;
     }
 
     #container {
-        margin-top: 4.5%;
+        margin-top: 11.4%;
         margin-right: 30%;
         margin-left: 38%;
-        margin-bottom: 12%;
+        margin-bottom: 11.100%;
+        color: white;
         padding-bottom: 4%;
         width: 25%;
-        background-color: blueviolet;
-        border: 3px solid black;
+        background-color: #5C1473;
+        border: 5px solid black;
         border-radius: 15px;
     }
 
@@ -87,11 +94,7 @@ export default {
 
     #registerHelp {
         margin-left: 1%;
-        color: black;
-    }
-
-    #res {
-        margin-top: 2%;
+        color: white;
     }
 
     #reg {
@@ -101,5 +104,4 @@ export default {
     #error {
         color: red;
     }
-
 </style>

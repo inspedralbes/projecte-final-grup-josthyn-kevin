@@ -1,4 +1,3 @@
-
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import { sessioStore } from '@/stores/sessioStore'
@@ -8,12 +7,13 @@ export default {
       return {
         Usuario: "",
         estado: "",
+        isUserL: "",
       }
     },
     methods: {
         logout() {
             this.estado=false;
-            this.sessioStore.set({idUser:"",estadoLogin:this.estado,username:"",apellido:"", contrasena:"",correo:""})
+            this.sessioStore.set({idUser:"",estadoLogin:this.estado,username:"",apellido:""})
             this.$router.push("/");
         }
     },
@@ -24,13 +24,11 @@ export default {
         this.Usuario = this.sessioStore.get.username;
         this.estado = this.sessioStore.get.estadoLogin;
         this.idUserL = this.sessioStore.get.idUser; 
-        this.Cambiado = this.sessioStore.get.cambiado;
-		this.apellido = this.sessioStore.get.apellido;
-		this.idAdminL = this.sessioStore.get.idAdmin;
     }
 }
 </script>
-<template >
+
+<template>
     <header id="main-header">
 		<div id="logo-header" >
 			<span class="site-name">QuizDaw</span>
@@ -38,29 +36,16 @@ export default {
 		</div>
 		<nav>
 			<ul v-if="!this.estado === true">
-				<li><RouterLink to="/">Inicio</RouterLink></li>
-				<li><RouterLink to="/admin">Admin</RouterLink></li>
+				<li><RouterLink to="/">Home</RouterLink></li>
 				<li><RouterLink to="/login">Login</RouterLink></li>
-                <li><RouterLink to="/register">Registro</RouterLink></li>
+                <li><RouterLink to="/admin">Admin</RouterLink></li>
 			</ul>
-            <ul v-else>
-				<li style="color:yellow">Usuario: {{this.Usuario}} {{this.apellido}}</li>
-                <li><RouterLink :to="`/usuario/${this.idAdminL}`">Inicio</RouterLink></li>
-				<li><RouterLink :to="`/datosUs/${this.idAdminL}`">perfil</RouterLink></li>
-                <li><button @click="logout" class="btn btn-warning" type="button">Log out</button></li>
-            </ul>
 		</nav>
 	</header>
 </template>
 
-
 <style scoped>
-
-    button {
-        margin-left: 3%;
-        color: white;
-    }
-
+  
     #main-header {
 	background: #5C1473;
 	color: white;
@@ -118,5 +103,4 @@ export default {
 				nav ul li a:hover {
 					background: #BBB933;
 				}
-
 </style>

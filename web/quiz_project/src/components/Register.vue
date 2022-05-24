@@ -18,7 +18,7 @@ export default {
             datosEnvio.append('apellido',this.Apellido);
             datosEnvio.append('correo',this.Correo);
             datosEnvio.append('contrasena',this.Contrasenya)
-            fetch(`http://192.168.210.161:8000/anadir/usuario` , {
+            fetch(`http://192.168.1.148:8000/anadir/usuario` , {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -56,9 +56,6 @@ export default {
             </div>
             <div id="button">
                 <button id="register" class="btn btn-warning" value="register" @click="Registrarse()">Registrarse</button>
-                <RouterLink to="/login">
-                    <button id="login" class="btn btn-warning" value="login">Login</button>
-                </RouterLink>
                 <!--Mostrara el mensaje dependiendo del mensaje que envia symfony-->
                 <br>
                 <div id="res">
@@ -66,6 +63,7 @@ export default {
                 </div>
             </div>
         </div>
+        
 </template>
 
 <style scoped>
@@ -76,42 +74,42 @@ export default {
         width: 100%;
     }
 
-    #container {
-        margin-top: 2%;
-        margin-right: 20%;
+   #container {
+        margin-top: 10.2%;
+        margin-right: 30%;
         margin-left: 38%;
-        padding-bottom: 2%;
-        background-color: blueviolet;
-        border: 3px solid black;
-        border-radius: 15px;
+        margin-bottom: 8.06%;
+        color: white;
+        padding-bottom: 2.505%;
         width: 25%;
+        background-color: #5C1473;
+        border: 5px solid black;
+        border-radius: 15px;
     }
 
     #log {
-        margin-top: 9%;
+        margin-top: 12%;
         margin-left: 12%;
         margin-right: 12%;
     }
 
     #button {
-        margin-top: 5%;
-        margin-left: 1%;
+        margin-left: 2%;
+        margin-top: 7%;
         text-align: center;
-
-    }
-
-    #login {
-        margin-left: 4%;
-        width: 27%;
+       
     }
 
     #res {
-        margin-left: -14px;
+        margin-top: 2%;
     }
 
-    #registerHelp {
-        margin-top: 2%;
-        margin-left: 4%;
+    #reg {
+        margin-left: 3%;
+    }
+
+    #error {
+        margin-left: 1%;
         color: red;
     }
 

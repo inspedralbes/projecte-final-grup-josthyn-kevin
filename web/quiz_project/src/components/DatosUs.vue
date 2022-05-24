@@ -29,8 +29,9 @@ export default {
             datosEnvio.append("nombre",this.Usuario);
             
             datosEnvio.append("correo",this.Correo);
+            console.log(this.Usuario)
         
-            fetch(`http://192.168.210.161:8000/modificar/usuario/${this.idUserL}`, {
+            fetch(`http://192.168.1.148:8000/modificar/usuario/${this.idUserL}`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
@@ -57,21 +58,27 @@ export default {
 <template>
 
     <div v-if="this.estado === true">
-        <h2>{{this.Usuario}} {{this.apellido}}</h2>
-        <RouterLink :to="`/quizCreated/${this.idUserL}`"><button>Crear Quiz</button></RouterLink>
-        <RouterLink :to="`/quizCreadas/${this.idUserL}`"><button>Quiz creados</button></RouterLink>
-        <RouterLink :to="`/partidas/${this.idUserL}`" ><button>Quiz Jugados</button></RouterLink>
-        <div>
-            <label>Nombre Usuario</label>
-            <input type="text" v-model="this.Usuario"  class="info form-control" id="nombre" :disabled="disabled == 0">
-            <label>Apellido Usuario</label>
-            <input type="text" v-model="this.apellido" class="info form-control" id="apellido" :disabled="disabled == 0">
-            <label>Correo</label>
-            <input type="text" v-model="this.Correo" class="info form-control" id="correo" :disabled="disabled == 0">
-            <label>Contrasenya</label>
-            <input type="text" v-model="this.Contrasena" class="info form-control" id="contrasena" :disabled="disabled == 0">
-            <button @click="cambiarInformacion()" class="info" id="contrasena" :disabled="disabled == 0">Cambiar datos</button>
-            <button @click="disabled = (disabled + 1) % 2">Habilitar campos</button>
+        <div id="container">
+            <div id="log">
+                <h1>Register</h1>
+                <label>Nombre</label>
+                <input id="nombre" type="text" class="form-control" v-model="this.Usuario" :disabled="disabled == 0">
+                <label>Apellido</label>
+                <input id="apellido" type="text" class="form-control" v-model="this.apellido" :disabled="disabled == 0">
+                <label>Correo</label>
+                <input id="correo" type="text" class="form-control" v-model="this.Correo" :disabled="disabled == 0">
+                <label>Contrasenya</label>
+                <input id="contrasena" class="form-control" type="text" v-model="this.Contrasena" :disabled="disabled == 0">
+                <div id="button">
+                    <button @click="cambiarInformacion()" class="btn btn-warning" id="cambiar" :disabled="disabled == 0">Cambiar datos</button>
+                    <button @click="disabled = (disabled + 1) % 2" class="btn btn-warning">Habilitar campos</button>
+                </div>
+                <div id="opcions">
+                    <RouterLink :to="`/quizCreated/${this.idUserL}`"><button class="btn btn-warning">Crear Quiz</button></RouterLink>
+                    <RouterLink :to="`/quizCreadas/${this.idUserL}`"><button class="btn btn-warning">Quiz creados</button></RouterLink>
+                    <RouterLink :to="`/partidas/${this.idUserL}`" ><button class="btn btn-warning">Quiz Jugados</button></RouterLink>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -79,6 +86,56 @@ export default {
 
 
 <style scoped>
+
+    #container {
+        margin-top: 7.100%;
+        margin-right: 30%;
+        margin-left: 15%;
+        margin-bottom: 5.309%;
+        color: white;
+        padding-bottom:1%;
+        width: 70%;
+        background-color: #5C1473;
+        border: 5px solid black;
+        border-radius: 15px;
+    }
+
+    #log {
+        margin-top: 5%;
+        margin-left: 12%;
+        margin-right: 12%;
+        margin-bottom: 4%;
+    }
+
+    #button {
+        margin-left: 2%;
+        margin-top: 3%;
+        text-align: center;
+       
+    }
+
+    #opcions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5%;
+    }
+
+    #cambiar {
+        margin-right: 2%;
+    }
+
+    #res {
+        margin-top: 2%;
+    }
+
+    #reg {
+        margin-left: 3%;
+    }
+
+    #error {
+        margin-left: 1%;
+        color: red;
+    }
 
 
 </style>
