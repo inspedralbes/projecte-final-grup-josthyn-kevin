@@ -16,7 +16,6 @@ import { mapStores } from 'pinia'
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;
-        console.log(this.quiz)
       });
     },
   }

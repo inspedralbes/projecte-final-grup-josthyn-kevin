@@ -17,17 +17,13 @@ import { mapStores } from 'pinia'
       enviarRespostes() {
       //Creamos formato json
         const resp = JSON.stringify(this.respost);
-        console.log(this.$route.params.id);
         if(this.respost.length!= 10 || resp.includes(null)) {
           alert("Responde todas las preguntas")
         } else {     
             const datosEnvio = new FormData();
             datosEnvio.append('quiz',this.myjson.id_quiz);
-            console.log(this.myjson.id_quiz);
             datosEnvio.append('idUsuario',this.Id)
-            console.log(this.Id)
             datosEnvio.append('respostas',resp);
-            console.log(resp);
             //const da = JSON.stringify(this.datosEnvio);
               fetch(`http://192.168.1.148:8000/anadir/partida` , {
                 method: 'POST',
@@ -45,7 +41,6 @@ import { mapStores } from 'pinia'
       .then(res => res.json())
       .then((data) => {
         this.myjson = data;
-        console.log(this.myjson);
         this.Id = this.sessioStore.get.idUser;
       });
     },

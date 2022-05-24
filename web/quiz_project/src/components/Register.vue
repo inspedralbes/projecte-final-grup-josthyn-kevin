@@ -24,8 +24,7 @@ export default {
             }).then(res => {
                 return res.json();
             }).then(data => {
-                console.log(data)
-                console.log("HOLA" + data.status)
+
                 //Si el mensaje de data es el que llega de symfony 
                 //cambviamos el mensaje de la variable
                 if (data.status=="El Usuario ya existe"){

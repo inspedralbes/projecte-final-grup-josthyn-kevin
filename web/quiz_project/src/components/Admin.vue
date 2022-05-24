@@ -47,7 +47,7 @@ export default {
                 <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp"  v-model="Correo">
                 <br>
                 <b><label>Contraseña</label></b>
-                <input type="text" class="form-control" id="Contrasena" v-model="Contrasenya">
+                <input type="password" class="form-control" id="Contrasena" v-model="Contrasenya">
                 <br>
             </div>
             <div id="button">
