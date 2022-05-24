@@ -148,11 +148,10 @@ class UsuarioController extends AbstractController
 
     }
 
-    #[Route('/mejoresUsuarios', name: 'api_mejoresUsuarios', methods: ['GET'])]
+    #[Route('/mejores', name: 'api_mejoresUsuarios', methods: ['GET'])]
     public function mejoresUsuarios()
     {
         $usuarios = $this->usuarioRepository->encontrarUsuariosPartidas();
-        print_r($usuarios);
         foreach ($usuarios as $usuario) {
 
             $id = $usuario['usuario'];

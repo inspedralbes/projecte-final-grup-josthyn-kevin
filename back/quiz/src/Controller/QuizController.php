@@ -203,11 +203,12 @@ class QuizController extends AbstractController
         //return new JsonResponse($preguntaN, Response::HTTP_OK);
     }
 
-    #[Route('/quiz/masJugados', name: 'api_quiz_masJugados', methods: ['GET'])]
+    #[Route('/masjugados', name: 'api_quiz_masJugados', methods: ['GET'])]
     public function quizMasJugados()
     {
         $quizsJugados = $this->partidasRepository->partidasIdQuiz();
 
+        $data1 = [];
         $data = [];
 
         foreach ($quizsJugados as $quiz) {
@@ -224,7 +225,6 @@ class QuizController extends AbstractController
             $price = array_column($data, 'cont');
             array_multisort($price, SORT_DESC, $data);
             $data1 = array_slice($data, 0, 5);
-
         }
         return new JsonResponse($data1, Response::HTTP_OK);
     }
