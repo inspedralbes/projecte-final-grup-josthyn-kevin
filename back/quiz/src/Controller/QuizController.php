@@ -36,6 +36,19 @@ class QuizController extends AbstractController
         $this->temaRepository=$temaRepository;
     }
 
+    #[Route('/quiz', name: 'api_quiz', methods: ['GET'])]
+    public function allQuiz()
+    {
+        $quizs = $this->quizRepository->findAll();
+        $data = [];
+        foreach ($quizs as $quiz) {
+            $data[] = [
+                'id' => $quiz->getId(),
+                'titulo' => $quiz->getTitulo(),
+            ];
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
 
     #[Route('/quiz/{id}', name: 'api_quiz', methods: ['GET'])]
     public function show($id)
@@ -52,6 +65,7 @@ class QuizController extends AbstractController
         }
         return new JsonResponse($data, Response::HTTP_OK);
     }
+    
     #[Route('/tema', name: 'api_tema', methods: ['GET'])]
     public function tema()
     {

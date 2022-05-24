@@ -53,7 +53,7 @@ class PartidaController extends AbstractController
         $puntos=0;
         $respuestas=json_decode($_POST["respostas"]);
 
-        for ($i=0;$i<10;$i++) {
+        for ($i=0;$i<5;$i++) {
             $respuesta = $this->respuestasRepository->estado($respuestas[$i]);
             if ($respuesta[0]["estado"] == 1) {
                 $puntos += 10;
@@ -69,7 +69,7 @@ class PartidaController extends AbstractController
         $idpartida=$this->partidasRepository->ultimaPartida($usuario);
 
 
-        for ($i=0;$i<10;$i++) {
+        for ($i=0;$i<5;$i++) {
 
             $preguntas = $this->respuestasRepository->estado($respuestas[$i]);
             $pregunta = $preguntas[0]["pregunta"];
