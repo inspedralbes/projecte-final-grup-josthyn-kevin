@@ -5,11 +5,50 @@ import { mapStores } from 'pinia'
 export default {
     data() {
       return {
+        usuario: "",
         titulo: "",
-        preguntas: [],
-        respues:[],
-        respuesta: "",
-        enunciado: ""
+        respues: [
+            {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            },
+            {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            },
+            {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            },
+                {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            },
+            {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            },
+            {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            },
+                {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            },
+            {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            },
+            {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            },
+            {
+            enunciado:'',
+            respuestas:[{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''},{respuesta:'',estado:''}]
+            }
+        ],
       }
     },
      computed: {
@@ -21,18 +60,30 @@ export default {
         this.apellido = this.sessioStore.get.apellido;
         this.Correo = this.sessioStore.get.correo;
         this.Contrasena = this.sessioStore.get.contrasena
-        this.idUserL = this.sessioStore.get.idUser; 
+        this.usuario = this.sessioStore.get.idUser; 
     },methods: {
 
         crearQuiz() {
 
-            console.log(this.titulo);
-            const respues = JSON.stringify(this.respues)
-            const preguntas = JSON.stringify(this.preguntas);
-            const pre = JSON.stringify(preguntas[{respues}])
-            console.log(respues);
-            console.log(pre)
-        }
+           // const respues = JSON.stringify(this.respues);
+            const datosEnvio = new FormData();
+            datosEnvio.append('usuario',this.usuario)
+            datosEnvio.append('titulo',this.titulo)
+            console.log(this.titulo)
+            datosEnvio.append('preguntas',this.respues)
+            console.log(this.respues);
+            fetch(`http://192.168.210.161:8000/anadir/quiz` , {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: datosEnvio,
+              }).then(res => {
+                return res.json();
+              }).then(data => {
+                console.log(data)
+              });
+            }
     }
 }
 
@@ -48,14 +99,14 @@ export default {
     <div id="f" v-if="this.estado === true">
         <label>Titulo de Quiz: </label>
         <input type="text" name="titulo" v-model="titulo"  class="info form-control" id="titulo" >
-            <div id="pregunta" v-for="(item,index) in 10" :key="index">
+            <div id="pregunta" v-for="(item,indexPR) in 1" :key="indexPR">
                 <label>Pregunta:</label>
-                <input type="text" v-model="preguntas[index]" :name="'p' + index"  class="info form-control" id="preguntas" >
-                 <div id="respuestas" v-for="(res,index) in 5" :key="index">
+                <input type="text" v-model="this.respues[indexPR].enunciado" :name="'p' + indexPR"  class="info form-control" id="preguntas" >
+                 <div id="respuestas" v-for="(res,indexRESP) in 5" :key="indexRESP">
                     <label>Respuesta:</label>
-                    <input type="text" v-model="this.respues[index]"  :name="'re' + [index+1]"   class="info form-control" id="respuesta" >
+                    <input type="text" v-model="this.respues[indexPR].respuestas[indexRESP].respuesta"  :name="'re' + indexI + '_' + indexJ "   class="info form-control" id="respuesta" >
                     <label>Estado:</label>
-                    <input type="text" v-model="this.respues[index]" :name="'e' + [index]"   class="info form-control" id="estado" >
+                    <input type="text" v-model="this.respues[indexPR].respuestas[indexRESP].estado"  :name="'e' + indexI + '_' + indexJ "   class="info form-control" id="estado" >
                 </div>
             </div>
             <button @click="crearQuiz()">crear quiz</button>

@@ -27,6 +27,7 @@ export default {
         this.Cambiado = this.sessioStore.get.cambiado;
 		this.apellido = this.sessioStore.get.apellido;
 		this.idAdminL = this.sessioStore.get.idAdmin;
+		this.estadoAd = this.sessioStore.get.estadoAdmin;
     }
 }
 </script>
@@ -37,17 +38,22 @@ export default {
 			<p class="site-desc">La mejor web de Quiz</p>
 		</div>
 		<nav>
-			<ul v-if="!this.estado === true">
+			<ul v-if="this.estado === true && !this.estadoAd === true ">
+				<li style="color:yellow">Usuario: {{this.Usuario}} {{this.apellido}}</li>
+                <li><RouterLink :to="`/usuario/${this.idUserL}`">Inicio</RouterLink></li>
+				<li><RouterLink :to="`/datosUs/${this.idUserL}`">perfil</RouterLink></li>
+                <li><button @click="logout" class="btn btn-warning" type="button">Log out</button></li>
+			</ul>
+			<ul v-else-if="this.estadoAd === true && !this.estado === true">
+				<li style="color:yellow">Usuario: {{this.Usuario}} {{this.apellido}}</li>
+                <li><RouterLink :to="`/adminUs`">Inicio</RouterLink></li>
+                <li><button @click="logout" class="btn btn-warning" type="button">Log out</button></li>
+			</ul>
+            <ul v-else>
 				<li><RouterLink to="/">Inicio</RouterLink></li>
 				<li><RouterLink to="/admin">Admin</RouterLink></li>
 				<li><RouterLink to="/login">Login</RouterLink></li>
                 <li><RouterLink to="/register">Registro</RouterLink></li>
-			</ul>
-            <ul v-else>
-				<li style="color:yellow">Usuario: {{this.Usuario}} {{this.apellido}}</li>
-                <li><RouterLink :to="`/usuario/${this.idAdminL}`">Inicio</RouterLink></li>
-				<li><RouterLink :to="`/datosUs/${this.idAdminL}`">perfil</RouterLink></li>
-                <li><button @click="logout" class="btn btn-warning" type="button">Log out</button></li>
             </ul>
 		</nav>
 	</header>
