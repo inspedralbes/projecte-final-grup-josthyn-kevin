@@ -30,7 +30,7 @@ export default {
             
             datosEnvio.append("correo",this.Correo);
         
-            fetch(`http://192.168.1.148:8000/modificar/usuario/${this.idUserL}`, {
+            fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/modificar/usuario/${this.idUserL}`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {

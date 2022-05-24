@@ -12,7 +12,7 @@ import { mapStores } from 'pinia'
         ...mapStores(sessioStore)
     },
    mounted () {
-      fetch(`http://192.168.1.148:8000/quiz/${this.$route.params.idLogin}`) 
+      fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/quiz/${this.$route.params.idLogin}`) 
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;

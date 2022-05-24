@@ -21,7 +21,7 @@ import { mapStores } from 'pinia'
         this.idUserL = this.sessioStore.get.idAdmin; 
     },methods: {
         eliminarQuiz(id) {
-           fetch(`http://192.168.1.148:8000/quiz/eliminar/${id}` , {
+           fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/quiz/eliminar/${id}` , {
                 method: 'DELETE',
               }).then(res => {
                 return res.json();
@@ -30,7 +30,7 @@ import { mapStores } from 'pinia'
         }
     },
    mounted () {
-      fetch(`http://192.168.1.148:8000/quiz`) 
+      fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/quiz`) 
       .then(res => res.json())
       .then((data) => {
         this.quiz = data;

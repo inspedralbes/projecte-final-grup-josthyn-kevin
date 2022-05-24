@@ -68,13 +68,12 @@ export default {
 
             //const respues = JSON.stringify(this.respues);
 
-            fetch(`http://192.168.1.148:8000/anadir/quiz` , {
+            fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/anadir/quiz` , {
                 method: 'POST',
                 body: JSON.stringify({usuario:this.usuario,titulo: this.titulo,preguntas: this.respues}),   
               }).then(res => {
                 return res.json();
               }).then(data => {
-                console.log(data)
               });
             }
     }

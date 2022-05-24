@@ -25,7 +25,7 @@ import { mapStores } from 'pinia'
             datosEnvio.append('idUsuario',this.Id)
             datosEnvio.append('respostas',resp);
             //const da = JSON.stringify(this.datosEnvio);
-              fetch(`http://192.168.1.148:8000/anadir/partida` , {
+              fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/anadir/partida` , {
                 method: 'POST',
                 body: datosEnvio
               }).then(res => {
@@ -37,7 +37,7 @@ import { mapStores } from 'pinia'
         },
       },
    mounted () {
-      fetch(`http://192.168.1.148:8000/preguntas/${this.$route.params.id}`)
+      fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/preguntas/${this.$route.params.id}`)
       .then(res => res.json())
       .then((data) => {
         this.myjson = data;

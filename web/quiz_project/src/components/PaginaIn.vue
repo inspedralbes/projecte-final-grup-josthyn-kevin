@@ -15,20 +15,20 @@ import { mapStores } from 'pinia'
     },
    mounted () {
 
-       fetch(`http://192.168.1.148:8000/masjugados`) 
+       fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/masjugados`) 
       .then(res => res.json())
       .then((data) => {
         this.quizMasJugados = data;
       });
 
-     fetch(`http://192.168.1.148:8000/tema`) 
+     fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/tema`) 
       .then(res => res.json())
       .then((data) => {
         this.quizTemas = data;
       });
 
 
-       fetch(`http://192.168.1.148:8000/mejores`) 
+       fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/mejores`) 
       .then(res => res.json())
       .then((data) => {
         this.quizMejores = data;

@@ -18,7 +18,7 @@ export default {
             datosEnvio.append('apellido',this.Apellido);
             datosEnvio.append('correo',this.Correo);
             datosEnvio.append('contrasena',this.Contrasenya)
-            fetch(`http://127.0.0.1:8000/anadir/usuario` , {
+            fetch(`http://proyectefinaljoskevback.alumnes.inspedralbes.cat/anadir/usuario` , {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
