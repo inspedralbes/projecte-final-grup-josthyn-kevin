@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Tema
  *
  * @ORM\Table(name="tema")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\TemaRepository")
  */
 class Tema
 {

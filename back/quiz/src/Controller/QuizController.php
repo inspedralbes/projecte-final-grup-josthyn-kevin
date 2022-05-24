@@ -51,13 +51,9 @@ class QuizController extends AbstractController
     }
 
 
-
     #[Route('/anadir/quiz', name: 'api_añadir_quiz', methods: ['POST'])]
     public function new(Request $request)
     {
-        //print_r(json_decode($request->get('titulo')));
-        //$user = json_decode($request->get('usuario'));
-        //$titulo = json_decode($request->get('titulo'));
         $array = $request->toArray();
         $user = $array['usuario'];
         $titulo = $array['titulo'];
@@ -200,9 +196,11 @@ class QuizController extends AbstractController
 
             $id=$quiz['quiz_id'];
             $numPartidas = $this->partidasRepository->numPartidas($id);
+            $titulo=$this->quizRepository->findOneBy(['id'=> $quiz['quiz_id']]);
 
             $data[] = [
                 'id' => $id,
+                'Titulo' => $titulo->getTitulo(),
                 'cont' => $numPartidas,
             ];
             $price = array_column($data, 'cont');
