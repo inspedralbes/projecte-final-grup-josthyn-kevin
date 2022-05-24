@@ -142,7 +142,7 @@ class UsuarioController extends AbstractController
         //Utilitza el mètode creat al repository amb el controlador
         $this->usuarioRepository->remove($usuario);
 
-        return new JsonResponse(['status' => 'Restaurante eliminado'], Response::HTTP_CREATED);
+        return new JsonResponse(['status' => 'Usuario eliminado'], Response::HTTP_CREATED);
 
     }
 
@@ -150,7 +150,7 @@ class UsuarioController extends AbstractController
     {
 
 
-        $data1=$this->quizRepository->quizPuntuacion($quizID,$id);
+        $data1=$this->quizRepository->puntuacionTotalJugador($id);
 
 
 

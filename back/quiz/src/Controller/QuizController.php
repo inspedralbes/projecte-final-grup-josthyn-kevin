@@ -37,10 +37,10 @@ class QuizController extends AbstractController
     }
 
 
-    #[Route('/quiz', name: 'api_quiz', methods: ['GET'])]
-    public function show()
+    #[Route('/quiz/{id}', name: 'api_quiz', methods: ['GET'])]
+    public function show($id)
     {
-        $quizs = $this->quizRepository->findAll();
+        $quizs = $this->quizRepository->findBy(['tema'=> $id]);
 
         $data = [];
 
@@ -223,7 +223,7 @@ class QuizController extends AbstractController
             ];
             $price = array_column($data, 'cont');
             array_multisort($price, SORT_DESC, $data);
-            $data1 = array_slice($data, 0, 2);
+            $data1 = array_slice($data, 0, 5);
 
         }
         return new JsonResponse($data1, Response::HTTP_OK);
