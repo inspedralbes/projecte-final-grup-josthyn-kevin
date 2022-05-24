@@ -89,20 +89,22 @@ export default {
 
 <template>
 
-    <div id="f" v-if="this.estado === true">
-        <label>Titulo de Quiz: </label>
+    <div id="f" v-if="this.estado === true" class="contenidor">
+        <h4 style="color:yellow">Titulo de Quiz: </h4>
         <input type="text" name="titulo" v-model="titulo"  class="info form-control" id="titulo" >
-            <div id="pregunta" v-for="(item,indexPR) in 5" :key="indexPR">
-                <label>Pregunta:</label>
+
+            <div class="pregunta" v-for="(item,indexPR) in 5" :key="indexPR">
+            Introduce 0 si es falso i 1 es verdadero
+                <h5>Pregunta:</h5>
                 <input type="text" v-model="this.respues[indexPR].enunciado" :name="'p' + indexPR"  class="info form-control" id="preguntas" >
-                 <div id="respuestas" v-for="(res,indexRESP) in 5" :key="indexRESP">
-                    <label>Respuesta:</label>
+                 <div class="respuestas" v-for="(res,indexRESP) in 5" :key="indexRESP">
+                    <h5>Respuesta:</h5>
                     <input type="text" v-model="this.respues[indexPR].respuestas[indexRESP].respuesta"  :name="'re' + indexI + '_' + indexJ "   class="info form-control" id="respuesta" >
-                    <label>Estado:</label>
-                    <input type="text" v-model="this.respues[indexPR].respuestas[indexRESP].estado"  :name="'e' + indexI + '_' + indexJ "   class="info form-control" id="estado" >
+                    <h5>Estado:</h5>
+                    <input id="estado" type="text" v-model="this.respues[indexPR].respuestas[indexRESP].estado"  :name="'e' + indexI + '_' + indexJ "   class="info form-control">  
                 </div>
             </div>
-            <button @click="crearQuiz()">crear quiz</button>
+            <button class="btn btn-warning" @click="crearQuiz()">crear quiz</button>
     </div>
     
 </template>
@@ -110,34 +112,48 @@ export default {
 
 <style scoped>
 
-    #f {
-        margin-top: 20%;
-        margin-left: 5%;
-        margin-right: 5%;
+
+    .contenidor{
+     margin-top:8%;
+     margin-bottom: 6%;
+     margin-right: 7%;
+     margin-left: 7%;
+     padding: 1%;
+     border: 5px solid black;
+     border-radius: 25px;
+     background-color: #5C1473;
     }
 
-    #pregunta {
-        margin-left: 3%;
-        margin-right: 3%;
-    }
-
-    #respuestas {
-         margin-left: 5%;
-         margin-right: 5%;
-    }
-
-    #preguntas {
-        background-color: red;
-    }
-
-    #respuesta {
-        background-color: blue;
+    label {
+        color: #5C1473;
     }
 
     #estado {
-        background-color: yellow;
+        width: 10%;
     }
 
+    .pregunta {
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-top: 3%;
+        padding: 4%;
+        background-color: yellow;
+        border: 4px solid black;
+        border-radius: 25px;
+    }
+
+    .respuestas {
+         margin-left: 5%;
+         margin-right: 5%;
+         
+    }
+
+    button {
+        margin-left: 47%;
+        margin-top: 3%;
+    }
+
+   
 
 
 
