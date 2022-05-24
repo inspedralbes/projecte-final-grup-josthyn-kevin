@@ -10,6 +10,7 @@ use App\Repository\QuizRepository;
 use App\Repository\RespuestasRepository;
 use App\Repository\UsuarioRepository;
 use App\Repository\PartidasRepository;
+use App\Repository\TemaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,14 +24,16 @@ class QuizController extends AbstractController
     private RespuestasRepository $respuestasRepository;
     private UsuarioRepository $usuarioRepository;
     private PartidasRepository $partidasRepository;
+    private TemaRepository $temaRepository;
 
-    public function __construct(PreguntasRepository $preguntasRepository, QuizRepository $quizRepository,RespuestasRepository $respuestasRepository, UsuarioRepository $usuarioRepository,PartidasRepository $partidasRepository )
+    public function __construct(PreguntasRepository $preguntasRepository,TemaRepository $temaRepository, QuizRepository $quizRepository,RespuestasRepository $respuestasRepository, UsuarioRepository $usuarioRepository,PartidasRepository $partidasRepository )
     {
         $this->preguntasRepository = $preguntasRepository;
         $this->quizRepository = $quizRepository;
         $this->respuestasRepository = $respuestasRepository;
         $this->usuarioRepository = $usuarioRepository;
         $this->partidasRepository = $partidasRepository;
+        $this->temaRepository=$temaRepository;
     }
 
 
@@ -45,6 +48,21 @@ class QuizController extends AbstractController
             $data[] = [
                 'id' => $quiz->getId(),
                 'titulo' => $quiz->getTitulo(),
+            ];
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+    #[Route('/tema', name: 'api_tema', methods: ['GET'])]
+    public function tema()
+    {
+        $quizs = $this->temaRepository->findAll();
+
+        $data = [];
+
+        foreach ($quizs as $quiz) {
+            $data[] = [
+                'id' => $quiz->getId(),
+                'titulo' => $quiz->getNombre(),
             ];
         }
         return new JsonResponse($data, Response::HTTP_OK);
