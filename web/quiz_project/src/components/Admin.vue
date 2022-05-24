@@ -19,14 +19,14 @@ export default {
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
             datosEnvio.append("nombre",this.Nombre)
-            fetch(`http://127.0.0.1:8000/login`, {
+            fetch(`http://192.168.1.148:8000/login`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {
                 return res.json();
             }).then(data => {
                 console.log(data);
-                if(data.admin != true) {
+                if(!data.admin === true) {
                     this.estadoAd = "Este usuario no es administrador"
                 } else {
                     this.logueado = true;
