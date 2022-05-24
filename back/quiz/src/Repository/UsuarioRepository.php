@@ -47,14 +47,14 @@ class UsuarioRepository extends ServiceEntityRepository
         }
     }
 
-    /*public function encontrarUsuario($correo): array
+    public function encontrarUsuariosPartidas(): array
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = "SELECT usuario.* FROM usuario WHERE usuario.correo = $correo;";
+        $sql = "SELECT DISTINCT partidas.usuario FROM partidas;";
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchAllAssociative();
-    }*/
+    }
 
     public function update(Usuario $entity, bool $flush = true): void
     {

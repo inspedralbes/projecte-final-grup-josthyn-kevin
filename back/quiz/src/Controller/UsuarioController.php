@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Usuario;
 use App\Repository\UsuarioRepository;
 use App\Repository\QuizRepository;
+use App\Repository\PartidasRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,12 +17,13 @@ class UsuarioController extends AbstractController
 {
     private UsuarioRepository $usuarioRepository;
     private QuizRepository $quizRepository;
+    private PartidasRepository $partidasRepository;
 
-    public function __construct(UsuarioRepository $usuarioRepository, QuizRepository $quizRepository)
+    public function __construct(UsuarioRepository $usuarioRepository, QuizRepository $quizRepository, PartidasRepository $partidasRepository)
     {
         $this->usuarioRepository = $usuarioRepository;
         $this->quizRepository = $quizRepository;
-
+        $this->partidasRepository = $partidasRepository;
     }
 
     #[Route('/usuario', name: 'app_usuario')]
@@ -146,18 +148,31 @@ class UsuarioController extends AbstractController
 
     }
 
+    #[Route('/mejoresUsuarios', name: 'api_mejoresUsuarios', methods: ['GET'])]
     public function mejoresUsuarios()
     {
+        $usuarios = $this->usuarioRepository->encontrarUsuariosPartidas();
+        print_r($usuarios);
+        foreach ($usuarios as $usuario) {
 
+            $id = $usuario['usuario'];
+            $puntuacion = $this->partidasRepository->puntuacionTotalJugador($id);
+            $datosUsuario = $this->usuarioRepository->findOneBy(['id' => $id]);
 
-        $data1=$this->quizRepository->puntuacionTotalJugador($id);
+            $data[] = [
+                'id' => $id,
+                'nombre' => $datosUsuario->getNombre(),
+                'apellido' => $datosUsuario->getApellido(),
+                'puntuacion' => $puntuacion,
 
+            ];
+            $price = array_column($data, 'puntuacion');
+            array_multisort($price, SORT_DESC, $data);
+            $data1 = array_slice($data, 0, 5);
 
-
-        return new JsonResponse(['status' => 'Restaurante eliminado'], Response::HTTP_CREATED);
-
+        }
+        return new JsonResponse($data1, Response::HTTP_OK);
     }
-
 
 
 
