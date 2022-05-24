@@ -73,7 +73,7 @@ class QuizRepository extends ServiceEntityRepository
     public function quizPuntuacion($idQuiz,$idUsuario): array
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = "SELECT quiz.titulo, partidas.puntuacion FROM partidas JOIN quiz ON partidas.quiz_id=quiz.id JOIN usuario ON partidas.usuario=usuario.id WHERE partidas.quiz_id=$idQuiz AND partidas.usuario=$idUsuario ORDER BY partidas.puntuacion DESC LIMIT 1;";
+        $sql = "SELECT quiz.titulo, partidas.puntuacion, quiz.id FROM partidas JOIN quiz ON partidas.quiz_id=quiz.id JOIN usuario ON partidas.usuario=usuario.id WHERE partidas.quiz_id=$idQuiz AND partidas.usuario=$idUsuario ORDER BY partidas.puntuacion DESC LIMIT 1;";
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchAllAssociative();
@@ -86,6 +86,14 @@ class QuizRepository extends ServiceEntityRepository
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchAllAssociative();
+    }
+    public function quizAleatorio(): int
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT quiz.id FROM quiz ORDER BY RAND ( ) LIMIT 1;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchOne();
     }
 
     // /**

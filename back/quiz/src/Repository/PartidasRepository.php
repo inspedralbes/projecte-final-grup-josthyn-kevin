@@ -72,13 +72,23 @@ class PartidasRepository extends ServiceEntityRepository
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchOne();
     }
-    public function partidasQuiz(): array
+
+    public function partidasIdQuiz(): array
     {
         $conn = $this->getEntityManager()->getConnection();
         $sql = "SELECT DISTINCT partidas.quiz_id FROM partidas;";
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
         return $resultSet->fetchAllAssociative();
+    }
+
+    public function numPartidas($id): int
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT COUNT(partidas.id) AS partidasJugadas FROM partidas WHERE partidas.quiz_id=$id;";
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchOne();
     }
 
     // /**
