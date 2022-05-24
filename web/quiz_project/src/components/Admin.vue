@@ -19,7 +19,7 @@ export default {
             datosEnvio.append("contrasena",this.Contrasena);
             datosEnvio.append("apellido",this.Apellido);
             datosEnvio.append("nombre",this.Nombre)
-            fetch(`http://127.0.0.1:8000/login`, {
+            fetch(`http://192.168.1.148:8000/login`, {
                 method: 'POST',
                 body: datosEnvio
             }).then(res => {

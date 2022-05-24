@@ -33,7 +33,7 @@ export default {
             }).then(data => {
                 console.log(data);
                 console.log(data.nombre);
-                if(data.status == "Correo no registrado o incorrecto") {
+                if(data.status == "Correo no registrado o incorrecto" ) {
                     this.estado = "Correo no registrado o incorrecto" ;
                 } else if(data.status == "Contraseña incorrecta") {
                     this.estado = "Contraseña Incorrecta";

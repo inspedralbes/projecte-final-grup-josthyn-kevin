@@ -53,9 +53,9 @@ import { mapStores } from 'pinia'
 </script>
 
 <template>  
-  <div>
-      <h4>{{this.myjson.titulo}}</h4>
-      <div v-for="(pre,index) in this.myjson.preguntas" :key="index">
+  <div class="contenidor">
+      <h2 style="color:yellow">{{this.myjson.titulo}}</h2>
+      <div class="conPregunta" v-for="(pre,index) in this.myjson.preguntas" :key="index">
         <h3>{{pre.enunciado}}</h3>
         <div v-for="(res,index1) in this.myjson.preguntas[index].respuestas" :key="index1"> 
               <input type="radio" :name="'r' + index"  :value="res.id" v-model="respost[index] ">
@@ -64,17 +64,26 @@ import { mapStores } from 'pinia'
           <br>
           <br>
       </div>
-
-      <h3>Jugadores con mejor puntuacion</h3>
-
-      <div v-for="(punt,index) in this.myjson.jugadores" :key="index">
-        
-
-        <p>Jugador: {{punt.nombre}} Puntacion: {{punt.puntuacion}} </p>
-
-      </div>
-
       <button id="EnviarRes" type="button" @click="enviarRespostes()"  class="btn btn-primary">Terminar Quiz!</button>
-
   </div>
 </template>
+
+<style scoped>
+
+
+.contenidor{
+     margin-top:8%;
+     margin-bottom: 6%;
+     margin-right: 7%;
+     margin-left: 7%;
+     padding: 1%;
+     border: 5px solid black;
+     border-radius: 25px;
+     background-color: #5C1473;
+  }
+
+  .conPregunta {
+    background-color: yellow;
+  }
+
+</style>
