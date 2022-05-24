@@ -34,7 +34,6 @@ import { mapStores } from 'pinia'
           </div>
       </article> 
     </div>
-
     <div v-else id="contenidor">
       <article>
           <div v-for="(quizs,index) in this.quiz" :key="index">

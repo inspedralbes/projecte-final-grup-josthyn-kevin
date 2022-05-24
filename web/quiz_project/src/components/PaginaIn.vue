@@ -25,18 +25,25 @@ import { mapStores } from 'pinia'
 
 <template>
 
-
-    <div id="contenidor">
+    <div v-if="!this.sessioStore.get.estadoLogin === true" id="contenidor">
       <article>
-          <div id="quizes" v-for="(quizs,index) in this.quizMasJugados" :key="index">
-                <RouterLink :to="`/pregunta/${quizs.id}`">
-                  <h5>{{quizs.titulo}}</h5>
-                </RouterLink>
-                <p>{{quizs.cont}}</p>
+          <div v-for="(quizses,index) in this.quizMasJugados" :key="index">
+                  <h5>{{quizses.Titulo}}</h5>
           </div>
+          <RouterLink to="/QuizHome"><button>Home</button></RouterLink>
+      </article> 
+    </div>
+    <div v-else id="contenidor">
+      <article>
+          <div v-for="(quizses,index) in this.quizMasJugados" :key="index">
+                <RouterLink :to="`/pregunta/${quizses.id}`">
+                  <h5>{{quizses.Titulo}}</h5>
+                </RouterLink>
+               
+          </div>
+           <RouterLink :to="`/usuario/${this.sessioStore.get.idUser}`"><button>Home</button></RouterLink>
       </article>
-    </div> 
-
+      </div> 
 </template>
 
 <style scoped>

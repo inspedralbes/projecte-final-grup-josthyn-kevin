@@ -50,7 +50,6 @@ export default {
                 <li><button @click="logout" class="btn btn-warning" type="button">Log out</button></li>
 			</ul>
             <ul v-else>
-				<li><RouterLink to="/">Inicio</RouterLink></li>
 				<li><RouterLink to="/admin">Admin</RouterLink></li>
 				<li><RouterLink to="/login">Login</RouterLink></li>
                 <li><RouterLink to="/register">Registro</RouterLink></li>
