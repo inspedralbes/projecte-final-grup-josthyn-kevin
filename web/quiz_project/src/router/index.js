@@ -25,7 +25,7 @@ const router = createRouter({
       component: Inici
     },
     {
-      path: '/QuizHome',
+      path: '/QuizHome/:idLogin',
       name: 'QuizHome',
       component: Quizhome
     },

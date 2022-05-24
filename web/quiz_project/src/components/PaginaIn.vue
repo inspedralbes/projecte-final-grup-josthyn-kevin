@@ -47,7 +47,7 @@ import { mapStores } from 'pinia'
         <h3>Categories</h3>
           <div class="container">
             <div class="grid-item" v-for="(temas,index) in this.quizTemas" :key="index">
-              <button class="categoria">{{temas.titulo}}</button>
+              <RouterLink :to="`/QuizHome/${temas.id}`"><button class="categoria">{{temas.titulo}}</button></RouterLink>
             </div>
           </div>
        </article>   
@@ -59,28 +59,38 @@ import { mapStores } from 'pinia'
            
             <h4>Mejores Jugadores</h4>
             <ol>
-              <li class="nostyle" v-for="(mejores,index) in this.quizMejores" :key="index">{{mejores.nombre}}{{mejores.apellido}}{{mejores.puntuacion}}</li>
+              <li class="nostyle" v-for="(mejores,index) in this.quizMejores" :key="index">{{mejores.nombre}}{{mejores.apellido}} / Puntuacion : {{mejores.puntuacion}}</li>
             </ol>  
         </aside>
+        
       
     </div>
 
     <div v-else class="contenidor">
       <article>
-          <div v-for="(temas,index) in this.quizTemas" :key="index">
-              <RouterLink :to="`/usuario/${temas.id}`">{{temas.id}}{{temas.titulo}}</RouterLink>
-          </div>
-          <div v-for="(quizses,index) in this.quizMasJugados" :key="index">
-                <RouterLink :to="`/pregunta/${quizses.id}`">
-                  <h5>{{quizses.Titulo}}</h5>
-                </RouterLink>
-          </div>
-          <div v-for="(mejores,index) in this.quizMejores" :key="index">
-                  <p>{{mejores.nombre}}</p>
-                  <p>{{mejores.apellido}}</p>
-                  <p>{{mejores.puntuacion}}</p>
+        <h3>Categories</h3>
+          <div class="container">
+            <div class="grid-item" v-for="(temas,index) in this.quizTemas" :key="index">
+                <RouterLink :to="`/usuario/${temas.id}`"><button class="categoria">{{temas.titulo}}</button></RouterLink>
+            </div>
           </div>
       </article>
+      <aside>
+
+        <h4>Quiz mas Jugados</h4>
+          <ol>
+            <li class="nostyle" v-for="(quizses,index) in this.quizMasJugados" :key="index">
+                  <RouterLink :to="`/pregunta/${quizses.id}`">
+                    {{quizses.Titulo}}
+                  </RouterLink>
+            </li>
+          </ol>
+          <h4>Mejores Jugadores</h4>
+          <ol>
+              <li class="nostyle" v-for="(mejores,index) in this.quizMejores" :key="index">{{mejores.nombre}}{{mejores.apellido}} Puntuacion : {{mejores.puntuacion}}</li>
+          </ol>
+      </aside>
+         
     </div> 
 </template>
 
