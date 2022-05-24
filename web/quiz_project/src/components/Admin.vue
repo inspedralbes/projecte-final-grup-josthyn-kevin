@@ -47,7 +47,7 @@ export default {
                 <label>Correo </label>
                 <input type="email" class="form-control" id="Correo" aria-describedby="emailHelp"  v-model="Correo">
                 <br>
-                <b><label>Contrasenya</label></b>
+                <b><label>Contraseña</label></b>
                 <input type="text" class="form-control" id="Contrasena" v-model="Contrasenya">
                 <br>
             </div>
@@ -69,13 +69,13 @@ export default {
     }
 
     #container {
-        margin-top: 11.4%;
-        margin-right: 30%;
-        margin-left: 38%;
+        margin-top: 25%;
+        align-items: center;
+        margin-left: 22%;
         margin-bottom: 11.100%;
         color: white;
         padding-bottom: 4%;
-        width: 25%;
+        width: 60%;
         background-color: #5C1473;
         border: 5px solid black;
         border-radius: 15px;
@@ -104,5 +104,28 @@ export default {
 
     #error {
         color: red;
+    }
+
+    @media screen and (min-width: 600px){
+       #container {
+        margin-top: 20%;
+        margin-left: 25%;
+        width: 50%;
+        }
+
+    }
+     @media screen and (min-width: 800px){
+       #container {
+        /*margin-top: 15%;*/
+        margin-left: 30%;
+        width: 40%;
+        }
+    }
+    @media screen and (min-width: 992px){
+       #container {
+        margin-top: 10%;
+        margin-left: 37%;
+        width: 25%;
+        }
     }
 </style>

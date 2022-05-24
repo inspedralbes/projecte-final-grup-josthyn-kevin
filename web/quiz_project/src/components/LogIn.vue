@@ -87,7 +87,7 @@ export default {
     #container {
         margin-right: 15%;
         margin-left: 20%;
-        margin-top: 25%;
+        margin-top: 30%;
         margin-bottom: 10%;
         color: white;
         padding-bottom: 4%;
@@ -126,10 +126,9 @@ export default {
         color: red;
     }
 
-     @media screen and (min-width: 600px){
+         @media screen and (min-width: 600px){
        #container {
         margin-top: 20%;
-        margin-right: 15%;
         margin-left: 25%;
         width: 50%;
         }
@@ -137,10 +136,16 @@ export default {
     }
      @media screen and (min-width: 800px){
        #container {
+        /*margin-top: 15%;*/
+        margin-left: 30%;
+        width: 40%;
+        }
+    }
+    @media screen and (min-width: 992px){
+       #container {
         margin-top: 10%;
         margin-left: 37%;
         width: 25%;
         }
     }
-
 </style>

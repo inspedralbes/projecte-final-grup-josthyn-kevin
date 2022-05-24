@@ -14,7 +14,7 @@ import { mapStores } from 'pinia'
 			<ul v-if="!this.estado === true">
 				<li><RouterLink to="/">Home</RouterLink></li>
 				<li><RouterLink to="/login">Log In</RouterLink></li>
-                <li><RouterLink to="/register">Registrarse</RouterLink></li>
+                
 			</ul>
 		</nav>
 	</header>

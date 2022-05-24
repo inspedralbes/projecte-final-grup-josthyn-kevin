@@ -114,10 +114,9 @@ export default {
     }
 
 
-    @media screen and (min-width: 600px){
+           @media screen and (min-width: 600px){
        #container {
         margin-top: 20%;
-        margin-right: 15%;
         margin-left: 25%;
         width: 50%;
         }
@@ -125,7 +124,14 @@ export default {
     }
      @media screen and (min-width: 800px){
        #container {
-        margin-top: 8%;
+        /*margin-top: 15%;*/
+        margin-left: 30%;
+        width: 40%;
+        }
+    }
+    @media screen and (min-width: 992px){
+       #container {
+        margin-top: 10%;
         margin-left: 37%;
         width: 25%;
         }
