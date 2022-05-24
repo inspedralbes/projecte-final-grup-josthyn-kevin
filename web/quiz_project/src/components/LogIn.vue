@@ -126,4 +126,13 @@ export default {
         color: red;
     }
 
+     @media screen and (min-width: 600px){
+       #container {
+        margin-top: 20%;
+        margin-right: 15%;
+        margin-left: 25%;
+        width: 50%;
+        }
+    }
+
 </style>
