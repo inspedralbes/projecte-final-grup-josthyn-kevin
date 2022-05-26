@@ -1,0 +1,161 @@
+{
+	"id_quiz": 18,
+	"titulo": "Real Madrid",
+	"preguntas": [
+		{
+			"id": 121,
+			"enunciado": "¿Año en el que el Real Madrid se proclamo por primera vez como campeon de la antes conocida como  \"Copa de Europa\"?",
+			"respuestas": [
+				{
+					"id": 602,
+					"respuesta": "1955",
+					"estado": 1
+				},
+				{
+					"id": 603,
+					"respuesta": "1966",
+					"estado": 0
+				},
+				{
+					"id": 604,
+					"respuesta": "1958",
+					"estado": 0
+				},
+				{
+					"id": 605,
+					"respuesta": "1954",
+					"estado": 0
+				},
+				{
+					"id": 606,
+					"respuesta": "1970",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"id": 122,
+			"enunciado": "¿Nom del máximo goleador histórico del club?",
+			"respuestas": [
+				{
+					"id": 607,
+					"respuesta": "Raul Gonzalez Blanco",
+					"estado": 0
+				},
+				{
+					"id": 608,
+					"respuesta": "Alfred Di Stefano",
+					"estado": 0
+				},
+				{
+					"id": 609,
+					"respuesta": "Alvar Arbeloa",
+					"estado": 0
+				},
+				{
+					"id": 610,
+					"respuesta": "Cristiano Ronaldo",
+					"estado": 1
+				},
+				{
+					"id": 611,
+					"respuesta": "Lionel Messi",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"id": 123,
+			"enunciado": "¿Nombre del estadio en el que juega como local el conjunto Blanco? ",
+			"respuestas": [
+				{
+					"id": 612,
+					"respuesta": "Wanda Metropilitano",
+					"estado": 0
+				},
+				{
+					"id": 613,
+					"respuesta": "Santiago Bernabeu",
+					"estado": 1
+				},
+				{
+					"id": 614,
+					"respuesta": "La Cartuja",
+					"estado": 0
+				},
+				{
+					"id": 615,
+					"respuesta": "Camp nou",
+					"estado": 0
+				},
+				{
+					"id": 616,
+					"respuesta": "San Mames",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"id": 124,
+			"enunciado": "Número de Ligas que tiene en su haber",
+			"respuestas": [
+				{
+					"id": 617,
+					"respuesta": "32",
+					"estado": 0
+				},
+				{
+					"id": 618,
+					"respuesta": "40",
+					"estado": 0
+				},
+				{
+					"id": 619,
+					"respuesta": "35",
+					"estado": 1
+				},
+				{
+					"id": 620,
+					"respuesta": "27",
+					"estado": 0
+				},
+				{
+					"id": 621,
+					"respuesta": "13",
+					"estado": 0
+				}
+			]
+		},
+		{
+			"id": 125,
+			"enunciado": "¿En que año se fundo el club?",
+			"respuestas": [
+				{
+					"id": 622,
+					"respuesta": "1903",
+					"estado": 0
+				},
+				{
+					"id": 623,
+					"respuesta": "1913",
+					"estado": 0
+				},
+				{
+					"id": 624,
+					"respuesta": "1920",
+					"estado": 0
+				},
+				{
+					"id": 625,
+					"respuesta": "1907",
+					"estado": 0
+				},
+				{
+					"id": 626,
+					"respuesta": "1902",
+					"estado": 1
+				}
+			]
+		}
+	]
+}

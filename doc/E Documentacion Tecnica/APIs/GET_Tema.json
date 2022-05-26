@@ -1,0 +1,38 @@
+[
+	{
+		"id": 1,
+		"titulo": "Historia"
+	},
+	{
+		"id": 2,
+		"titulo": "Deporte"
+	},
+	{
+		"id": 3,
+		"titulo": "Ciencia"
+	},
+	{
+		"id": 4,
+		"titulo": "Entretenimiento"
+	},
+	{
+		"id": 5,
+		"titulo": "Arte"
+	},
+	{
+		"id": 6,
+		"titulo": "Geografía"
+	},
+	{
+		"id": 7,
+		"titulo": "Tecnología"
+	},
+	{
+		"id": 8,
+		"titulo": "Música"
+	},
+	{
+		"id": 9,
+		"titulo": "Videojuegos"
+	}
+]

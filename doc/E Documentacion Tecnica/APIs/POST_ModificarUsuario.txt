@@ -1,0 +1,6 @@
+Formulario:
+
+- correo
+- nombre
+- apellido
+- contrasena
