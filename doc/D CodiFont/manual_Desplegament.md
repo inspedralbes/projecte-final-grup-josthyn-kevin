@@ -15,3 +15,23 @@
 
 ## Frontend
 
+*Si quieres saber ques es y como utilizar VUE para frontend te dejo aqui una guia/introduccion*
+
+https://es.vuejs.org/v2/guide/
+
+- Clona el repositorio y abre la carpeta " web > vue " con un editor de código como Visual Studio Code o el editor que mas desee.
+
+- En el terminal del editor de codigo introduzca -> **npm update** para actualizar
+
+- Luego introduzca **npm install**
+
+- Para que funcione correctamenete la aplicacion habra que cambiar todos las apis de cada fetch que hay por vuestra ip + el puerto que le aseñala al iniciar el proyecto
+
+**Ejemplo** - http//*vuestraIP*:*Puerto*/*Ruta de la api*
+
+- Para inciar habra que posicionarse en la carpeta del proyecto. Y introducir esta linea de codigo en el terminar:
+
+**npm run dev**
+
+
+
