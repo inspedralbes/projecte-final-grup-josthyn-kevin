@@ -15,4 +15,4 @@ Un cop comenceu heu de canviar aquesta explicació amb la corresponent al vostre
  * JocQuiz
  * Es un juego en que los usuarios podran responder quizs de 5 preguntas y hasta de 9 temas diferentes, crear ellos mismos los quizs y competir por quien obtiene la mayor puntuación en ellos.
  * http://jocquiz.alumnes.inspedralbes.cat/
- * Estat: Funcinal
+ * Estat: Funcional
